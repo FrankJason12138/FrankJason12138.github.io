@@ -10,8 +10,7 @@ tags: Web3.0 心理咨询 去中心化
 
 最近openAI中的一个聊天机器人火的一塌糊涂，这就是大名鼎鼎的Chatgpt。自从它去年末诞生，经过一个月的资本运作，B站、油管以及各种短视频平台和社交网络都火热报道。一时间，各路阿婆主都在哭号，AI会代替人类的工作，我们即将踏入职业革命！！！其实说实话，我的第一个个人博客的搭建，也是Chatgpt一步一步帮我写的→_→
 
-![图片描述](C:\Users\admin\my-site\jekyll-theme-H2O\assets\img\chatgpt.png)
-![图片描述](https://hd.itsfun.com.tw/img/7/b91/nBnauETNSJVM1EjNwMjWx0iNx8yMwkTMv42YuEmYn5WaxVnaucWbp9yL6MHc0RHa.jpg)
+![](https://github.com/FrankJason12138/FrankJason12138.github.io/blob/main/assets/img/chatgpt.png?raw=true)
 
 总体用下来我觉得还不错，它能够帮助我处理一些最开始的搭建安装步骤，并且在我有疑问时，它能清楚的把握我要问的那个点，以及如何解决这个难题，这一点让我非常惊喜，因为这比我在Google上一点一点的把我问题敲上去后——还得仔细辨别有没有与我的情况完全一致的人在知乎或者百度上询问过答案，这样我才敢把代码down下来粘在我的系统里。而它就不同了一旦你把所有问题的细节完全粘上去后，它立刻告诉你是什么问题，并且告知你解决方案；而且如果出错，再把问题放上去就能弹出下一步的解决方案，而且温馨的提示你这个代码在什么时候用，真是一个无所不知的大暖男！！
 

@@ -10,7 +10,7 @@ tags: Web3.0 心理咨询
 
 正如我在[微博](http://weibo.com/1374146504/profile?topnav=1&wvr=6)上所说的，使用[Jekyll](http://jekyll.com.cn/)半年以来一直没有令我满意的主题模板，所以开始计划自己写一套好看又好用的主题模板。设计之初就明确了极简主义，风格采用扁平化了，通过卡片式设计来进行区块分明的布局，参考了Medium的ui样式和知乎专栏的视觉风格。
 
-![](C:\Users\admin\my-site\jekyll-theme-H2O\assets\img\chatgpt.png)
+![](https://github.com/FrankJason12138/FrankJason12138.github.io/blob/main/assets/img/chatgpt.png?raw=true)
 
 ## H2O
 
