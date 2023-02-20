@@ -60,7 +60,7 @@ tags: Web3.0 心理咨询
 
 ![](http://on2171g4d.bkt.clouddn.com/jekyll-theme-h2o-headerpatterns.jpg)
 ![图片描述](https://hd.itsfun.com.tw/img/7/b91/nBnauETNSJVM1EjNwMjWx0iNx8yMwkTMv42YuEmYn5WaxVnaucWbp9yL6MHc0RHa.jpg)
-![测试](C:\Users\admin\my-site\jekyll-theme-H2O\screenshot\jekyll-theme-h2o-realhome.jpg)
+![测试](https://github.com/FrankJason12138/FrankJason12138.github.io/blob/main/assets/img/chatgpt.jpg?raw=true)
 
 ### 代码高亮
 
