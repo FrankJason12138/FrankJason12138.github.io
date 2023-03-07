@@ -4,7 +4,7 @@ title: '探究心灵的世界'
 subtitle: 'Web3.0时期的心理咨询'
 date: 2023-02-22
 categories: 技术
-cover: 'http://on2171g4d.bkt.clouddn.com/jekyll-theme-h2o-postcover.jpg'
+cover: 'https://5b0988e595225.cdn.sohucs.com/images/20180419/6c8190e5f99c46cabd3f4bc4fdc76b77.jpeg'
 tags: Web3.0 心理咨询 去中心化
 ---
 
