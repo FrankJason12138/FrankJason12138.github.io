@@ -87,9 +87,7 @@ permalink: /:year/:month/:day/:title.html
 plugins: [jekyll-paginate]
 
 # Sitemap
-gems:
-  - jekyll-sitemap
-
-whitelist:
+url: "https://frankjason12138.github.io" # the base hostname & protocol for your site
+plugins:
   - jekyll-sitemap
 
