@@ -85,6 +85,8 @@ permalink: /:year/:month/:day/:title.html
 
 # Plugins
 plugins: [jekyll-paginate]
+
+# Sitemap
 gems:
   - jekyll-sitemap
 
