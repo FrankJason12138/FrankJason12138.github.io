@@ -4,7 +4,7 @@ title: '心理健康教育教资面试考试'
 subtitle: '木一老师来帮你'
 date: 2023-11-09
 categories: 教育
-cover: 'https://bkimg.cdn.bcebos.com/pic/f11f3a292df5e0fe72bc2258536034a85fdf72c7?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UxNTA=,g_7,xp_5,yp_5/format,f_auto'
+cover: 'https://img95.699pic.com/xsj/17/mb/q7.jpg%21/fh/300'
 tags: 心理健康教育 教师资格证书考试 教资面试考试 资料分享 
 ---
 
