@@ -7,10 +7,8 @@ categories: 心理量表
 cover: '/assets/img/MBTI.jpg'
 tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF 交互网站 人格因素
 ---
-
-
+<!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +19,60 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
     <style>
         body {
             font-family: 'Noto Sans SC', sans-serif;
+        }
+        .custom-radio {
+            display: inline-block;
+            position: relative;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            -webkit-user-select: none;
+            user-select: none;
+            align-items: center;
+            text-align: center;
+        }
+        .custom-radio input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .checkmark {
+            height: 25px;
+            width: 25px;
+            background-color: #98FB98;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+        }
+        .custom-radio input:checked ~ .checkmark {
+            background-color: #006400;
+        }
+        .submit-button {
+            background-color: #98FB98; /* Light green */
+            color: black;
+            font-size: 20px;
+            padding: 10px 20px;
+            border: 2px solid #98FB98; /* Light green border */
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .submit-button:hover {
+            background-color: #006400; /* Dark green */
+            color: white;
+        }
+        .question-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .question-label {
+            margin-right: 10px;
+            font-size: 22px;
         }
     </style>
 </head>
@@ -48,26 +100,45 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
             </div>
         </div>
     </div>
-    <div class="py-10">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <div class="flex justify-center space-x-2 mb-4">
-                <div class="w-3 h-3 bg-green-300 rounded-full"></div>
-                <div class="w-3 h-3 bg-green-300 rounded-full"></div>
-                <div class="w-3 h-3 bg-green-300 rounded-full"></div>
-                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-                <div class="w-3 h-3 bg-green-300 rounded-full"></div>
-                <div class="w-3 h-3 bg-green-300 rounded-full"></div>
-            </div>
-            <div class="text-gray-500">你经常觉得无聊吗？</div>
-        </div>
-    </div>
-    <div class="py-4 bg-gray-100">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <button class="text-green-600">回答</button>
-            <button class="text-gray-500 mx-2">|</button>
-            <button class="text-gray-500">不同意</button>
-        </div>
-    </div>
-</body>
 
+    <h2 class="text-center mt-8">心理量表</h2>
+    <form id="psychologyTest" class="max-w-6xl mx-auto px-4 py-8">
+        <!-- 问题1 -->
+        <div class="question-group">
+            <span class="question-label">问题1:</span>
+            <label class="custom-radio">选项1
+                <input type="radio" id="q1a1" name="question1" value="1">
+                <span class="checkmark"></span>
+            </label>
+            <label class="custom-radio">选项2
+                <input type="radio" id="q1a2" name="question1" value="2">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+
+        <!-- 问题2 -->
+        <div class="question-group">
+            <span class="question-label">问题2:</span>
+            <label class="custom-radio">选项1
+                <input type="radio" id="q2a1" name="question2" value="1">
+                <span class="checkmark"></span>
+            </label>
+            <label class="custom-radio">选项2
+                <input type="radio" id="q2a2" name="question2" value="2">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+
+        <!-- 更多问题可以按照这个格式添加 -->
+
+        <div class="text-center">
+            <input type="submit" value="提交" class="submit-button">
+        </div>
+    </form>
+
+    <p id="result" class="text-center mt-4"></p>
+
+    <script src="script.js"></script>
+</body>
 </html>
+
