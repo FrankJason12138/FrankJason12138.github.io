@@ -1,14 +1,14 @@
 ---
 layout: post
-title: '#iiii和4i 离开中国以后我才知道四爱...'
-subtitle: '这是不是一场made in China的性别革命'
-date: 2023-12-10
-categories: 性别
-cover: '/assets/img/四爱.png'
-tags: iiii 4i 四爱 性别 中国 LGBQ 女权 心理性别 女攻男受 
+title: '卡特尔16PF'
+subtitle: '测试开始'
+date: 2023-01-01
+categories: 心理量表
+cover: '/assets/img/MBTI.jpg'
+tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF 交互网站 人格因素
 ---
 
-<!DOCTYPE html>
+
 <html lang="zh-CN">
 
 <head>
@@ -28,20 +28,20 @@ tags: iiii 4i 四爱 性别 中国 LGBQ 女权 心理性别 女攻男受
 <body>
     <div class="bg-green-400 py-20">
         <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center text-white text-4xl mb-10">标题</div>
+            <div class="text-center text-white text-4xl mb-10">卡特尔16PF</div>
             <div class="flex justify-center space-x-10">
                 <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <img src="https://placehold.co/100x100" alt="Placeholder image of a 3D model of blue twisted shapes" class="mb-4">
+                    <img src="/assets/img/闪电.jpg" alt="Placeholder image of a 3D model of blue twisted shapes" class="mb-4">
                     <div class="text-gray-700 text-base mb-4">极速测试</div>
                     <div class="text-gray-500 text-sm">依托自己并拥护回答，以了解你的性格类型。</div>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <img src="https://placehold.co/100x100" alt="Placeholder image of a gold molecular structure" class="mb-4">
+                    <img src="/assets/img/记录.jpg" alt="Placeholder image of a gold molecular structure" class="mb-4">
                     <div class="text-gray-700 text-base mb-4">查看详细结果</div>
                     <div class="text-gray-500 text-sm">了解您的性格类型如何影响您生活的所有领域。</div>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <img src="https://placehold.co/100x100" alt="Placeholder image of purple cards with analytical graphs" class="mb-4">
+                    <img src="/assets/img/人脑.jpg" alt="Placeholder image of purple cards with analytical graphs" class="mb-4">
                     <div class="text-gray-700 text-base mb-4">获取你的潜力</div>
                     <div class="text-gray-500 text-sm">通过可选的高级反馈，成长为您想成为的人。</div>
                 </div>
