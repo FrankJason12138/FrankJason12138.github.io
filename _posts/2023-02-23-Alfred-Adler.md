@@ -3,7 +3,7 @@ layout: post
 title: '想要获得幸福，真的那么难吗？'
 subtitle: '阿德勒个体心理学来帮您'
 date: 2023-02-23
-categories: 技术
+categories: 人物传记
 cover: 'https://pic2.zhimg.com/v2-1f5a1dca4c03f67320dd619adfd2460a_250x0.jpg?source=172ae18b'
 tags: 阿德勒 个体心理学 被讨厌的勇气 
 ---
