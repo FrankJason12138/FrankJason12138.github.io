@@ -99,8 +99,12 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
             </div>
         </div>
     </div>
-
-    <h2 class="text-center mt-8">心理量表</h2>
+    <h2 class="text-center mt-8">本测验共有187道题目, 都是有关个人的兴趣和态度等问题.每个人对这些问题是会有不同看法的,回答也是不同的因而对问题如何回答，并没有对与不对之分,只是表明你对这些问题的态度.请你要尽量表达个人的意见,不要有顾虑。应当记住的是： 
+1.	每一测题只能选择一个答案； 
+2.	不可漏掉任何测题； 
+3.	尽量不选择第B个答案； 
+4.	本测验不计时间，但应凭自己的直觉反应进行作答，不要迟疑不决，拖延时间。一定要在一个小时以内完成整个测验。 
+5.	有些题目你可能从未思考过，或者感到不太容易回答。对于这样的题目，同样要求你做出一种倾向性的选择。</h2>
 <form id="psychologyTest" class="max-w-6xl mx-auto px-4 py-8">
     <!-- 问题1 -->
     <div class="question-group">
@@ -115,37 +119,32 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
             <span class="checkmark"></span>
         </label>
         <label class="custom-radio">(C)不是的 
-            <input type="radio" id="q1a1" name="question1" value="1">
+            <input type="radio" id="q1a1" name="question1" value="3">
             <span class="checkmark"></span>
         </label>
     </div>
-
     <!-- 问题2 -->
     <div class="question-group">
         <div class="question-label">2. 我对本测试的每一个问题，都能做到诚实地回答：</div> <!-- 添加这个换行标签 -->
         <label class="custom-radio">(A)是的 
-            <input type="radio" id="q1a1" name="question1" value="1">
+            <input type="radio" id="q1a1" name="question2" value="1">
             <span class="checkmark"></span>
         </label>
         <label class="custom-radio">(B)不一定
-            <input type="radio" id="q1a2" name="question1" value="2">
+            <input type="radio" id="q1a2" name="question2" value="2">
             <span class="checkmark"></span>
         </label>
         <label class="custom-radio">(C)不同意 
-            <input type="radio" id="q1a1" name="question1" value="1">
+            <input type="radio" id="q1a1" name="question2" value="3">
             <span class="checkmark"></span>
         </label>
     </div>
-
     <!-- 更多问题可以按照这个格式添加 -->
-
     <div class="question-group">
         <input type="submit" value="提交" class="submit-button">
     </div>
 </form>
-
     <p id="result" class="text-center mt-4"></p>
-
     <script src="script.js"></script>
 </body>
 </html>
