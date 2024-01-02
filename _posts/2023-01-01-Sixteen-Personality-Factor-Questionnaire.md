@@ -7,6 +7,7 @@ categories: 心理量表
 cover: '/assets/img/MBTI.jpg'
 tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF 交互网站 人格因素
 ---
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -64,7 +65,6 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
             color: white;
         }
         .question-group {
-            display: flex;
             justify-content: center;
             align-items: center;
             margin-bottom: 20px;
@@ -101,43 +101,54 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
     </div>
 
     <h2 class="text-center mt-8">心理量表</h2>
-    <form id="psychologyTest" class="max-w-6xl mx-auto px-4 py-8">
-        <!-- 问题1 -->
-        <div class="question-group">
-            <span class="question-label">问题1:</span>
-            <label class="custom-radio">选项1
-                <input type="radio" id="q1a1" name="question1" value="1">
-                <span class="checkmark"></span>
-            </label>
-            <label class="custom-radio">选项2
-                <input type="radio" id="q1a2" name="question1" value="2">
-                <span class="checkmark"></span>
-            </label>
-        </div>
+<form id="psychologyTest" class="max-w-6xl mx-auto px-4 py-8">
+    <!-- 问题1 -->
+    <div class="question-group">
+        <div class="question-label">1. 我很明了本测试的说明：</div>
+        <!-- 添加这个换行标签 -->
+        <label class="custom-radio">(A)是的 
+            <input type="radio" id="q1a1" name="question1" value="1">
+            <span class="checkmark"></span>
+        </label>
+        <label class="custom-radio">(B)不一定
+            <input type="radio" id="q1a2" name="question1" value="2">
+            <span class="checkmark"></span>
+        </label>
+        <label class="custom-radio">(C)不是的 
+            <input type="radio" id="q1a1" name="question1" value="1">
+            <span class="checkmark"></span>
+        </label>
+    </div>
 
-        <!-- 问题2 -->
-        <div class="question-group">
-            <span class="question-label">问题2:</span>
-            <label class="custom-radio">选项1
-                <input type="radio" id="q2a1" name="question2" value="1">
-                <span class="checkmark"></span>
-            </label>
-            <label class="custom-radio">选项2
-                <input type="radio" id="q2a2" name="question2" value="2">
-                <span class="checkmark"></span>
-            </label>
-        </div>
+    <!-- 问题2 -->
+    <div class="question-group">
+        <div class="question-label">2. 我对本测试的每一个问题，都能做到诚实地回答：</div> <!-- 添加这个换行标签 -->
+        <label class="custom-radio">(A)是的 
+            <input type="radio" id="q1a1" name="question1" value="1">
+            <span class="checkmark"></span>
+        </label>
+        <label class="custom-radio">(B)不一定
+            <input type="radio" id="q1a2" name="question1" value="2">
+            <span class="checkmark"></span>
+        </label>
+        <label class="custom-radio">(C)不同意 
+            <input type="radio" id="q1a1" name="question1" value="1">
+            <span class="checkmark"></span>
+        </label>
+    </div>
 
-        <!-- 更多问题可以按照这个格式添加 -->
+    <!-- 更多问题可以按照这个格式添加 -->
 
-        <div class="text-center">
-            <input type="submit" value="提交" class="submit-button">
-        </div>
-    </form>
+    <div class="question-group">
+        <input type="submit" value="提交" class="submit-button">
+    </div>
+</form>
 
     <p id="result" class="text-center mt-4"></p>
 
     <script src="script.js"></script>
 </body>
 </html>
+
+
 
