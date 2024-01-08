@@ -139,8 +139,7 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
         </label>
     </div>
     <!-- 更多问题可以按照这个格式添加 -->
-        <input type="submit" value="提交" class="submit-button">
-    </div>
+        <input type="submit" value="提交" class="submit-button"> 
 </form>
     <p id="result" class="text-center mt-4"></p>
     <script src="../../../assets/js/script.js"></script>
