@@ -118,7 +118,7 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
             <span class="checkmark"></span>
         </label>
         <label class="custom-radio">(C)不是的 
-            <input type="radio" id="q1a1" name="question1" value="3">
+            <input type="radio" id="q1a3" name="question1" value="3">
             <span class="checkmark"></span>
         </label>
     </div>
@@ -126,20 +126,19 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
     <div class="question-group">
         <div class="question-label">2. 我对本测试的每一个问题，都能做到诚实地回答：</div> <!-- 添加这个换行标签 -->
         <label class="custom-radio">(A)是的 
-            <input type="radio" id="q1a1" name="question2" value="1">
+            <input type="radio" id="q2a1" name="question2" value="1">
             <span class="checkmark"></span>
         </label>
         <label class="custom-radio">(B)不一定
-            <input type="radio" id="q1a2" name="question2" value="2">
+            <input type="radio" id="q2a2" name="question2" value="2">
             <span class="checkmark"></span>
         </label>
         <label class="custom-radio">(C)不同意 
-            <input type="radio" id="q1a1" name="question2" value="3">
+            <input type="radio" id="q2a3" name="question2" value="3">
             <span class="checkmark"></span>
         </label>
     </div>
     <!-- 更多问题可以按照这个格式添加 -->
-    <div class="question-group">
         <input type="submit" value="提交" class="submit-button">
     </div>
 </form>
