@@ -3102,6 +3102,7 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
 </form>
     <p id="result" class="text-center mt-4"></p>
     <script src="../../../assets/js/script.js"></script>
+</div>
 </body>
 </html>
-</div>
+
