@@ -1,38 +1,27 @@
 document.getElementById("psychologyTest").onsubmit = function(event) {
-    // 首先检查是否所有问题都已回答
-    var questions = document.querySelectorAll('.question-group');
-    var isAllAnswered = true;
+    event.preventDefault();  // 阻止表单默认提交
 
-    questions.forEach(function(question) {
-        var inputs = question.querySelectorAll('input[type="radio"]');
-        var isChecked = Array.from(inputs).some(input => input.checked);
-
-        if (!isChecked) {
-            isAllAnswered = false;
-        }
+    // 检查所有问题是否已回答
+    var isAllAnswered = Array.from(document.querySelectorAll('.question-group')).every(group => {
+        return Array.from(group.querySelectorAll('input[type="radio"]')).some(input => input.checked);
     });
 
-    // 如果有问题未回答，显示警告并阻止表单提交
+    // 如果有未回答的问题，以弹窗形式显示警告
     if (!isAllAnswered) {
-        event.preventDefault();
-        alert('对不起，请检查漏掉的题目');
-        return; // 阻止继续执行后面的代码
+        alert("请回答所有问题");
+        return;  // 退出函数
     }
 
-    // 如果所有问题都已回答，计算分数
-    var score = 0;
-    var form = document.getElementById("psychologyTest");
-    var answers = form.elements;
-
-    for(var i = 0; i < answers.length; i++) {
-        if(answers[i].checked) {
-            score += parseInt(answers[i].value, 10);
+    // 计算分数
+    var score = Array.from(document.getElementById("psychologyTest").elements).reduce((total, element) => {
+        if (element.checked && element.type === "radio") {
+            total += parseInt(element.value, 10);
         }
-    }
+        return total;
+    }, 0);
 
-    // 在当前页面独立显示结果
-    document.body.innerHTML = "<h1>您的得分是: " + score + "</h1>";
-
-    // 阻止表单的默认提交行为
-    event.preventDefault();
+    // 显示得分结果
+    var resultDisplay = document.getElementById("resultDisplay");
+    resultDisplay.innerHTML = "<h1>您的得分是: " + score + "</h1>";
+    resultDisplay.style.textAlign = "center";  // 添加居中样式
 };
