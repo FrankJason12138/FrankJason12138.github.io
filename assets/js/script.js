@@ -30,10 +30,9 @@ document.getElementById("psychologyTest").onsubmit = function(event) {
         }
     }
 
-    var result = "您的得分是: " + score;
-    document.getElementById("result").innerText = result;
+    // 在当前页面独立显示结果
+    document.body.innerHTML = "<h1>您的得分是: " + score + "</h1>";
 
     // 阻止表单的默认提交行为
     event.preventDefault();
 };
-

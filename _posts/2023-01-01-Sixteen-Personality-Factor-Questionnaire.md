@@ -141,15 +141,15 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
 <div class="question-group">
     <div class="question-label">3. 如果我有机会的话，我愿意：</div>
     <label class="custom-radio">(A) 到一个繁华的城市去旅行
-        <input type="radio" id="q3a1" name="question3" value="1">
+        <input type="radio" id="q3a1" name="question3" value="2">
         <span class="checkmark"></span>
     </label>
     <label class="custom-radio">(B) 介于（A）,(C)之间
-        <input type="radio" id="q3a2" name="question3" value="2">
+        <input type="radio" id="q3a2" name="question3" value="1">
         <span class="checkmark"></span>
     </label>
     <label class="custom-radio">(C) 浏览清静的山区
-        <input type="radio" id="q3a3" name="question3" value="3">
+        <input type="radio" id="q3a3" name="question3" value="0">
         <span class="checkmark"></span>
     </label>
 </div>
@@ -491,7 +491,7 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
 </div>
 <!-- 问题25 -->
 <div class="question-group">
-    <div class="question-label">25. 又使我怀疑别人是否对我的言行真正有兴趣：</div>
+    <div class="question-label">25. 有时我怀疑别人是否对我的言行真正有兴趣：</div>
     <label class="custom-radio">(A) 是的
         <input type="radio" id="q25a1" name="question25" value="1">
         <span class="checkmark"></span>
@@ -509,15 +509,15 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
 <div class="question-group">
     <div class="question-label">26. 如果我在工厂里工作，我愿做：</div>
     <label class="custom-radio">(A) 技术科的工作
-        <input type="radio" id="q26a1" name="question26" value="1">
+        <input type="radio" id="q26a1" name="question26" value="0">
         <span class="checkmark"></span>
     </label>
     <label class="custom-radio">(B) 介于（A）,(C)之间
-        <input type="radio" id="q26a2" name="question26" value="2">
+        <input type="radio" id="q26a2" name="question26" value="1">
         <span class="checkmark"></span>
     </label>
     <label class="custom-radio">(C) 宣传科的工作
-        <input type="radio" id="q26a3" name="question26" value="3">
+        <input type="radio" id="q26a3" name="question26" value="2">
         <span class="checkmark"></span>
     </label>
 </div>
@@ -525,15 +525,15 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
 <div class="question-group">
     <div class="question-label">27. 在阅读时我愿阅读：</div>
     <label class="custom-radio">(A) 有关太空旅行的书籍
-        <input type="radio" id="q27a1" name="question27" value="1">
+        <input type="radio" id="q27a1" name="question27" value="0">
         <span class="checkmark"></span>
     </label>
     <label class="custom-radio">(B) 不太确定
-        <input type="radio" id="q27a2" name="question27" value="2">
+        <input type="radio" id="q27a2" name="question27" value="1">
         <span class="checkmark"></span>
     </label>
     <label class="custom-radio">(C)有关家庭教育的书籍
-        <input type="radio" id="q27a3" name="question27" value="3">
+        <input type="radio" id="q27a3" name="question27" value="2">
         <span class="checkmark"></span>
     </label>
 </div>
@@ -909,15 +909,15 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
 <div class="question-group">
     <div class="question-label">51. 如果待遇相同，我愿做：</div>
     <label class="custom-radio">(A)森林管理员 
-        <input type="radio" id="q51a1" name="question51" value="1">
+        <input type="radio" id="q51a1" name="question51" value="0">
         <span class="checkmark"></span>
     </label>
     <label class="custom-radio">(B)不一定
-        <input type="radio" id="q51a2" name="question51" value="2">
+        <input type="radio" id="q51a2" name="question51" value="1">
         <span class="checkmark"></span>
     </label>
     <label class="custom-radio">(C)中小学教师 
-        <input type="radio" id="q51a3" name="question51" value="3">
+        <input type="radio" id="q51a3" name="question51" value="2">
         <span class="checkmark"></span>
     </label>
 </div>
@@ -925,15 +925,15 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
 <div class="question-group">
     <div class="question-label">52. 每逢年节或亲友结婚时，我：</div>
     <label class="custom-radio">(A)喜欢赠送礼品 
-        <input type="radio" id="q52a1" name="question52" value="1">
+        <input type="radio" id="q52a1" name="question52" value="2">
         <span class="checkmark"></span>
     </label>
     <label class="custom-radio">(B)不太确定
-        <input type="radio" id="q52a2" name="question52" value="2">
+        <input type="radio" id="q52a2" name="question52" value="1">
         <span class="checkmark"></span>
     </label>
     <label class="custom-radio">(C)不愿相互送礼 
-        <input type="radio" id="q52a3" name="question52" value="3">
+        <input type="radio" id="q52a3" name="question52" value="0">
         <span class="checkmark"></span>
     </label>
 </div>
@@ -1309,15 +1309,15 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
 <div class="question-group">
     <div class="question-label">76. 如果待遇相同，我愿做一个：</div>
     <label class="custom-radio">(A)文学研究工作者 
-        <input type="radio" id="q76a1" name="question76" value="1">
+        <input type="radio" id="q76a1" name="question76" value="0">
         <span class="checkmark"></span>
     </label>
     <label class="custom-radio">(B)不确定
-        <input type="radio" id="q76a2" name="question76" value="2">
+        <input type="radio" id="q76a2" name="question76" value="1">
         <span class="checkmark"></span>
     </label>
     <label class="custom-radio">(C)旅行社经理 
-        <input type="radio" id="q76a3" name="question76" value="3">
+        <input type="radio" id="q76a3" name="question76" value="2">
         <span class="checkmark"></span>
     </label>
 </div>
@@ -1709,15 +1709,15 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
 <div class="question-group">
     <div class="question-label">101. 如果让我选择我宁愿做：</div>
     <label class="custom-radio">(A)列车员 
-        <input type="radio" id="q101a1" name="question101" value="1">
+        <input type="radio" id="q101a1" name="question101" value="2">
         <span class="checkmark"></span>
     </label>
     <label class="custom-radio">(B)不确定
-        <input type="radio" id="q101a2" name="question101" value="2">
+        <input type="radio" id="q101a2" name="question101" value="1">
         <span class="checkmark"></span>
     </label>
     <label class="custom-radio">(C)描图员 
-        <input type="radio" id="q101a3" name="question101" value="3">
+        <input type="radio" id="q101a3" name="question101" value="0">
         <span class="checkmark"></span>
     </label>
 </div>
@@ -2109,15 +2109,15 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
 <div class="question-group">
     <div class="question-label">126. 如果待遇相同，我愿做一个：</div>
     <label class="custom-radio">(A)律师 
-        <input type="radio" id="q126a1" name="question126" value="1">
+        <input type="radio" id="q126a1" name="question126" value="2">
         <span class="checkmark"></span>
     </label>
     <label class="custom-radio">(B)不确定
-        <input type="radio" id="q126a2" name="question126" value="2">
+        <input type="radio" id="q126a2" name="question126" value="1">
         <span class="checkmark"></span>
     </label>
     <label class="custom-radio">(C)航海员 
-        <input type="radio" id="q126a3" name="question126" value="3">
+        <input type="radio" id="q126a3" name="question126" value="0">
         <span class="checkmark"></span>
     </label>
 </div>
@@ -2509,15 +2509,15 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
 <div class="question-group">
     <div class="question-label">151. 根据我个人的兴趣，我愿参加：</div>
     <label class="custom-radio">(A)摄影组活动
-        <input type="radio" id="q151a1" name="question151" value="1">
+        <input type="radio" id="q151a1" name="question151" value="0">
         <span class="checkmark"></span>
     </label>
     <label class="custom-radio">(B)不确定
-        <input type="radio" id="q151a2" name="question151" value="2">
+        <input type="radio" id="q151a2" name="question151" value="1">
         <span class="checkmark"></span>
     </label>
     <label class="custom-radio">(C)文娱队活动
-        <input type="radio" id="q151a3" name="question151" value="3">
+        <input type="radio" id="q151a3" name="question151" value="2">
         <span class="checkmark"></span>
     </label>
 </div>
@@ -2909,15 +2909,15 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
 <div class="question-group">
     <div class="question-label">176. 下列工作如果让我挑选的话，我愿做：</div>
     <label class="custom-radio">(A)少先队辅导员
-        <input type="radio" id="q176a1" name="question176" value="1">
+        <input type="radio" id="q176a1" name="question176" value="2">
         <span class="checkmark"></span>
     </label>
     <label class="custom-radio">(B)不太确定
-        <input type="radio" id="q176a2" name="question176" value="2">
+        <input type="radio" id="q176a2" name="question176" value="1">
         <span class="checkmark"></span>
     </label>
     <label class="custom-radio">(C)修表工作
-        <input type="radio" id="q176a3" name="question176" value="3">
+        <input type="radio" id="q176a3" name="question176" value="0">
         <span class="checkmark"></span>
     </label>
 </div>
