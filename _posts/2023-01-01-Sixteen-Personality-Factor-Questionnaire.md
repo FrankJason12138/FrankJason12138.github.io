@@ -7,6 +7,7 @@ categories: 心理量表
 cover: '/assets/img/MBTI.jpg'
 tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF 交互网站 人格因素
 ---
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -3101,8 +3102,7 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
         <input type="submit" value="提交" class="submit-button"> 
 </form>
     <p id="result" class="text-center mt-4"></p>
-    <script src="../../../assets/js/script.js"></script>
-</div>
+    <script src="../../../assets/js/script.js"></script></div>
 </body>
 </html>
 
