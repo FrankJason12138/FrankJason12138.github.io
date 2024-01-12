@@ -8,7 +8,7 @@ document.getElementById("psychologyTest").onsubmit = function(event) {
 
     // 如果有未回答的问题，以弹窗形式显示警告
     if (!isAllAnswered) {
-        alert("请回答所有问题");
+        alert("对不起，请检查漏掉的问题");
         return;  // 退出函数
     }
 
