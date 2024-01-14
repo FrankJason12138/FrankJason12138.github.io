@@ -7,7 +7,6 @@ categories: 心理量表
 cover: '/assets/img/MBTI.jpg'
 tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF 交互网站 人格因素
 ---
-<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -3101,7 +3100,30 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
 </div>
         <input type="submit" value="提交" class="submit-button"> 
 </form>
-    <p id="result" class="text-center mt-4"></p>
+        <p id="resultDisplayA" class="text-center mt-4"></p>
+    <p id="resultDisplayB" class="text-center mt-4"></p>
+    <p id="resultDisplayC" class="text-center mt-4"></p>
+    <p id="resultDisplayE" class="text-center mt-4"></p>
+    <p id="resultDisplayF" class="text-center mt-4"></p>
+    <p id="resultDisplayG" class="text-center mt-4"></p>
+    <p id="resultDisplayH" class="text-center mt-4"></p>
+    <p id="resultDisplayI" class="text-center mt-4"></p>
+    <p id="resultDisplayL" class="text-center mt-4"></p>
+    <p id="resultDisplayM" class="text-center mt-4"></p>
+    <p id="resultDisplayN" class="text-center mt-4"></p>
+    <p id="resultDisplayO" class="text-center mt-4"></p>
+    <p id="resultDisplayQ1" class="text-center mt-4"></p>
+    <p id="resultDisplayQ2" class="text-center mt-4"></p>
+    <p id="resultDisplayQ3" class="text-center mt-4"></p>
+    <p id="resultDisplayQ4" class="text-center mt-4"></p>
+    <p id="resultDisplayX1" class="text-center mt-4"></p>
+    <p id="resultDisplayX2" class="text-center mt-4"></p>
+    <p id="resultDisplayX3" class="text-center mt-4"></p>
+    <p id="resultDisplayX4" class="text-center mt-4"></p>
+    <p id="resultDisplayY1" class="text-center mt-4"></p>
+    <p id="resultDisplayY2" class="text-center mt-4"></p>
+    <p id="resultDisplayY3" class="text-center mt-4"></p>
+    <p id="resultDisplayY4" class="text-center mt-4"></p>
     <script src="../../../assets/js/script.js"></script></div>
 </body>
 </html>
