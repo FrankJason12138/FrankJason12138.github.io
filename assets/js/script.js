@@ -12,6 +12,8 @@ document.getElementById("psychologyTest").onsubmit = function(event) {
         return;  // 退出函数
     }
 
+
+
     // 因素A的得分计算
 var selectedScoreForFactorA = 0;
 var selectedQuestionIndicesForFactorA = [3, 26, 27, 51, 52, 76, 101, 126, 151, 176]; // 因素A的题目编号
@@ -463,6 +465,17 @@ console.log("Score for Factor B:", selectedScoreForFactorB);  // 打印因素B�
     var scoreY3 = mapScoreForFactorY3(scoreY3);
     var scoreY4 = scoreB + scoreG + scoreQ3 + (11 - scoreF);
 
+
+    var score = Array.from(document.getElementById("psychologyTest").elements).reduce((total, element) => {
+        if (element.checked && element.type === "radio") {
+            total += parseInt(element.value, 10);
+        }
+        return total;
+    }, 0);
+    var resultDisplay = document.getElementById("resultDisplay");
+    resultDisplay.innerHTML = ""; 
+
+    
     // 计算常模分数
     var averageA = 9.06; // 常模平均分数
     var standardDeviationA = 3.4; // 常模标准差
@@ -479,10 +492,10 @@ console.log("Score for Factor B:", selectedScoreForFactorB);  // 打印因素B�
         resultTextA = "您的得分在正常范围内，在此项上和普通人一样。";
     }
     // 显示得分结果和常模关系
-    var resultDisplayA = document.getElementById("resultDisplayA");
-    resultDisplayA.innerHTML = "<h1>因素A——热情性 定义:描述待人是否热情、是否有愿意与人打交道的倾向性。得分: " + selectedScoreForFactorA + " 标准分: " + scoreA + "</h1>"+"范围(1~10)"+
+    var resultDisplay = document.getElementById("resultDisplay");
+    resultDisplay.innerHTML += "<h1>因素A——热情性 定义:描述待人是否热情、是否有愿意与人打交道的倾向性。得分: " + selectedScoreForFactorA + " 标准分: " + scoreA + "</h1>"+"范围(1~10)"+
         "<p>得分表述：" + resultTextA + "</p>";
-    resultDisplayA.style.textAlign = "center";  // 添加居中样式
+    resultDisplay.style.textAlign = "center";  // 添加居中样式
 
     // 计算常模分数
     var averageB = 7.65; // 常模平均分数
@@ -500,10 +513,10 @@ console.log("Score for Factor B:", selectedScoreForFactorB);  // 打印因素B�
         resultTextB = "您的得分在正常范围内，在此项上和普通人一样。";
     }
     // 显示得分结果和常模关系
-    var resultDisplayB = document.getElementById("resultDisplayB");
-    resultDisplayB.innerHTML = "<h1>因素B——热情性 定义:描述抽象思维能力及聪明程度。得分: " + selectedScoreForFactorB + " 标准分: " + scoreB + "</h1>"+"范围(1~10)"+
+    var resultDisplay = document.getElementById("resultDisplay");
+    resultDisplay.innerHTML += "<h1>因素B——热情性 定义:描述抽象思维能力及聪明程度。得分: " + selectedScoreForFactorB + " 标准分: " + scoreB + "</h1>"+"范围(1~10)"+
         "<p>得分表述：" + resultTextB + "</p>";
-    resultDisplayB.style.textAlign = "center";  // 添加居中样式
+    resultDisplay.style.textAlign = "center";  // 添加居中样式
     // 计算常模分数
     var averageC = 14.08; // 常模平均分数
     var standardDeviationC = 4.11; // 常模标准差
@@ -521,9 +534,9 @@ if (differenceC <  -1.5 * standardDeviationC) {
 }
 
 // 显示得分结果和常模关系
-var resultDisplayC = document.getElementById("resultDisplayC");
-resultDisplayC.innerHTML = "<h1>因素C——稳定性 定义:描述在外界环境变化时情绪和情感稳定与否，能否面对现实，并应对日常困难。得分: " + selectedScoreForFactorC + " 标准分: " + scoreC + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextC + "</p>";
-resultDisplayC.style.textAlign = "center";
+var resultDisplay = document.getElementById("resultDisplay");
+resultDisplay.innerHTML += "<h1>因素C——稳定性 定义:描述在外界环境变化时情绪和情感稳定与否，能否面对现实，并应对日常困难。得分: " + selectedScoreForFactorC + " 标准分: " + scoreC + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextC + "</p>";
+resultDisplay.style.textAlign = "center";
 // 计算常模分数
 var averageE = 9.82; // 常模平均分数
 var standardDeviationE = 3.5; // 常模标准差
@@ -541,9 +554,9 @@ if (differenceE <  -1.5 * standardDeviationE) {
 }
 
 // 显示得分结果和常模关系
-var resultDisplayE = document.getElementById("resultDisplayE");
-resultDisplayE.innerHTML = "<h1>因素E——恃强性 定义:描述是否愿意支配和影响他人，是否愿意领导他人。得分: " + selectedScoreForFactorE + " 标准分: " + scoreE + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextE + "</p>";
-resultDisplayE.style.textAlign = "center";
+var resultDisplay = document.getElementById("resultDisplay");
+resultDisplay.innerHTML += "<h1>因素E——恃强性 定义:描述是否愿意支配和影响他人，是否愿意领导他人。得分: " + selectedScoreForFactorE + " 标准分: " + scoreE + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextE + "</p>";
+resultDisplay.style.textAlign = "center";
 // 计算常模分数
 var averageF = 10.69; // 常模平均分数
 var standardDeviationF = 3.84; // 常模标准差
@@ -561,9 +574,9 @@ if (differenceF <  -1.5 * standardDeviationF) {
 }
 
 // 显示得分结果和常模关系
-var resultDisplayF = document.getElementById("resultDisplayF");
-resultDisplayF.innerHTML = "<h1>因素F——兴奋性 定义:描述情绪的兴奋和活跃程度，寻找娱乐的倾向和表达的自发性水平。得分: " + selectedScoreForFactorF + " 标准分: " + scoreF + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextF + "</p>";
-resultDisplayF.style.textAlign = "center";
+var resultDisplay = document.getElementById("resultDisplay");
+resultDisplay.innerHTML += "<h1>因素F——兴奋性 定义:描述情绪的兴奋和活跃程度，寻找娱乐的倾向和表达的自发性水平。得分: " + selectedScoreForFactorF + " 标准分: " + scoreF + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextF + "</p>";
+resultDisplay.style.textAlign = "center";
 // 计算常模分数
 var averageG = 8.20; // 常模平均分数
 var standardDeviationG = 2.3; // 常模标准差
@@ -581,9 +594,9 @@ if (differenceG <  -1.5 * standardDeviationG) {
 }
 
 // 显示得分结果和常模关系
-var resultDisplayG = document.getElementById("resultDisplayG");
-resultDisplayG.innerHTML = "<h1>因素G——规范性 定义:描述对社会道德规范和准则的接纳与自觉履行程度。得分: " + selectedScoreForFactorG + " 标准分: " + scoreG + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextG + "</p>";
-resultDisplayG.style.textAlign = "center";
+var resultDisplay = document.getElementById("resultDisplay");
+resultDisplay.innerHTML += "<h1>因素G——规范性 定义:描述对社会道德规范和准则的接纳与自觉履行程度。得分: " + selectedScoreForFactorG + " 标准分: " + scoreG + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextG + "</p>";
+resultDisplay.style.textAlign = "center";
 // 计算常模分数
 var averageH = 8.76; // 常模平均分数
 var standardDeviationH = 4.95; // 常模标准差
@@ -601,9 +614,9 @@ if (differenceH <  -1.5 * standardDeviationH) {
 }
 
 // 显示得分结果和常模关系
-var resultDisplayH = document.getElementById("resultDisplayH");
-resultDisplayH.innerHTML = "<h1>因素H——敢为性 定义:描述在社会情境中感受轻松的程度。得分: " + selectedScoreForFactorH + " 标准分: " + scoreH + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextH + "</p>";
-resultDisplayH.style.textAlign = "center";
+var resultDisplay = document.getElementById("resultDisplay");
+resultDisplay.innerHTML += "<h1>因素H——敢为性 定义:描述在社会情境中感受轻松的程度。得分: " + selectedScoreForFactorH + " 标准分: " + scoreH + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextH + "</p>";
+resultDisplay.style.textAlign = "center";
 // 计算常模分数
 var averageI = 11.42; // 常模平均分数
 var standardDeviationI = 2.87; // 常模标准差
@@ -621,9 +634,9 @@ if (differenceI <  -1.5 * standardDeviationI) {
 }
 
 // 显示得分结果和常模关系
-var resultDisplayI = document.getElementById("resultDisplayI");
-resultDisplayI.innerHTML = "<h1>因素I——敏感性 定义:描述敏感程度，即判断和决定是否容易受到感情的影响。得分: " + selectedScoreForFactorI + " 标准分: " + scoreI + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextI + "</p>";
-resultDisplayI.style.textAlign = "center";
+var resultDisplay = document.getElementById("resultDisplay");
+resultDisplay.innerHTML += "<h1>因素I——敏感性 定义:描述敏感程度，即判断和决定是否容易受到感情的影响。得分: " + selectedScoreForFactorI + " 标准分: " + scoreI + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextI + "</p>";
+resultDisplay.style.textAlign = "center";
 // 计算常模分数
 var averageL = 10.25; // 常模平均分数
 var standardDeviationL = 3.05; // 常模标准差
@@ -641,9 +654,9 @@ if (differenceL <  -1.5 * standardDeviationL) {
 }
 
 // 显示得分结果和常模关系
-var resultDisplayL = document.getElementById("resultDisplayL");
-resultDisplayL.innerHTML = "<h1>因素L——怀疑性 定义:描述是否倾向于探究他人言行举止之后的动机。得分: " + selectedScoreForFactorL + " 标准分: " + scoreL + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextL + "</p>";
-resultDisplayL.style.textAlign = "center";
+var resultDisplay = document.getElementById("resultDisplay");
+resultDisplay.innerHTML += "<h1>因素L——怀疑性 定义:描述是否倾向于探究他人言行举止之后的动机。得分: " + selectedScoreForFactorL + " 标准分: " + scoreL + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextL + "</p>";
+resultDisplay.style.textAlign = "center";
 // 计算常模分数
 var averageM = 13.27; // 常模平均分数
 var standardDeviationM = 3.39; // 常模标准差
@@ -661,9 +674,9 @@ if (differenceM <  -1.5 * standardDeviationM) {
 }
 
 // 显示得分结果和常模关系
-var resultDisplayM = document.getElementById("resultDisplayM");
-resultDisplayM.innerHTML = "<h1>因素M——幻想性 定义:描述关注外在环境和内在思维平衡的水平。得分: " + selectedScoreForFactorM + " 标准分: " + scoreM + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextM + "</p>";
-resultDisplayM.style.textAlign = "center";
+var resultDisplay = document.getElementById("resultDisplay");
+resultDisplay.innerHTML += "<h1>因素M——幻想性 定义:描述关注外在环境和内在思维平衡的水平。得分: " + selectedScoreForFactorM + " 标准分: " + scoreM + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextM + "</p>";
+resultDisplay.style.textAlign = "center";
 // 计算常模分数
 var averageN = 8.21; // 常模平均分数
 var standardDeviationN = 2.67; // 常模标准差
@@ -681,9 +694,9 @@ if (differenceN <  -1.5 * standardDeviationN) {
 }
 
 // 显示得分结果和常模关系
-var resultDisplayN = document.getElementById("resultDisplayN");
-resultDisplayN.innerHTML = "<h1>因素N——世故性 定义:描述是否能处事老练、灵活地处理事物。得分: " + selectedScoreForFactorN + " 标准分: " + scoreN + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextN + "</p>";
-resultDisplayN.style.textAlign = "center";
+var resultDisplay = document.getElementById("resultDisplay");
+resultDisplay.innerHTML += "<h1>因素N——世故性 定义:描述是否能处事老练、灵活地处理事物。得分: " + selectedScoreForFactorN + " 标准分: " + scoreN + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextN + "</p>";
+resultDisplay.style.textAlign = "center";
 // 计算常模分数
 var averageO = 10.42; // 常模平均分数
 var standardDeviationO = 3.79; // 常模标准差
@@ -701,9 +714,9 @@ if (differenceO <  -1.5 * standardDeviationO) {
 }
 
 // 显示得分结果和常模关系
-var resultDisplayO = document.getElementById("resultDisplayO");
-resultDisplayO.innerHTML = "<h1>因素O——忧虑性 定义:描述自我怀疑以及体现到烦恼和忧虑的程度。得分: " + selectedScoreForFactorO + " 标准分: " + scoreO + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextO + "</p>";
-resultDisplayO.style.textAlign = "center";
+var resultDisplay = document.getElementById("resultDisplay");
+resultDisplay.innerHTML += "<h1>因素O——忧虑性 定义:描述自我怀疑以及体现到烦恼和忧虑的程度。得分: " + selectedScoreForFactorO + " 标准分: " + scoreO + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextO + "</p>";
+resultDisplay.style.textAlign = "center";
 // 计算常模分数
 var averageQ1 = 10.15; // 常模平均分数
 var standardDeviationQ1 = 2.15; // 常模标准差
@@ -721,9 +734,9 @@ if (differenceQ1 <  -1.5 * standardDeviationQ1) {
 }
 
 // 显示得分结果和常模关系
-var resultDisplayQ1 = document.getElementById("resultDisplayQ1");
-resultDisplayQ1.innerHTML = "<h1>因素Q1——变革性 定义:描述对新鲜事物的接受和适应程度。得分: " + selectedScoreForFactorQ1 + " 标准分: " + scoreQ1 + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextQ1 + "</p>";
-resultDisplayQ1.style.textAlign = "center";
+var resultDisplay = document.getElementById("resultDisplay");
+resultDisplay.innerHTML += "<h1>因素Q1——变革性 定义:描述对新鲜事物的接受和适应程度。得分: " + selectedScoreForFactorQ1 + " 标准分: " + scoreQ1 + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextQ1 + "</p>";
+resultDisplay.style.textAlign = "center";
 // 计算常模分数
 var averageQ2 = 12.26; // 常模平均分数
 var standardDeviationQ2 = 2.88; // 常模标准差
@@ -741,9 +754,9 @@ if (differenceQ2 <  -1.5 * standardDeviationQ2) {
 }
 
 // 显示得分结果和常模关系
-var resultDisplayQ2 = document.getElementById("resultDisplayQ2");
-resultDisplayQ2.innerHTML = "<h1>因素Q2——独立性 定义:描述与周围群体的融合与依赖程度。得分: " + selectedScoreForFactorQ2 + " 标准分: " + scoreQ2 + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextQ2 + "</p>";
-resultDisplayQ2.style.textAlign = "center";
+var resultDisplay = document.getElementById("resultDisplay");
+resultDisplay.innerHTML += "<h1>因素Q2——独立性 定义:描述与周围群体的融合与依赖程度。得分: " + selectedScoreForFactorQ2 + " 标准分: " + scoreQ2 + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextQ2 + "</p>";
+resultDisplay.style.textAlign = "center";
 // 计算常模分数
 var averageQ3 = 12.21; // 常模平均分数
 var standardDeviationQ3 = 3.41; // 常模标准差
@@ -761,9 +774,9 @@ if (differenceQ3 <  -1.5 * standardDeviationQ3) {
 }
 
 // 显示得分结果和常模关系
-var resultDisplayQ3 = document.getElementById("resultDisplayQ3");
-resultDisplayQ3.innerHTML = "<h1>因素Q3——自律性 定义:描述以个人标准及外在纪律对自己的行为进行控制和激励的程度。得分: " + selectedScoreForFactorQ3 + " 标准分: " + scoreQ3 + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextQ3 + "</p>";
-resultDisplayQ3.style.textAlign = "center";
+var resultDisplay = document.getElementById("resultDisplay");
+resultDisplay.innerHTML += "<h1>因素Q3——自律性 定义:描述以个人标准及外在纪律对自己的行为进行控制和激励的程度。得分: " + selectedScoreForFactorQ3 + " 标准分: " + scoreQ3 + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextQ3 + "</p>";
+resultDisplay.style.textAlign = "center";
 // 计算常模分数
 var averageQ4 = 11.46; // 常模平均分数
 var standardDeviationQ4 = 4.79; // 常模标准差
@@ -781,9 +794,9 @@ if (differenceQ4 <  -1.5 * standardDeviationQ4) {
 }
 
 // 显示得分结果和常模关系
-var resultDisplayQ4 = document.getElementById("resultDisplayQ4");
-resultDisplayQ4.innerHTML = "<h1>因素Q4——紧张性 定义: 描述在和他人的交往中的不稳定性、不耐心以及由此所表现的躯体紧张水平。得分: " + selectedScoreForFactorQ4 + " 标准分: " + scoreQ4 + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextQ4 + "</p>";
-resultDisplayQ4.style.textAlign = "center";
+var resultDisplay = document.getElementById("resultDisplay");
+resultDisplay.innerHTML += "<h1>因素Q4——紧张性 定义: 描述在和他人的交往中的不稳定性、不耐心以及由此所表现的躯体紧张水平。得分: " + selectedScoreForFactorQ4 + " 标准分: " + scoreQ4 + "</h1>"+"范围(1~10)" + "<p>得分表述：" + resultTextQ4 + "</p>";
+resultDisplay.style.textAlign = "center";
 
 var resultTextX1 = "";
 if (scoreX1 <= 3) {
@@ -795,9 +808,9 @@ if (scoreX1 <= 3) {
 }
 
 // Displaying the result for Factor X1
-var resultDisplayX1 = document.getElementById("resultDisplayX1");
-resultDisplayX1.innerHTML = "<h1>适应与焦虑性X1——描述对现在环境的适应程度, 是否感到焦虑不满。得分: " + scoreX1 + "</h1>" + "<p>得分表述：" + resultTextX1 + "</p>";
-resultDisplayX1.style.textAlign = "center";
+var resultDisplay = document.getElementById("resultDisplay");
+resultDisplay.innerHTML += "<h1>适应与焦虑性X1——描述对现在环境的适应程度, 是否感到焦虑不满。得分: " + scoreX1 + "</h1>" + "<p>得分表述：" + resultTextX1 + "</p>";
+resultDisplay.style.textAlign = "center";
 
 var resultTextX2 = "";
 if (scoreX2 <= 3) {
@@ -809,9 +822,9 @@ if (scoreX2 <= 3) {
 }
 
 // Displaying the result for Factor X2
-var resultDisplayX2 = document.getElementById("resultDisplayX2");
-resultDisplayX2.innerHTML = "<h1>内向与外向型X2——描述性格特征的内向或者外向程度。得分: " + scoreX2 + "</h1>" + "<p>得分表述：" + resultTextX2 + "</p>";
-resultDisplayX2.style.textAlign = "center";
+var resultDisplay = document.getElementById("resultDisplay");
+resultDisplay.innerHTML += "<h1>内向与外向型X2——描述性格特征的内向或者外向程度。得分: " + scoreX2 + "</h1>" + "<p>得分表述：" + resultTextX2 + "</p>";
+resultDisplay.style.textAlign = "center";
 
 var resultTextX3 = "";
 if (scoreX3 <= 3) {
@@ -823,9 +836,9 @@ if (scoreX3 <= 3) {
 }
 
 // Displaying the result for Factor X3
-var resultDisplayX3 = document.getElementById("resultDisplayX3");
-resultDisplayX3.innerHTML = "<h1>感情用事与安详机警型X3——描述个体的情绪困扰程度，以及进取精神。得分: " + scoreX3 + "</h1>" + "<p>得分表述：" + resultTextX3 + "</p>";
-resultDisplayX3.style.textAlign = "center";
+var resultDisplay = document.getElementById("resultDisplay");
+resultDisplay.innerHTML += "<h1>感情用事与安详机警型X3——描述个体的情绪困扰程度，以及进取精神。得分: " + scoreX3 + "</h1>" + "<p>得分表述：" + resultTextX3 + "</p>";
+resultDisplay.style.textAlign = "center";
 
 var resultTextX4 = "";
 if (scoreX4 <= 3) {
@@ -837,9 +850,9 @@ if (scoreX4 <= 3) {
 }
 
 // Displaying the result for Factor X4
-var resultDisplayX4 = document.getElementById("resultDisplayX4");
-resultDisplayX4.innerHTML = "<h1>怯懦与果断型X4——描述做事情时的犹豫或者果断程度。得分: " + scoreX4 + "</h1>" + "<p>得分表述：" + resultTextX4 + "</p>";
-resultDisplayX4.style.textAlign = "center";
+var resultDisplay = document.getElementById("resultDisplay");
+resultDisplay.innerHTML += "<h1>怯懦与果断型X4——描述做事情时的犹豫或者果断程度。得分: " + scoreX4 + "</h1>" + "<p>得分表述：" + resultTextX4 + "</p>";
+resultDisplay.style.textAlign = "center";
 
 var resultTextY1 = "";
 if (scoreY1 <= 3) {
@@ -851,9 +864,9 @@ if (scoreY1 <= 3) {
 }
 
 // Displaying the result for Factor Y1
-var resultDisplayY1 = document.getElementById("resultDisplayY1");
-resultDisplayY1.innerHTML = "<h1>心理健康因素Y1——描述人格层次的心理健康水平,心理健康状况几乎是一切职业及事业成功的基础。心理不健康者，其学习和工作效率都会因之减低。得分: " + scoreY1 + "</h1>" + "<p>得分表述：" + resultTextY1 + "</p>";
-resultDisplayY1.style.textAlign = "center";
+var resultDisplay = document.getElementById("resultDisplay");
+resultDisplay.innerHTML += "<h1>心理健康因素Y1——描述人格层次的心理健康水平,心理健康状况几乎是一切职业及事业成功的基础。心理不健康者，其学习和工作效率都会因之减低。得分: " + scoreY1 + "</h1>" + "<p>得分表述：" + resultTextY1 + "</p>";
+resultDisplay.style.textAlign = "center";
 
 var resultTextY2 = "";
 if (scoreY2 <= 3) {
@@ -865,9 +878,9 @@ if (scoreY2 <= 3) {
 }
 
 // Displaying the result for Factor Y2
-var resultDisplayY2 = document.getElementById("resultDisplayY2");
-resultDisplayY2.innerHTML = "<h1>专业有成就者的人格因素Y2——人格中的某些因素可能对将来的专业成就所具有的影响，它并不代表将来专业成就所达到的水平。得分: " + scoreY2 + "</h1>" + "<p>得分表述：" + resultTextY2 + "</p>";
-resultDisplayY2.style.textAlign = "center";
+var resultDisplay = document.getElementById("resultDisplay");
+resultDisplay.innerHTML += "<h1>专业有成就者的人格因素Y2——人格中的某些因素可能对将来的专业成就所具有的影响，它并不代表将来专业成就所达到的水平。得分: " + scoreY2 + "</h1>" + "<p>得分表述：" + resultTextY2 + "</p>";
+resultDisplay.style.textAlign = "center";
 
 var resultTextY3 = "";
 if (scoreY3 <= 3) {
@@ -879,23 +892,26 @@ if (scoreY3 <= 3) {
 }
 
 // Displaying the result for Factor Y3
-var resultDisplayY3 = document.getElementById("resultDisplayY3");
-resultDisplayY3.innerHTML = "<h1>创造力强者的人格因素Y3——描述创造力水平。得分: " + scoreY3 + "</h1>" + "<p>得分表述：" + resultTextY3 + "</p>";
-resultDisplayY3.style.textAlign = "center";
+var resultDisplay = document.getElementById("resultDisplay");
+resultDisplay.innerHTML += "<h1>创造力强者的人格因素Y3——描述创造力水平。得分: " + scoreY3 + "</h1>" + "<p>得分表述：" + resultTextY3 + "</p>";
+resultDisplay.style.textAlign = "center";
 
 var resultTextY4 = "";
 if (scoreY4 <= 3) {
-    resultTextY4 = " 您在此项上的得分较低，低于12分者仅占人数分配的10%，情绪不稳定的程度颇为显著。";
+    resultTextY4 = " 您在此项上的得分较低，平均值为22分，不足17分者仅占分配人数的10%左右，从事专业或训练成功的可能性极小。。";
 } else if (scoreY4 >= 4 && scoreY4 <= 7) {
     resultTextY4 = " 您的得分显示您在此项上的表现为中等水平，心理健康标准可介于4-40 之间，均值为22 分";
 } else if (scoreY4 >= 8) {
-    resultTextY4 = " 您在此项上的得分较高，心理健康标准可介于4-40 之间，均值为22 分。";
+    resultTextY4 = " 您在此项上的得分较高，平均值为22分，25分以上者，则有成功的希望。";
 }
 
 // Displaying the result for Factor Y4
-var resultDisplayY4 = document.getElementById("resultDisplayY4");
-resultDisplayY4.innerHTML = "<h1>专业有成就者的人格因素Y4——人格中的某些因素可能对将来的专业成就所具有的影响，它并不代表将来专业成就所达到的水平。得分: " + scoreY4 + "</h1>" + "<p>得分表述：" + resultTextY4 + "</p>";
-resultDisplayY4.style.textAlign = "center";
+var resultDisplay = document.getElementById("resultDisplay");
+resultDisplay.innerHTML += "<h1>在新环境中有成长能力的人格因素Y4——人格中的某些因素可能对将来的专业成就所具有的影响，它并不代表将来专业成就所达到的水平。得分: " + scoreY4 + "</h1>" + "<p>得分表述：" + resultTextY4 + "</p>";
+resultDisplay.style.textAlign = "center";
+
+
+
 
 
 
