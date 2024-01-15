@@ -684,7 +684,7 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
 </div>
 <!-- 问题37 -->
 <div class="question-group">
-    <div class="question-label">37. 在科学中，我喜欢：</div>
+    <div class="question-label">37. 在学科中，我喜欢：</div>
     <label class="custom-radio">(A) 音乐
         <input type="radio" id="q37a1" name="question37" value="2">
         <span class="checkmark"></span>
