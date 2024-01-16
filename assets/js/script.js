@@ -327,18 +327,18 @@ console.log("Score for Factor B:", selectedScoreForFactorB);  // 打印因素B�
         if (score === 17) return 9;
         if (score >= 18) return 10;
     }
-    function mapScoreForFactorL(score) {
-        if (score <= 3) return 1;
-        if (score <= 5) return 2;
-        if (score === 6) return 3;
-        if (score <= 8) return 4;
-        if (score <= 10) return 5;
-        if (score <= 12) return 6;
-        if (score === 13) return 7;
-        if (score <= 15) return 8;
-        if (score === 16) return 9;
-        if (score >= 17) return 10;
-    }
+    function mapScoreForFactorN(score) {
+        if (score >= 0 && score <= 2) return 1;
+        if (score === 3) return 2;
+        if (score === 4) return 3;
+        if (score >= 5 && score <= 6) return 4;
+        if (score >= 7 && score <= 8) return 5;
+        if (score >= 9 && score <= 10) return 6;
+        if (score === 11) return 7;
+        if (score >= 12 && score <= 13) return 8;
+        if (score === 14) return 9;
+        if (score >= 15 && score <= 20) return 10;
+    }    
     function mapScoreForFactorM(score) {
         if (score <= 5) return 1;
         if (score <= 7) return 2;
@@ -364,17 +364,18 @@ console.log("Score for Factor B:", selectedScoreForFactorB);  // 打印因素B�
         if (score >= 15) return 10;
     }
     function mapScoreForFactorO(score) {
-        if (score <= 2) return 1;
-        if (score <= 4) return 2;
-        if (score <= 6) return 3;
-        if (score <= 8) return 4;
-        if (score <= 10) return 5;
-        if (score <= 12) return 6;
-        if (score <= 14) return 7;
-        if (score <= 16) return 8;
-        if (score === 18) return 9;
-        if (score >= 19) return 10;
+        if (score >= 0 && score <= 2) return 1;
+        if (score >= 3 && score <= 4) return 2;
+        if (score >= 5 && score <= 6) return 3;
+        if (score >= 7 && score <= 8) return 4;
+        if (score >= 9 && score <= 10) return 5;
+        if (score >= 11 && score <= 12) return 6;
+        if (score >= 13 && score <= 14) return 7;
+        if (score >= 15 && score <= 16) return 8;
+        if (score >= 17 && score <= 18) return 9;
+        if (score >= 19 && score <= 26) return 10;
     }
+    
     function mapScoreForFactorQ1(score) {
         if (score <= 4) return 1;
         if (score === 5) return 2;
@@ -707,7 +708,7 @@ var differenceO = selectedScoreForFactorO - averageO;
 
 if (differenceO <  -1.5 * standardDeviationO) {
     resultTextO = "您在此项上得分较低，安详、沉着、自信是你的代名词，和大多数人相比，很少自我怀疑。自信、心平气和、坦然、宁静，有时自负、自命不凡、自鸣得意，容易适应环境，知足常乐。";
-} else if (differenceO >  1.5 *standardDeviationO) {
+} else if (differenceO >  1.5 * standardDeviationO) {
     resultTextO = "您在此项上得分较高，一般表现为烦恼、忧虑、抑郁，觉得自己有很大的困惑，或者觉得自己比别人活得更艰难。自我批判意识较强，对现实中的失误倾向于承担太多的个人责任。忧郁、自责、缺乏安全感、焦虑、不安、自扰、杞人忧天。朋友较少。在集体中既无领袖欲望，也不会被推选为领袖。常对环境进行抱怨，牢骚满腹。害羞、不善言词、爱哭。";
 } else {
     resultTextO = "您的得分在正常范围内，在此项上和普通人一样。";
@@ -775,7 +776,7 @@ if (differenceQ3 <  -1.5 * standardDeviationQ3) {
 
 // 显示得分结果和常模关系
 var resultDisplay = document.getElementById("resultDisplay");
-resultDisplay.innerHTML += "<h3>因素Q3——自律性  因素解释:描述以个人标准及外在纪律对自己的行为进行控制和激励的程度。得分: " + selectedScoreForFactorQ3 + " ，标准分: " + scoreQ3 +""+"标准分范围(1~10)</h3>" + "<p>得分解释：" + resultTextQ3 + "</p>";
+resultDisplay.innerHTML += "<h3>因素Q3——自律性  因素解释:描述以个人标准及外在纪律对自己的行为进行控制和激励的程度。得分: " + selectedScoreForFactorQ3 + " ，标准分: " + scoreQ3  + "标准分范围(1~10)</h3>" + "<p>得分解释：" + resultTextQ3 + "</p>";
 resultDisplay.style.textAlign = "center";
 // 计算常模分数
 var averageQ4 = 11.46; // 常模平均分数
@@ -795,7 +796,7 @@ if (differenceQ4 <  -1.5 * standardDeviationQ4) {
 
 // 显示得分结果和常模关系
 var resultDisplay = document.getElementById("resultDisplay");
-resultDisplay.innerHTML += "<h3>因素Q4——紧张性  因素解释: 描述在和他人的交往中的不稳定性、不耐心以及由此所表现的躯体紧张水平。得分: " + selectedScoreForFactorQ4 + " ，标准分: " + scoreQ4 +""+"标准分范围(1~10)</h3>" + "<p>得分解释：" + resultTextQ4 + "</p>";
+resultDisplay.innerHTML += "<h3>因素Q4——紧张性  因素解释: 描述在和他人的交往中的不稳定性、不耐心以及由此所表现的躯体紧张水平。得分: " + selectedScoreForFactorQ4 + " ，标准分: " + scoreQ4 + "标准分范围(1~10)</h3>" + "<p>得分解释：" + resultTextQ4 + "</p>";
 resultDisplay.style.textAlign = "center";
 
 var resultTextX1 = "";
