@@ -362,7 +362,7 @@ console.log("Score for Factor B:", selectedScoreForFactorB);  // 打印因素B�
         if (score >= 12 && score <= 13) return 8;
         if (score === 14) return 9;
         if (score >= 15 && score <= 20) return 10;
-    }    
+       
     }
     function mapScoreForFactorO(score) {
         if (score >= 0 && score <= 2) return 1;
@@ -921,6 +921,6 @@ window.scrollTo(0, 0);
 
 
 
-};
 
 
+}
