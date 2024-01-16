@@ -910,6 +910,8 @@ var resultDisplay = document.getElementById("resultDisplay");
 resultDisplay.innerHTML += "<h3>在新环境中有成长能力的人格因素Y4——对新环境的适应水平。得分: " + scoreY4 + "</h3>" + "<p>得分解释：" + resultTextY4 + "</p>";
 resultDisplay.style.textAlign = "center";
 
+window.scrollTo(0, 0);
+
 
 
 
