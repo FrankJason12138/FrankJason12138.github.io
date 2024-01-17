@@ -376,7 +376,7 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
 </div>
 <!-- 问题17 -->
 <div class="question-group">
-    <div class="question-label">17. 在从事体力或脑力劳动之后，我总是需要有别人更多的休息时间，才能保持工作效率：</div>
+    <div class="question-label">17. 在从事体力或脑力劳动后，我总是需要比别人有更多的休息时间才能保持工作效率：</div>
     <label class="custom-radio">(A) 是的
         <input type="radio" id="q17a1" name="question17" value="2">
         <span class="checkmark"></span>

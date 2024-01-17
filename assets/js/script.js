@@ -1,4 +1,3 @@
-window.onload = function() {
     document.getElementById("psychologyTest").onsubmit = function(event) {
         event.preventDefault();  // 阻止表单默认提交
     
@@ -980,7 +979,7 @@ window.onload = function() {
     
     
     
-    
+    window.scrollTo(0, 0);
     
     
     
@@ -989,6 +988,4 @@ window.onload = function() {
     
     
     }
-    window.scrollTo(0, 0);
-    };
     
