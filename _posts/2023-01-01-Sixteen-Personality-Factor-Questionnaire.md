@@ -376,7 +376,7 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
 </div>
 <!-- 问题17 -->
 <div class="question-group">
-    <div class="question-label">17. 在从事体力或脑力劳动之后，我总是需要比别人有更多的休息时间才能保持工作效率：</div>
+    <div class="question-label">17. 在从事体力或脑力劳动之后，我总是需要有别人更多的休息时间，才能保持工作效率：</div>
     <label class="custom-radio">(A) 是的
         <input type="radio" id="q17a1" name="question17" value="2">
         <span class="checkmark"></span>
@@ -3110,24 +3110,13 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
         <span class="checkmark"></span>
     </label>
 </div>
-        <input type="submit" value="提交" class="submit-button"></div> 
-</form>
-        <p id="result" class="text-center mt-4"></p>
+        <input type="submit" value="提交" class="submit-button"> 
+</form></div>
+
+<p id="result" class="text-center mt-4"></p>
         <div id="canvasContainer" style="display: flex; justify-content: center; align-items: center; height: 100%;">
         <canvas id="myRadarChart" width="600px" height="600px"></canvas>
         </div>
     <script src="../../../assets/js/script.js"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5096773500981125"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-5096773500981125"
-     data-ad-slot="2008881668"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 </body>
 </html>
-
