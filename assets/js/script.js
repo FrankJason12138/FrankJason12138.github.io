@@ -942,8 +942,8 @@
                 }]
             },
             options: {
-                responsive: false,
-                maintainAspectRatio: false,
+                responsive: true,
+                maintainAspectRatio: true,
                 scales: {
                     r: {
                         min: 0,
