@@ -1,3 +1,4 @@
+window.onload = function() {
 document.getElementById("psychologyTest").onsubmit = function(event) {
     event.preventDefault();  // 阻止表单默认提交
 
@@ -912,6 +913,62 @@ var resultDisplay = document.getElementById("resultDisplay");
 resultDisplay.innerHTML += "<h3>在新环境中有成长能力的人格因素Y4——对新环境的适应水平。得分: " + scoreY4 + "</h3>" + "<p>得分解释：" + resultTextY4 + "</p>";
 resultDisplay.style.textAlign = "center";
 
+var scores = [scoreA, scoreB, scoreC, scoreE, scoreF, scoreG, 
+    scoreH, scoreI, scoreL, scoreM, scoreN, scoreO, 
+    scoreQ1, scoreQ2, scoreQ3, scoreQ4]; // 这些是您计算的分数
+
+createRadarChart(scores);
+
+
+function createRadarChart(scores) {
+    var ctx = document.getElementById('myRadarChart').getContext('2d');
+    var myRadarChart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: ['热情性', '聪慧性', '稳定性', '恃强性', '兴奋性', '规范性', '敢为性', '敏感性', '怀疑性', '幻想性', '世故性', '忧虑性', '变革性', '独立性', '自律性', '紧张性'],
+            datasets: [{
+                label: '你的人格形状',
+                data: scores,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: false,
+            maintainAspectRatio: false,
+            scales: {
+                r: {
+                    min: 0,
+                    max: 10,
+                    stepSize: 1,
+                    pointLabels: {
+                        font: {
+                            size: 16 // 假设 <p> 标签的字体大小为 16px
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        font: {
+                            size: 20 // 假设 <h4> 标签的字体大小为 20px
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+
+
+
+
+
+
+
 window.scrollTo(0, 0);
 
 
@@ -924,3 +981,4 @@ window.scrollTo(0, 0);
 
 
 }
+};
