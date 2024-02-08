@@ -924,101 +924,68 @@
         scoreH, scoreI, scoreL, scoreM, scoreN, scoreO, 
         scoreQ1, scoreQ2, scoreQ3, scoreQ4]; // 这些是您计算的分数
     
-    createRadarChart(scores);
+        createRadarChart(scores);
 
 
-    function createRadarChart(scores) {
-        var ctx = document.getElementById('myRadarChart').getContext('2d');
-        var myRadarChart = new Chart(ctx, {
-            type: 'radar',
-            data: {
-                labels: ['热情性', '聪慧性', '稳定性', '恃强性', '兴奋性', '规范性', '敢为性', '敏感性', '怀疑性', '幻想性', '世故性', '忧虑性', '变革性', '独立性', '自律性', '紧张性'],
-                datasets: [{
-                    label: '你的人格形状(16种人格因素)',
-                    data: scores,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true,
-                scales: {
-                    r: {
-                        min: 0,
-                        max: 10,
-                        stepSize: 1,
-                        pointLabels: {
-                            font: {
-                                size: 16
-                            }
-                        }
-                    }
+        function createRadarChart(scores) {
+            var ctx = document.getElementById('myRadarChart').getContext('2d');
+            var myRadarChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['热情性', '聪慧性', '稳定性', '恃强性', '兴奋性', '规范性', '敢为性', '敏感性', '怀疑性', '幻想性', '世故性', '忧虑性', '变革性', '独立性', '自律性', '紧张性'],
+                    datasets: [{
+                        label: '你的人格形状',
+                        data: scores,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
                 },
-                plugins: {
-                    legend: {
-                        labels: {
-                            font: {
-                                size: 20
+                options: {
+                    responsive: false,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            min: 0,
+                            max: 10,
+                            stepSize: 1,
+                            pointLabels: {
+                                font: {
+                                    size: 16 // 假设 <p> 标签的字体大小为 16px
+                                }
                             }
                         }
                     },
-                    tooltip: {}, // 确保其他默认插件正常工作
-                    afterDraw: chart => {
-                        var ctx = chart.ctx;
-                        ctx.save();
-                        ctx.font = "16px Arial";
-                        ctx.textAlign = 'center';
-                        ctx.fillStyle = 'blue'; // 使文本看起来像是可点击的链接
-                        var text = "*本测评结果只对受测者最近情况进行解释，不具备临床经验，如需获得心理测评报告以及AI心理测评师的建议，可点击进入";
-                        var textWidth = ctx.measureText(text).width;
-                        var linkText = "点击这里访问网站";
-                        var fullText = text + " " + linkText;
-                        var xPosition = chart.width / 2 - textWidth / 2;
-                        var yPosition = chart.height - 10; // 根据需要调整
-                        ctx.fillText(fullText, chart.width / 2, yPosition);
-                        ctx.restore();
+                    plugins: {
+                        legend: {
+                            labels: {
+                                font: {
+                                    size: 20 // 假设 <h4> 标签的字体大小为 20px
+                                }
+                            }
+                        }
                     }
                 }
-            }
-        });
-    
-        // 监听点击事件
-        ctx.canvas.addEventListener('click', function(event) {
-            var rect = ctx.canvas.getBoundingClientRect();
-            var x = event.clientX - rect.left;
-            var y = event.clientY - rect.top;
-    
-            // 确定点击文本的位置，这里的值可能需要根据实际情况进行调整
-            if (x > rect.width / 2 - 100 && x < rect.width / 2 + 100 && y > rect.height - 20) {
-                window.open('https://www.baidu.com/', '_blank');
-            }
-        });
-    }
-    
-    
-    
-    
-    
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    window.scrollTo(0, 0);
-    
-    
-    
-    
-    
-    
-    
-    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        window.scrollTo(0, 0);
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        }
     
