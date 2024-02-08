@@ -925,8 +925,8 @@
         scoreQ1, scoreQ2, scoreQ3, scoreQ4]; // 这些是您计算的分数
     
     createRadarChart(scores);
-    
-    
+
+
     function createRadarChart(scores) {
         var ctx = document.getElementById('myRadarChart').getContext('2d');
         var myRadarChart = new Chart(ctx, {
@@ -951,7 +951,7 @@
                         stepSize: 1,
                         pointLabels: {
                             font: {
-                                size: 16 // 假设 <p> 标签的字体大小为 16px
+                                size: 16
                             }
                         }
                     }
@@ -960,14 +960,47 @@
                     legend: {
                         labels: {
                             font: {
-                                size: 20 // 假设 <h4> 标签的字体大小为 20px
+                                size: 20
                             }
                         }
+                    },
+                    tooltip: {}, // 确保其他默认插件正常工作
+                    afterDraw: chart => {
+                        var ctx = chart.ctx;
+                        ctx.save();
+                        ctx.font = "16px Arial";
+                        ctx.textAlign = 'center';
+                        ctx.fillStyle = 'blue'; // 使文本看起来像是可点击的链接
+                        var text = "*本测评结果只对受测者最近情况进行解释，不具备临床经验，如需获得心理测评报告以及AI心理测评师的建议，可点击进入";
+                        var textWidth = ctx.measureText(text).width;
+                        var linkText = "点击这里访问网站";
+                        var fullText = text + " " + linkText;
+                        var xPosition = chart.width / 2 - textWidth / 2;
+                        var yPosition = chart.height - 10; // 根据需要调整
+                        ctx.fillText(fullText, chart.width / 2, yPosition);
+                        ctx.restore();
                     }
                 }
             }
         });
+    
+        // 监听点击事件
+        ctx.canvas.addEventListener('click', function(event) {
+            var rect = ctx.canvas.getBoundingClientRect();
+            var x = event.clientX - rect.left;
+            var y = event.clientY - rect.top;
+    
+            // 确定点击文本的位置，这里的值可能需要根据实际情况进行调整
+            if (x > rect.width / 2 - 100 && x < rect.width / 2 + 100 && y > rect.height - 20) {
+                window.open('https://www.baidu.com/', '_blank');
+            }
+        });
     }
+    
+    
+    
+    
+    
    
     
     
