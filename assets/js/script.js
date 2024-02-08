@@ -934,7 +934,7 @@
                 data: {
                     labels: ['热情性', '聪慧性', '稳定性', '恃强性', '兴奋性', '规范性', '敢为性', '敏感性', '怀疑性', '幻想性', '世故性', '忧虑性', '变革性', '独立性', '自律性', '紧张性'],
                     datasets: [{
-                        label: '你的人格形状',
+                        label: '你的人格形状(16种人格因素)',
                         data: scores,
                         backgroundColor: 'rgba(54, 162, 235, 0.2)',
                         borderColor: 'rgba(54, 162, 235, 1)',
@@ -968,6 +968,8 @@
                 }
             });
         }
+        resultDisplay.innerHTML += "<h4>*测评结果只对受测者最近情况进行解释，不具备临床经验；如需获得测评报告请<a href='https://baike.baidu.com/' target='_blank' style='color: blue;'>[复制结果后点击]</a>,同时可与AI测评师沟通获得更多人格建议哦^_^</h4>";
+        resultDisplay.style.textAlign = "center";
         
         
         
