@@ -942,7 +942,7 @@
                     }]
                 },
                 options: {
-                    responsive: false,
+                    responsive: true,
                     maintainAspectRatio: false,
                     scales: {
                         r: {
