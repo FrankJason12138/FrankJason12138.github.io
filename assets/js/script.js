@@ -970,10 +970,7 @@
         }
         resultDisplay.innerHTML += "<h4>*测评结果只对受测者最近情况进行解释，不具备临床经验；如需获得测评报告请<br><a href='https://www.xiaohongshu.com/goods-detail/65fea7533b4dcf0001b54344?xhsshare=CopyLink&appuid=643b847b000000000e01d766&apptime=1716200088' target='_blank' style='color: blue;'>[将结果截图后点击跳转]</a><br>海外用户请点击下方的PayPal支付按钮<br>注意：由于量表结果为个人隐私，后台不会存储用户数据，截图保存结果后跳转，心理咨询师会与您沟通后生成心理测评报告并给予你咨询建议哦^_^</h4>";
         resultDisplay.style.textAlign = "center";
-        <><script src="https://www.paypal.com/sdk/js?client-id=BAARHNfmKzHLXfr68uX0--8arP3l0m-JLplAUepTZZsoSZXXIkhyC4uWP8XjQfCfduITf_zf1cOcrKkwdk&components=hosted-buttons&disable-funding=venmo&currency=USD"></script><div id="paypal-container-3TCTBFSTLV3LU"></div><script>
-            paypal.HostedButtons({hostedButtonId}: "3TCTBFSTLV3LU",
-            ).render("#paypal-container-3TCTBFSTLV3LU")
-        </script></>
+
 
 
         
