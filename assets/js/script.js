@@ -980,7 +980,7 @@
         var iframeElement = document.createElement('iframe');
         
         // 设置iframe的src属性
-        iframeElement.src = "paypal35usd.html";
+        iframeElement.src = "../paypal35usd.html";
         
         // 设置iframe的宽度和高度
         iframeElement.width = "100%";
