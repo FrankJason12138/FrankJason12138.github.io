@@ -990,7 +990,7 @@
         iframeElement.frameborder = "0";
         
         // 将iframe插入到页面中
-        resultDisplay.appendChild(iframeElement);
+        document.body.appendChild(iframeElement);
 
 
 
