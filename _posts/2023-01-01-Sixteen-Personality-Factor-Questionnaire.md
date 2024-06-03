@@ -3118,12 +3118,12 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
         <canvas id="myRadarChart" width="600px" height="600px"></canvas>
         </div>
     <script src="../../../assets/js/script.js"></script>
-    <script src="https://www.paypal.com/sdk/js?client-id=BAARHNfmKzHLXfr68uX0--8arP3l0m-JLplAUepTZZsoSZXXIkhyC4uWP8XjQfCfduITf_zf1cOcrKkwdk&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
-<div id="paypal-container-4CGVRXBUZ5BB6"></div>
+   <script src="https://www.paypal.com/sdk/js?client-id=BAARHNfmKzHLXfr68uX0--8arP3l0m-JLplAUepTZZsoSZXXIkhyC4uWP8XjQfCfduITf_zf1cOcrKkwdk&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
+<div id="paypal-container-4CGVRXBUZ5BB6" style="position: absolute; z-index: -1;"></div>
 <script>
   paypal.HostedButtons({
     hostedButtonId: "4CGVRXBUZ5BB6",
-  }).render("#paypal-container-4CGVRXBUZ5BB6")
+  }).render("#paypal-container-4CGVRXBUZ5BB6");
 </script>
 </body>
 </html>
