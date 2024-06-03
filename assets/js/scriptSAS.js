@@ -25,73 +25,68 @@ document.getElementById("psychologyTest").onsubmit = function(event) {
     resultDisplay.innerHTML = "<h3>总分： " + totalScore + " ，标准分: " + standardScore + "</h3>";
     resultDisplay.style.textAlign = "center";  // 添加居中样式
 
- 
-// 绘制滑动条
-var canvas = document.getElementById('myRadarChart');
-var ctx = canvas.getContext('2d');
-var animationDuration = 2000;  // 动画持续时间 
-var startTime;
+    // 绘制滑动条
+    var canvas = document.getElementById('myRadarChart');
+    var ctx = canvas.getContext('2d');
+    var animationDuration = 2000;  // 动画持续时间 
+    var startTime;
 
-// 外框属性
-var outerRadius = 30;
-var outerHeight = 50;
-var outerWidth = canvas.width - outerRadius * 2;
+    // 外框属性
+    var outerRadius = 30;
+    var outerHeight = 50;
+    var outerWidth = canvas.width - outerRadius * 2;
+    var outerCornerRadius = 15;  // 外框圆角半径
 
-// 内部滑块属性 
-var innerRadius = 20;
-var innerHeight = 30;
+    // 内部滑块属性 
+    var innerRadius = 20;
+    var innerHeight = 30;
+    var innerCornerRadius = 15;  // 内框圆角半径
 
-function draw(progress) {
-    var value = progress * standardScore;
-    var valueWidth = outerWidth * (value / 100);
+    function draw(progress) {
+        var value = progress * standardScore;
+        var valueWidth = outerWidth * (value / 100);
 
-    // 清空画布
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // 清空画布
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // 绘制外框
-    ctx.fillStyle = '#e0e0e0';
-    ctx.fillRect(outerRadius, outerHeight, outerWidth, innerHeight);
-    
-    // 绘制刻度线
-    ctx.strokeStyle = 'black';
-    ctx.lineWidth = 1;
-    for (var i = 1; i < 10; i++) {
-        var x = outerRadius + outerWidth * (i / 10);
+        // 绘制外框
+        ctx.fillStyle = '#e0e0e0';
         ctx.beginPath();
-        ctx.moveTo(x, outerHeight);
-        ctx.lineTo(x, outerHeight + 10);
-        ctx.stroke();
+        ctx.roundRect(outerRadius, outerHeight, outerWidth, innerHeight, outerCornerRadius);
+        ctx.fill();
+
+        
+
+        // 绘制内部滑块
+        ctx.fillStyle = 'green';
+        if (value >= 50 && value < 60) ctx.fillStyle = 'yellow'; // 轻度焦虑
+        if (value >= 60 && value < 70) ctx.fillStyle = 'orange'; // 中度焦虑
+        if (value >= 70) ctx.fillStyle = 'red'; // 重度焦虑
+        ctx.beginPath();
+        ctx.roundRect(outerRadius, outerHeight, valueWidth, innerHeight, innerCornerRadius);
+        ctx.fill();
+
+        // 绘制倒三角标记
+        var markerX = outerRadius + valueWidth;
+        var markerY = outerHeight - 15;
+        ctx.fillStyle = 'black';
+        ctx.beginPath();
+        ctx.moveTo(markerX, markerY);
+        ctx.lineTo(markerX - 7, markerY - 7);
+        ctx.lineTo(markerX + 7, markerY - 7);
+        ctx.fill();
+        
+        // 设置较小的字体大小，并精确定位文字
+        ctx.font = "13px Arial";
+        ctx.textAlign = 'center';
+        ctx.fillText('您在这', markerX, markerY - 10);
+
+        // 绘制焦虑程度标签  
+        ctx.font = "13px Arial";  // 设置字体大小
+        ctx.fillText('轻度焦虑', outerRadius + 50 * outerWidth / 100, outerHeight + 40);
+        ctx.fillText('中度焦虑', outerRadius + 60 * outerWidth / 100, outerHeight + 40);     
+        ctx.fillText('重度焦虑', outerRadius + 70 * outerWidth / 100, outerHeight + 40);
     }
-
-    // 绘制内部滑块
-    ctx.fillStyle = 'green';
-    if (value >= 50 && value < 60) ctx.fillStyle = 'yellow'; // 轻度焦虑
-    if (value >= 60 && value < 70) ctx.fillStyle = 'orange'; // 中度焦虑
-    if (value >= 70) ctx.fillStyle = 'red'; // 重度焦虑
-    ctx.fillRect(outerRadius, outerHeight, valueWidth, innerHeight);
-
-    // 绘制倒三角标记
-    var markerX = outerRadius + valueWidth;
-    var markerY = outerHeight - 15;
-    ctx.fillStyle = 'black';
-    ctx.beginPath();
-    ctx.moveTo(markerX, markerY);
-    ctx.lineTo(markerX - 7, markerY - 7);
-    ctx.lineTo(markerX + 7, markerY - 7);
-    ctx.fill();
-    ctx.fillText('您在这', markerX - 20, markerY - 15);
-
-    // 绘制焦虑程度标签  
-    ctx.fillStyle = 'black';
-    ctx.font = '14px Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText('轻度焦虑', outerRadius + outerWidth * 0.15, outerHeight + 40);
-    ctx.fillText('中度焦虑', outerRadius + outerWidth * 0.50, outerHeight + 40);     
-    ctx.fillText('重度焦虑', outerRadius + outerWidth * 0.85, outerHeight + 40);
-}
-
-
-
 
     function animate(timestamp) {
         if (!startTime) startTime = timestamp;
@@ -114,6 +109,21 @@ function draw(progress) {
     setTimeout(function() {
         canvasContainer.style.opacity = 1;  
     }, 100);
-
+    
+    
     window.scrollTo(0, 0);
+
+
+};
+
+// 添加 roundRect 方法到 CanvasRenderingContext2D 原型
+CanvasRenderingContext2D.prototype.roundRect = function (x, y, width, height, radius) {
+    this.beginPath();
+    this.moveTo(x + radius, y);
+    this.arcTo(x + width, y, x + width, y + height, radius);
+    this.arcTo(x + width, y + height, x, y + height, radius);
+    this.arcTo(x, y + height, x, y, radius);
+    this.arcTo(x, y, x + width, y, radius);
+    this.closePath();
+    return this;
 };
