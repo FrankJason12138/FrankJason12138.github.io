@@ -91,7 +91,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
 <body>
     <div class="bg-green-400 py-20">
         <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center text-white text-4xl mb-10">SAS</div>
+            <div class="text-center text-white text-4xl mb-10">SDS</div>
             <div class="flex justify-center space-x-10">
                 <div class="bg-white p-6 rounded-lg shadow-lg">
                     <img src="/assets/img/闪电.jpg" alt="Placeholder image of a 3D model of blue twisted shapes" class="mb-4">
