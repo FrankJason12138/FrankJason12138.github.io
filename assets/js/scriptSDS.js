@@ -114,7 +114,7 @@ document.getElementById("psychologyTest").onsubmit = function(event) {
     
     
     window.scrollTo(0, 0);
-    resultDisplay.innerHTML += "<h4>*测评结果只对受测者最近情况进行解释，不具备临床经验；如需获得测评报告请<br><a href='https://www.xiaohongshu.com/goods-detail/665d476135bf780001f7eb82?xhsshare=CopyLink&appuid=643b847b000000000e01d766&apptime=1717395265&share_id=cb84ff1179ed44d894049001de2065fa' target='_blank' style='color: blue;'>[将结果截图后点击跳转]</a><br>海外用户请点击下方的PayPal支付按钮<br>注意：由于量表结果为个人隐私，后台不会存储用户数据，截图保存结果后跳转，心理咨询师会与您沟通后生成心理测评报告并给予你咨询建议哦^_^</h4>";
+    resultDisplay.innerHTML += "<h4>*测评结果只对受测者最近情况进行解释，不具备临床经验；如需获得测评报告请<br><a href='https://www.xiaohongshu.com/goods-detail/665e81695294b300019b5775?xhsshare=CopyLink&appuid=643b847b000000000e01d766&apptime=1717470491&share_id=e5c725297a084fcaba34db62ebf7e7e6' target='_blank' style='color: blue;'>[将结果截图后点击跳转]</a><br>海外用户请点击下方的PayPal支付按钮<br>注意：由于量表结果为个人隐私，后台不会存储用户数据，截图保存结果后跳转，心理咨询师会与您沟通后生成心理测评报告并给予你咨询建议哦^_^</h4>";
     resultDisplay.style.textAlign = "center";
 
 
