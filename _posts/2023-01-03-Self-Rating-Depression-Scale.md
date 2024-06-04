@@ -502,7 +502,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
 
 <p id="result" class="text-center mt-4"></p>
 <div id="canvasContainer" style="display: none; justify-content: center; align-items: center; height: 100%; opacity: 0; transition: opacity 0.5s ease-in-out;">
-    <canvas id="myRadarChart" width="600" height="100"></canvas>
+    <canvas id="myRadarChart" width="680" height="100"></canvas>
 </div>
     <script src="../../../assets/js/scriptSDS.js"></script>
     <script src="https://www.paypal.com/sdk/js?client-id=BAARHNfmKzHLXfr68uX0--8arP3l0m-JLplAUepTZZsoSZXXIkhyC4uWP8XjQfCfduITf_zf1cOcrKkwdk&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
