@@ -4,7 +4,7 @@ title: '抑郁自评量表（SDS）'
 subtitle: '测试开始'
 date: 2023-01-03
 categories: 心理量表
-cover: '/assets/img/SAS.jpg'
+cover: '/assets/img/SDS.jpg'
 tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  交互网站 人格因素
 ---
 <html lang="zh-CN">
