@@ -78,12 +78,12 @@ document.getElementById("psychologyTest").onsubmit = function(event) {
         ctx.fill();
         
         // 设置较小的字体大小，并精确定位文字
-        ctx.font = "13px Arial";
+        ctx.font = "14px Arial";
         ctx.textAlign = 'center';
         ctx.fillText('您在这', markerX, markerY - 10);
 
         // 绘制焦虑程度标签  
-        ctx.font = "13px Arial";  // 设置字体大小
+        ctx.font = "10px Arial";  // 设置字体大小
         ctx.fillText('轻度抑郁', outerRadius + 53 * outerWidth / 100, outerHeight + 40);
         ctx.fillText('中度抑郁', outerRadius + 62 * outerWidth / 100, outerHeight + 40);     
         ctx.fillText('重度抑郁', outerRadius + 72 * outerWidth / 100, outerHeight + 40);
