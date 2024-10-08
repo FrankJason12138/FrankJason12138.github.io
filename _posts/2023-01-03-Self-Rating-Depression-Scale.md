@@ -118,7 +118,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
 <form id="psychologyTest" class="max-w-6xl mx-auto px-4 py-8">
     <!-- 问题1 -->
     <div class="question-group">
-        <div class="question-label">1. 我觉得闷闷不乐，情绪低沉（忧郁）：</div>
+        <div class="question-label">1. 我觉得闷闷不乐，情绪低沉：</div>
         <label class="custom-radio">(A)没有或很少时间有 
             <input type="radio" id="q1a1" name="question1" value="1">
             <span class="checkmark"></span>
@@ -137,7 +137,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
         </label>
     </div>
    <div class="question-group">
-    <div class="question-label">2. 我觉得一天中早晨最好（晨重夜轻）：</div>
+    <div class="question-label">2. 我觉得一天中早晨最好：</div>
     <label class="custom-radio">(A)没有或很少时间有 
         <input type="radio" id="q2a1" name="question2" value="4">
         <span class="checkmark"></span>
@@ -156,7 +156,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
     </label>
 </div>
 <div class="question-group">
-    <div class="question-label">3. 一阵阵哭出来或觉得想哭（易哭）：</div>
+    <div class="question-label">3. 一阵阵哭出来或觉得想哭：</div>
     <label class="custom-radio">(A)没有或很少时间有 
         <input type="radio" id="q3a1" name="question3" value="1">
         <span class="checkmark"></span>
@@ -175,7 +175,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
     </label>
 </div>
 <div class="question-group">
-    <div class="question-label">4. 我晚上睡眠不好（睡眠障碍）：</div>
+    <div class="question-label">4. 我晚上睡眠不好：</div>
     <label class="custom-radio">(A)没有或很少时间有 
         <input type="radio" id="q4a1" name="question4" value="1">
         <span class="checkmark"></span>
@@ -194,7 +194,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
     </label>
 </div>
 <div class="question-group">
-    <div class="question-label">5. 我吃得跟平常一样多（食欲减退）：</div>
+    <div class="question-label">5. 我吃得跟平常一样多：</div>
     <label class="custom-radio">(A)没有或很少时间有 
         <input type="radio" id="q5a1" name="question5" value="4">
         <span class="checkmark"></span>
@@ -213,7 +213,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
     </label>
 </div>
 <div class="question-group">
-    <div class="question-label">6. 我与异性密切接触时和以往一样感到愉快（性兴趣减退）：</div>
+    <div class="question-label">6. 我与异性密切接触时和以往一样感到愉快：</div>
     <label class="custom-radio">(A)没有或很少时间有 
         <input type="radio" id="q6a1" name="question6" value="4">
         <span class="checkmark"></span>
@@ -232,7 +232,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
     </label>
 </div>
 <div class="question-group">
-    <div class="question-label">7. 我发觉我的体重在下降（体重减轻）：</div>
+    <div class="question-label">7. 我发觉我的体重在下降：</div>
     <label class="custom-radio">(A)没有或很少时间有 
         <input type="radio" id="q7a1" name="question7" value="1">
         <span class="checkmark"></span>
@@ -251,7 +251,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
     </label>
 </div>
 <div class="question-group">
-    <div class="question-label">8. 我有便秘的苦恼（便秘）：</div>
+    <div class="question-label">8. 我有便秘的苦恼：</div>
     <label class="custom-radio">(A)没有或很少时间有 
         <input type="radio" id="q8a1" name="question8" value="1">
         <span class="checkmark"></span>
@@ -270,7 +270,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
     </label>
 </div>
 <div class="question-group">
-    <div class="question-label">9. 心跳比平常快（心悸）：</div>
+    <div class="question-label">9. 心跳比平常快：</div>
     <label class="custom-radio">(A)没有或很少时间有 
         <input type="radio" id="q9a1" name="question9" value="1">
         <span class="checkmark"></span>
@@ -289,7 +289,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
     </label>
 </div>
 <div class="question-group">
-    <div class="question-label">10. 我无缘无故地感到疲乏（易倦）：</div>
+    <div class="question-label">10. 我无缘无故地感到疲乏：</div>
     <label class="custom-radio">(A)没有或很少时间有 
         <input type="radio" id="q10a1" name="question10" value="1">
         <span class="checkmark"></span>
@@ -308,7 +308,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
     </label>
 </div>
 <div class="question-group">
-    <div class="question-label">11. 我的头脑和平常一样清楚（思考困难）：</div>
+    <div class="question-label">11. 我的头脑和平常一样清楚：</div>
     <label class="custom-radio">(A)没有或很少时间有 
         <input type="radio" id="q11a1" name="question11" value="4">
         <span class="checkmark"></span>
@@ -327,7 +327,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
     </label>
 </div>
 <div class="question-group">
-    <div class="question-label">12. 我觉得经常做的事情并没有困难（能力减退）：</div>
+    <div class="question-label">12. 我觉得经常做的事情并没有困难：</div>
     <label class="custom-radio">(A)没有或很少时间有 
         <input type="radio" id="q12a1" name="question12" value="4">
         <span class="checkmark"></span>
@@ -346,7 +346,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
     </label>
 </div>
 <div class="question-group">
-    <div class="question-label">13. 我觉得不安而平静不下来（不安）：</div>
+    <div class="question-label">13. 我觉得不安而平静不下来：</div>
     <label class="custom-radio">(A)没有或很少时间有 
         <input type="radio" id="q13a1" name="question13" value="1">
         <span class="checkmark"></span>
@@ -365,7 +365,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
     </label>
 </div>
 <div class="question-group">
-    <div class="question-label">14. 我对未来抱有希望（绝望）：</div>
+    <div class="question-label">14. 我对未来抱有希望：</div>
     <label class="custom-radio">(A)没有或很少时间有 
         <input type="radio" id="q14a1" name="question14" value="4">
         <span class="checkmark"></span>
@@ -384,7 +384,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
     </label>
 </div>
 <div class="question-group">
-    <div class="question-label">15. 我比平常容易生气激动（易激惹）：</div>
+    <div class="question-label">15. 我比平常容易生气激动：</div>
     <label class="custom-radio">(A)没有或很少时间有 
         <input type="radio" id="q15a1" name="question15" value="1">
         <span class="checkmark"></span>
@@ -403,7 +403,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
     </label>
 </div>
 <div class="question-group">
-    <div class="question-label">16. 我觉得做出决定是容易的（决断困难）：</div>
+    <div class="question-label">16. 我觉得做出决定是容易的：</div>
     <label class="custom-radio">(A)没有或很少时间有 
         <input type="radio" id="q16a1" name="question16" value="4">
         <span class="checkmark"></span>
@@ -422,7 +422,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
     </label>
 </div>
 <div class="question-group">
-    <div class="question-label">17. 我觉得自己是个有用的人，有人需要我（无用感）：</div>
+    <div class="question-label">17. 我觉得自己是个有用的人，有人需要我：</div>
     <label class="custom-radio">(A)没有或很少时间有 
         <input type="radio" id="q17a1" name="question17" value="4">
         <span class="checkmark"></span>
@@ -441,7 +441,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
     </label>
 </div>
 <div class="question-group">
-    <div class="question-label">18. 我的生活过得很有意思（生活空虚感）：</div>
+    <div class="question-label">18. 我的生活过得很有意思：</div>
     <label class="custom-radio">(A)没有或很少时间有 
         <input type="radio" id="q18a1" name="question18" value="4">
         <span class="checkmark"></span>
@@ -460,7 +460,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
     </label>
 </div>
 <div class="question-group">
-    <div class="question-label">19. 我认为如果我死了，别人会生活得更好（无价值感）：</div>
+    <div class="question-label">19. 我认为如果我死了，别人会生活得更好：</div>
     <label class="custom-radio">(A)没有或很少时间有 
         <input type="radio" id="q19a1" name="question19" value="1">
         <span class="checkmark"></span>
@@ -479,7 +479,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
     </label>
 </div>
 <div class="question-group">
-    <div class="question-label">20. 平常感兴趣的事我仍然感兴趣（兴趣丧失）：</div>
+    <div class="question-label">20. 平常感兴趣的事我仍然感兴趣：</div>
     <label class="custom-radio">(A)没有或很少时间有 
         <input type="radio" id="q20a1" name="question20" value="4">
         <span class="checkmark"></span>
