@@ -51,10 +51,17 @@ document.getElementById("psychologyTest").onsubmit = function(event) {
         outerY = canvas.height * 0.5;
     }
 
+    function getRelativePosition(score) {
+        if (score <= 50) return score / 50 * 0.264;
+        if (score <= 59) return 0.264 + (score - 50) / 10 * (0.528 - 0.264);
+        if (score <= 69) return 0.528 + (score - 59) / 10 * (0.792 - 0.528);
+        return Math.min(0.792 + (score - 69) / 30 * (1 - 0.792), 1);
+    }
+
     function draw(progress) {
         updateDimensions();
         var currentValue = progress * standardScore;
-        var currentValueWidth = outerWidth * (Math.min(currentValue, 125) / 125);  // 扩展到125以包含额外段落
+        var currentValueWidth = outerWidth * getRelativePosition(currentValue);
         
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
@@ -67,10 +74,10 @@ document.getElementById("psychologyTest").onsubmit = function(event) {
         // 带渐变的内部条
         var gradient = ctx.createLinearGradient(outerX, 0, outerX + outerWidth, 0);
         gradient.addColorStop(0, 'green');
-        gradient.addColorStop(0.264, 'yellow');  // 33/125
-        gradient.addColorStop(0.528, 'orange');  // 66/125
-        gradient.addColorStop(0.792, 'red');     // 99/125
-        gradient.addColorStop(1, 'darkred');     // 额外段落的颜色
+        gradient.addColorStop(0.264, 'yellow');
+        gradient.addColorStop(0.528, 'orange');
+        gradient.addColorStop(0.792, 'red');
+        gradient.addColorStop(1, 'darkred');
         
         ctx.fillStyle = gradient;
         ctx.beginPath();
@@ -78,14 +85,14 @@ document.getElementById("psychologyTest").onsubmit = function(event) {
         ctx.fill();
         
         // 焦虑分段线
-        [0.264, 0.528, 0.792, ].forEach(point => {
+        [0.264, 0.528, 0.792].forEach(point => {
             var markerX = outerX + point * outerWidth;
             ctx.fillStyle = '#000';
             ctx.fillRect(markerX, outerY - 5, 1, outerHeight + 10);
         });
         
-        // 焦虑分段标签（增大字体）
-        ctx.font = `${Math.max(14, canvas.width * 0.03)}px Arial`;  // 增大字体
+        // 焦虑分段标签
+        ctx.font = `${Math.max(14, canvas.width * 0.03)}px Arial`;
         ctx.textAlign = 'center';
         ctx.fillStyle = '#000';
         ['正常', '轻度焦虑', '中度焦虑', '重度焦虑'].forEach((label, index) => {
@@ -94,7 +101,7 @@ document.getElementById("psychologyTest").onsubmit = function(event) {
         });
 
         // 三角形标记
-        var markerX = outerX + (currentValue / 125) * outerWidth;
+        var markerX = outerX + currentValueWidth;
         ctx.fillStyle = 'black';
         ctx.beginPath();
         ctx.moveTo(markerX, outerY - outerHeight * 0.5);
