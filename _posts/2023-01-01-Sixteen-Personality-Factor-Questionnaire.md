@@ -2345,7 +2345,7 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
 <!-- 问题140 -->
 <div class="question-group">
     <div class="question-label">140. 在童年时，我喜欢阅读：</div>
-    <label class="custom-radio">(A)神话幻想故事； 
+    <label class="custom-radio">(A)神话幻想故事 
         <input type="radio" id="q140a1" name="question140" value="2">
         <span class="checkmark"></span>
     </label>
