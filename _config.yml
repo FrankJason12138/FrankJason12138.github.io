@@ -16,7 +16,7 @@ baseurl: ''
 
 # Navigation links
 nav:
-  RSS: '/2025-01-01-RSS.md'
+  RSS: '/static/2025-01-01-RSS.md'
   港湾: '/'
   标签: '/tags.html'
   
