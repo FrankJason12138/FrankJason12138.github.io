@@ -16,7 +16,9 @@ baseurl: ''
 
 # Navigation links
 nav:
-  RSS: '/2025-01-01-RSS.html'
+  RSS: '<a href="/2025-01-01-RSS.html" style="display: inline-block; padding: 0 10px; text-decoration: none;">
+          <img src="/assets/icons/rss.png" alt="RSS" style="width: 24px; height: 24px; vertical-align: middle;">
+        </a>'
   港湾: '/'
   标签: '/tags.html'
   
