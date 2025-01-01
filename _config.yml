@@ -16,9 +16,10 @@ baseurl: ''
 
 # Navigation links
 nav:
-  "港湾": '/'
-  "标签": '/tags.html'
-  "RSS": '/RSS.hrml'
+  RSS: '/_posts/2023-01-01-RSS.md'
+  港湾: '/'
+  标签: '/tags.html'
+  
 
 # Footer
 footer:
