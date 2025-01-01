@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 
 # GitHub Pages gem，包含必要的插件
-gem 'github-pages'
+gem "github-pages"
 
 # 额外插件
 gem 'jekyll-sitemap'  # 生成站点地图
