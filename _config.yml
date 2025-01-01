@@ -16,8 +16,9 @@ baseurl: ''
 
 # Navigation links
 nav:
-  home: '/'
-  tags: '/tags.html'
+  "港湾": '/'
+  "标签": '/tags.html'
+  "RSS": '/RSS.hrml'
 
 # Footer
 footer:
