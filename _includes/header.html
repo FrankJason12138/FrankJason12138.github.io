@@ -4,12 +4,21 @@
     </div>
     <i id="menu-toggle" class="iconfont icon-menu"></i>
     <nav class="g-nav">
-        <ul>
-            {% for i in site.nav %}
-            <li><a href="{{ i[1] | relative_url}}">{{ i[0] }}</a></li>
-            {% endfor %}
-        </ul>
+      <ul>
+        {% for i in site.nav %}
+          <li>
+            {% if i[0] == "RSS" %}
+              <!-- 如果是 RSS，就显示按钮样式 -->
+              <a href="{{ i[1] | relative_url }}" style="display: inline-block; padding: 0 10px; text-decoration: none;">
+                <img src="/assets/icons/rss.png" alt="RSS" style="width: 24px; height: 24px; vertical-align: middle;">
+              </a>
+            {% else %}
+              <!-- 否则正常渲染其他链接 -->
+              <a href="{{ i[1] | relative_url }}">{{ i[0] }}</a>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
     </nav>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5096773500981125"
-     crossorigin="anonymous"></script>
-</header>
+  </header>
+  
