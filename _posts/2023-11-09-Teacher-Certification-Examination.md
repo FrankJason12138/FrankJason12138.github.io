@@ -23,5 +23,8 @@ tags: 心理健康教育 教师资格证书考试 教资面试考试 资料分�
 
 ## 支付宝扫码购买
 
-[![](assets/img/alipay-logo.svg)](http://116.62.103.127:8000/#/2/detail)
+<a href="http://116.62.103.127:8000/#/2/detail" target="_blank">
+    <img src="/assets/icons/alipay-logo.svg" alt="支付宝" style="width: 150px;">
+</a>
+
 
