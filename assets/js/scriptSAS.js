@@ -131,10 +131,60 @@ document.getElementById("psychologyTest").onsubmit = function(event) {
     canvasContainer.style.marginTop = '20px';
     setTimeout(() => canvasContainer.style.opacity = 1, 100);
 
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
+   // 在 resultDisplay.innerHTML 赋值后添加：
+var exportButtonContainer = document.createElement('div');
+exportButtonContainer.id = 'exportButtonContainer';
+exportButtonContainer.style.textAlign = 'center';
+exportButtonContainer.style.marginTop = '20px';
+
+var exportButton = document.createElement('button');
+exportButton.innerHTML = '导出测评结果';
+exportButton.className = 'bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4 mb-4';
+exportButton.onclick = function() {
+    const resultText = resultDisplay.innerText;
+    const canvas = document.getElementById('myRadarChart');
+    const imageDataUrl = canvas.toDataURL('image/png');
+    
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <meta charset="utf-8">
+          <title>SAS测评结果</title>
+          <style>
+            body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+            .results { margin-bottom: 30px; }
+            img { max-width: 100%; height: auto; }
+          </style>
+        </head>
+        <body>
+          <div class="results">
+            ${resultText}
+          </div>
+          <div>
+            <img src="${imageDataUrl}" alt="SAS测评图表">
+          </div>
+        </body>
+      </html>
+    `;
+    
+    const blob = new Blob([htmlContent], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'SAS测评结果.html';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+};
+
+// 将按钮添加到容器中并插入到结果显示区域的最前面
+exportButtonContainer.appendChild(exportButton);
+resultDisplay.insertBefore(exportButtonContainer, resultDisplay.firstChild);
+
+// 滚动到导出按钮位置
+exportButtonContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
 };
 
 function getAnxietyLevel(score) {
