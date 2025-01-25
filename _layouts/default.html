@@ -2,6 +2,34 @@
 <html>
 {% include head.html %}
 <body>
+  <!-- Cloudflare Turnstile Widget -->
+  <div id="turnstile-container" class="cf-turnstile" 
+       data-sitekey="0x4AAAAAAA0159Vz2fkrNYci"
+       data-callback="turnstileVerified"></div>
+
+  <!-- Cloudflare Turnstile Script -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+  <script>
+    // 用户通过验证后的回调
+    function turnstileVerified(token) {
+      console.log('验证成功，Token:', token);
+
+      // 可在此处进行逻辑处理，例如将 Token 发送到后端验证
+    }
+
+    // 监听页面加载时，立即显示 Turnstile 验证
+    document.addEventListener('DOMContentLoaded', function() {
+      const container = document.getElementById('turnstile-container');
+      if (container) {
+        // 动态加载 Turnstile Widget
+        container.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+
+<body>
     <!--[if lt IE 10]>
 <div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
 <![endif]-->
