@@ -24,7 +24,7 @@ tags: e-prime2.0 e-prime3.0 心理学实验 心理学实验设计
 ## [点击链接即可下载](https://wzhvk-my.sharepoint.com/:f:/g/personal/yglover_wzhvk_onmicrosoft_com/EokBxN2RurFJn34FCwXHOsIB5g2WT28KfgV8n7nW3PHWCQ?e=2gnwfM)
 
 ## 支付宝扫码购买
-<a href="http://116.62.103.127:8000/#/1/detail" target="_blank">
+<a href="http://47.113.150.120:8000/#/1/detail" target="_blank">
     <img src="/assets/icons/alipay-logo.svg" alt="支付宝" style="width: 150px;">
 </a>
 
