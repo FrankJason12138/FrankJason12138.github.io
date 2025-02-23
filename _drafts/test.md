@@ -1,13 +1,12 @@
 ---
 layout: post
-title: '个人订阅链接'
-subtitle: 'Web3.0下的旧产物'
+title: 'Welcome to My Experiment'
+subtitle: 'Timed test'
 date: 2025-02-23
 categories: 测试链接
 cover: '/assets/img/web3.0.jpg'
 tags: 交互网站 心理测量 问卷收集 暂时问卷 在线问卷
 ---
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
