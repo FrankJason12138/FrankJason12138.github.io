@@ -17,6 +17,7 @@ baseurl: ''
 # Navigation links
 nav:
   RSS: '/2025-01-01-RSS.html'
+  心理测评: '/_posts/2025-04-01-Psychological-scale.md'
   港湾: '/'
   标签: '/tags.html'
   

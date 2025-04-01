@@ -7,7 +7,6 @@ cover: 'https://s3.bmp.ovh/imgs/2025/04/01/3b425fa22fcbd3bb.png'
 tags: 心理测评 心理咨询 心理量表 抑郁自评量表 焦虑自评量表 人格测试
 ---
 
-<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
