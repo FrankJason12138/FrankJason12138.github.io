@@ -4,7 +4,7 @@ title: '#iiii和4i 离开中国以后我才知道四爱...'
 subtitle: '这是不是一场made in China的性别革命'
 date: 2023-12-10
 categories: 性别
-cover: 'https://cdn.jsdelivr.net/gh/FrankJason12138/FrankJason12138.github.io/tree/main/assets/img/四爱.png'
+cover: 'https://cdn.jsdelivr.net/gh/FrankJason12138/FrankJason12138.github.io@main/assets/img/%E5%9B%9B%E7%88%B1.png'
 tags: iiii 4i 四爱 性别 中国 LGBQ 女权 心理性别 女攻男受 
 ---
 
