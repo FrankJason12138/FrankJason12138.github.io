@@ -4,7 +4,7 @@ title: '卡特尔16PF'
 subtitle: '测试开始'
 date: 2023-01-01
 categories: 心理量表
-cover: '/assets/img/MBTI.jpg'
+cover: 'https://s3.bmp.ovh/imgs/2025/04/01/b4f9f207b8b48862.jpg'
 tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF 交互网站 人格因素
 ---
 <html lang="zh-CN">
