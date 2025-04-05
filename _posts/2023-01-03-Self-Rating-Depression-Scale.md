@@ -516,3 +516,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
 </script>
 </body>
 </html>
+## 支付宝扫码购买
+<a href="https://ditto.dittoshop.cn/#/2/detail" target="_blank">
+    <img src="/assets/icons/alipay-logo.svg" alt="支付宝" style="width: 150px;">
+</a>

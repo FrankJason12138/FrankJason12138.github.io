@@ -24,7 +24,7 @@ document.getElementById("psychologyTest").onsubmit = function(event) {
         <h3>总分： ${totalScore} ，标准分: ${standardScore}</h3>
         <p>抑郁程度: ${anxietyLevel}</p>
         <p>建议: ${recommendation}</p>
-        <h4>*测评结果只对受测者最近情况进行解释，不具备临床经验；如需获得测评报告请<br><a href='https://www.xiaohongshu.com/goods-detail/665e81695294b300019b5775?instation_link=xhsdiscover%3A%2F%2Fgoods_detail%2F665e81695294b300019b5775%3Ftrade_ext%3DeyJjaGFubmVsSW5mbyI6bnVsbCwiZHNUb2tlbkluZm8iOm51bGwsInNoYXJlTGluayI6Imh0dHBzOi8vd3d3LnhpYW9ob25nc2h1LmNvbS9nb29kcy1kZXRhaWwvNjY1ZTgxNjk1Mjk0YjMwMDAxOWI1Nzc1P2FwcHVpZD02NDNiODQ3YjAwMDAwMDAwMGUwMWQ3NjYiLCJsaXZlSW5mbyI6bnVsbCwic2hvcEluZm8iOm51bGwsImdvb2RzTm90ZUluZm8iOm51bGwsImNoYXRJbmZvIjpudWxsLCJzZWFyY2hJbmZvIjpudWxsfQ%3D%3D%26rn%3Dtrue&xhsshare=CopyLink&appuid=643b847b000000000e01d766&apptime=1728397544&share_id=d7aa1b54812c44e485d52049565c8cf5' target='_blank' style='color: blue;'>[将结果截图后点击跳转]</a><br>海外用户请点击下方的PayPal支付按钮<br>注意：由于量表结果为个人隐私，后台不会存储用户数据，截图保存结果后跳转，心理咨询师会与您沟通后生成心理测评报告并给予你咨询建议哦^_^</h4>
+        <h4>*测评结果只对受测者最近情况进行解释，不具备临床经验；如需获得测评报告请<br><a href='https://ditto.dittoshop.cn/#/2/detail' target='_blank' style='color: blue;'>[将结果截图后点击跳转]</a><br>海外用户请点击下方的PayPal支付按钮<br>注意：由于量表结果为个人隐私，后台不会存储用户数据，截图保存结果后跳转，心理咨询师会与您沟通后生成心理测评报告并给予你咨询建议哦^_^</h4>
     `;
     resultDisplay.style.textAlign = "center";
 

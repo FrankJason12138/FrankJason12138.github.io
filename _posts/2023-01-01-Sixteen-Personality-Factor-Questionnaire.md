@@ -3127,3 +3127,7 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
 </script>
 </body>
 </html>
+## 支付宝扫码购买
+<a href="https://ditto.dittoshop.cn/#/4/detail" target="_blank">
+    <img src="/assets/icons/alipay-logo.svg" alt="支付宝" style="width: 150px;">
+</a>
