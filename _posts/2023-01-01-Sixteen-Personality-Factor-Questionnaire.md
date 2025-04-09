@@ -3124,6 +3124,28 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
   paypal.HostedButtons({
     hostedButtonId: "4CGVRXBUZ5BB6",
   }).render("#paypal-container-4CGVRXBUZ5BB6")
+<script>
+  (function() {
+  _s = document.createElement('script');
+  _s.src="https://kefu.dittoshop.cn/customerServer.js"
+  _s.onload = function(){
+  var option = {
+        "authInit":true,
+        openUrl: 'https://kefu.dittoshop.cn',
+        token: '4109fbb2d7bc3d5559348278816a20bc',
+        kefuid:'yg121380',//默认为空自动对接客服，可填写指定客服ID
+        isShowTip: true, // 初始化成功后，界面右下角会自动创建 “联系客服按钮”， 如无需默认展示，则填写false即可,默认为true
+        mobileIcon: '', //  手机端悬浮客服图片
+        pcIcon: '', // pc端悬浮客服图片
+        windowStyle:'center',//默认空 右下角小弹窗， center 普通中间弹窗样式
+      };
+      var canCustomerServer = new initCustomerServer(option);
+      canCustomerServer.init();
+  }
+  document.head.appendChild(_s)
+  })();
+</script>
+            
 </script>
 </body>
 </html>
