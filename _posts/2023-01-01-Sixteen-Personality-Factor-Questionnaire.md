@@ -3124,6 +3124,15 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
   paypal.HostedButtons({
     hostedButtonId: "4CGVRXBUZ5BB6",
   }).render("#paypal-container-4CGVRXBUZ5BB6")
+
+            
+</script>
+</body>
+</html>
+## 支付宝扫码购买
+<a href="https://ditto.dittoshop.cn/#/4/detail" target="_blank">
+    <img src="/assets/icons/alipay-logo.svg" alt="支付宝" style="width: 150px;">
+</a>
 <script>
   (function() {
   _s = document.createElement('script');
@@ -3137,7 +3146,7 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
         isShowTip: true, // 初始化成功后，界面右下角会自动创建 “联系客服按钮”， 如无需默认展示，则填写false即可,默认为true
         mobileIcon: '', //  手机端悬浮客服图片
         pcIcon: '', // pc端悬浮客服图片
-        windowStyle:'center',//默认空 右下角小弹窗， center 普通中间弹窗样式
+        windowStyle:'',//默认空 右下角小弹窗， center 普通中间弹窗样式
       };
       var canCustomerServer = new initCustomerServer(option);
       canCustomerServer.init();
@@ -3145,11 +3154,3 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
   document.head.appendChild(_s)
   })();
 </script>
-            
-</script>
-</body>
-</html>
-## 支付宝扫码购买
-<a href="https://ditto.dittoshop.cn/#/4/detail" target="_blank">
-    <img src="/assets/icons/alipay-logo.svg" alt="支付宝" style="width: 150px;">
-</a>
