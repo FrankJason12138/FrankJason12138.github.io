@@ -23,9 +23,14 @@ nightMode: true
 mathjax: true
 
 # 评论
-comments:
-  disqus: true
-  disqus_url: 'https://Ditto.disqus.com/embed.js'
+valine:
+  enable: true
+  app_id: "1VHYQQZEOXBDf3nfJFxMuWf6-gzGzoHsz"
+  app_key: "pwpHvNRl8L8QtQ05qr5qK40O"
+  placeholder: "请文明留言，支持 Markdown 语法。"
+  visitor: true
+  emoji: true
+
 
 # 分享
 social-share: true
