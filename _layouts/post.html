@@ -100,56 +100,52 @@
       </div>
       {% endif %}
     </section>
-    {% if site.valine.enable %}
-    <section class="post-footer-item comment">
-       <div id="vcomments"></div>
-    </section>
-    {% endif %}
+    {% if site.comments.valine %}
+<section class="post-footer-item comment">
+    <div id="valine-comments"></div>
+</section>
+{% endif %}
   </section>
 
   {% include footer.html %}
 
-  <script src="{{ "/assets/js/social-share.min.js" | relative_url }}" async></script>
+  <script src="{{ "/assets/js/social-share.min.js" | relative_url }}"></script>
   <script>
-    window.addEventListener('load', function() {
-      if (typeof socialShare !== 'undefined') {
-        socialShare('.social-share', {
-          sites: [
-            {% for i in site.social-share-items %}
-              '{{ i }}'{% unless forloop.last %},{% endunless %}
-            {% endfor %}
-          ],
-          wechatQrcodeTitle: "分享到微信朋友圈",
-          wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
-        });
-      } else {
-        console.warn('socialShare script not loaded yet.');
-      }
+    socialShare('.social-share', {
+      sites: [
+        {% for i in site.social-share-items %}
+          '{{ i }}'
+          {% if forloop.last == false %},
+          {% endif %}
+        {% endfor %}
+      ],
+      wechatQrcodeTitle: "分享到微信朋友圈",
+      wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
     });
   </script>
 
-  <!-- Valine 脚本（使用 CDN） -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/valine/1.7.2/Valine.min.js" async></script>
-  <script>
-    window.addEventListener('load', function() {
-      if (!window.Valine) {
-        console.warn('Valine script not loaded yet.');
-        return;
-      }
-      new Valine({
-        el: '#vcomments',
-        appId: '{{ site.valine.app_id }}',
-        appKey: '{{ site.valine.app_key }}',
-        placeholder: '{{ site.valine.placeholder | default: "请输入评论..." }}',
-        visitor: {{ site.valine.visitor | default: true }},
-        emoji: {{ site.valine.emoji | default: true }},
-        path: location.pathname.replace(/\/+$/, '')
-      });
+  {% if site.comments.valine %}
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#valine-comments',
+        appId: '{{ site.comments.valine_appid }}',
+        appKey: '{{ site.comments.valine_appkey }}',
+        placeholder: '{{ site.comments.valine_placeholder }}',
+        notify: {{ site.comments.valine_notify }},
+        verify: {{ site.comments.valine_verify }},
+        avatar: '{{ site.comments.valine_avatar }}',
+        guest_info: ['{{ site.comments.valine_guest_info | split: "," | join: "','" }}'],
+        pageSize: {{ site.comments.valine_pageSize }},
+        lang: 'zh-CN'
     });
-  </script>
+</script>
+{% endif %}
 
   <script src="{{ "/assets/js/prism.js" | relative_url }}"></script>
   <script src="{{ "/assets/js/index.min.js" | relative_url }}"></script>
 </body>
 
 </html>
+
+

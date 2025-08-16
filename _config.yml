@@ -22,14 +22,17 @@ search: true
 nightMode: true
 mathjax: true
 
-# 评论
-valine:
-  enable: true
-  app_id: "1VHYQQZEOXBDf3nfJFxMuWf6-gzGzoHsz"
-  app_key: "pwpHvNRl8L8QtQ05qr5qK40O"
-  placeholder: "请文明留言，支持 Markdown 语法。"
-  visitor: true
-  emoji: true
+# 添加Valine配置
+comments:
+  valine: true
+  valine_appid: 'your-leancloud-app-id'        # 替换为你的LeanCloud App ID
+  valine_appkey: 'your-leancloud-app-key'      # 替换为你的LeanCloud App Key
+  valine_placeholder: '说点什么吧...'            # 评论框占位符
+  valine_notify: false                          # 邮件通知
+  valine_verify: false                          # 验证码
+  valine_avatar: 'mp'                          # 头像风格
+  valine_guest_info: nick,mail,link            # 评论者信息字段
+  valine_pageSize: 10                          # 评论分页
 
 
 # 分享
