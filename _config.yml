@@ -30,7 +30,7 @@ comments:
   valine_placeholder: '说点什么吧...'            # 评论框占位符
   valine_notify: false                          # 邮件通知
   valine_verify: false                          # 验证码
-  valine_avatar: 'mp'                          # 头像风格
+  valine_avatar: 'monsterid'                          # 头像风格
   valine_guest_info: nick,mail,link            # 评论者信息字段
   valine_pageSize: 10                          # 评论分页
 
