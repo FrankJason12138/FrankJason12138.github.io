@@ -101,10 +101,10 @@
       {% endif %}
     </section>
     {% if site.comments.valine %}
-<section class="post-footer-item comment">
+    <section class="post-footer-item comment">
     <div id="valine-comments"></div>
-</section>
-{% endif %}
+     </section>
+    {% endif %}
   </section>
 
   {% include footer.html %}
@@ -135,6 +135,7 @@
         notify: {{ site.comments.valine_notify }},
         verify: {{ site.comments.valine_verify }},
         avatar: '{{ site.comments.valine_avatar }}',
+        avatar_cdn: 'https://cravatar.cn/avatar/',       
         guest_info: ['{{ site.comments.valine_guest_info | split: "," | join: "','" }}'],
         pageSize: {{ site.comments.valine_pageSize }},
         lang: 'zh-CN'
