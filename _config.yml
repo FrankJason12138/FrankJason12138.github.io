@@ -25,8 +25,8 @@ mathjax: true
 # 添加Valine配置
 comments:
   valine: true
-  valine_appid: 'i8tBG9LLvyvaGuJM2Je5oo1a-MdYXbMMI'        # 替换为你的LeanCloud App ID
-  valine_appkey: 'fhZf8JRb8lc2Bg7tLeNQs1Ti'      # 替换为你的LeanCloud App Key
+  valine_appid: '1VHYQQZEOXBDf3nfJFxMuWf6-gzGzoHsz'        # 替换为你的LeanCloud App ID
+  valine_appkey: 'pwpHvNRl8L8QtQ05qr5qK40O'      # 替换为你的LeanCloud App Key
   valine_placeholder: '说点什么吧...'            # 评论框占位符
   valine_notify: false                          # 邮件通知
   valine_verify: false                          # 验证码
