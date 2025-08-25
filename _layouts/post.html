@@ -125,15 +125,14 @@
   </script>
 
   {% if site.comments.valine %}
-<script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.15.0/dist/av-min.js"></script>
-<script src="https://unpkg.com/valine/dist/Valine.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine"></script>
+
 
 <script>
     new Valine({
         el: '#valine-comments',
         appId: '{{ site.comments.valine_appid }}',
         appKey: '{{ site.comments.valine_appkey }}',
-        serverURLs: 'https://i8tBG9LLvyvaGuJM2Je5oo1a.api.lncldglobal.com',
         placeholder: '{{ site.comments.valine_placeholder }}',
         notify: {{ site.comments.valine_notify }},
         verify: {{ site.comments.valine_verify }},
