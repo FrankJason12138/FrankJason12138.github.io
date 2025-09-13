@@ -24,7 +24,7 @@ document.getElementById("psychologyTest").onsubmit = function(event) {
         <h3>总分： ${totalScore} ，标准分: ${standardScore}</h3>
         <p>焦虑程度: ${anxietyLevel}</p>
         <p>建议: ${recommendation}</p>
-        <h4>*测评结果只对受测者最近情况进行解释，不具备临床经验；如需获得测评报告请<br><a href='https://ditto.dittoshop.cn/#/3/detail' target='_blank' style='color: blue;'>[将结果截图后点击跳转]</a><br>海外用户请点击下方的PayPal支付按钮<br>注意：由于量表结果为个人隐私，后台不会存储用户数据，截图保存结果后跳转，心理咨询师会与您沟通后生成心理测评报告并给予你咨询建议哦^_^</h4>
+        <h4>*测评结果只对受测者最近情况进行解释，不具备临床经验；由于量表结果为个人隐私，后台不会存储用户数据，点击导出结果后，将下载的文件重命名为姓名+性别+年龄+班级（例如：张三男12初一二班）</h4>
     `;
     resultDisplay.style.textAlign = "center";
 
