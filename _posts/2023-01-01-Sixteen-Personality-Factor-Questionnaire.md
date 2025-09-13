@@ -3129,29 +3129,3 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
 </script>
 </body>
 </html>
-## 支付宝扫码购买
-<a href="https://ditto.dittoshop.cn/#/4/detail" target="_blank">
-    <img src="/assets/icons/alipay-logo.svg" alt="支付宝" style="width: 150px;">
-</a>
-<script>
-  (function() {
-  _s = document.createElement('script');
-  _s.src="https://kefu.dittoshop.cn/customerServer.js"
-  _s.onload = function(){
-  var option = {
-        "authInit":true,
-        openUrl: 'https://kefu.dittoshop.cn',
-        token: 'cf3ba84a8a9e6b9f52918984cc5e2d1d',
-        kefuid:'',//默认为空自动对接客服，可填写指定客服ID
-        isShowTip: true, // 初始化成功后，界面右下角会自动创建 “联系客服按钮”， 如无需默认展示，则填写false即可,默认为true
-        mobileIcon: 'https://s3.bmp.ovh/imgs/2025/04/15/ab2e37fd834c5faf.png', //  手机端悬浮客服图片
-        pcIcon: 'https://s3.bmp.ovh/imgs/2025/04/15/ab2e37fd834c5faf.png', // pc端悬浮客服图片
-        windowStyle:'',//默认空 右下角小弹窗， center 普通中间弹窗样式
-      };
-      var canCustomerServer = new initCustomerServer(option);
-      canCustomerServer.init();
-  }
-  document.head.appendChild(_s)
-  })();
-</script>
-            
