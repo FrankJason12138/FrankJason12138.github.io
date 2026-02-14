@@ -508,12 +508,6 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
 <p id="result" class="text-center mt-4"></p>
 <div id="canvasContainer" style="display: none; justify-content: center; align-items: center; height: 100%; opacity: 0; transition: opacity 0.5s ease-in-out;">
     <canvas id="myRadarChart" width="600" height="100"></canvas>
-<div id="paypal-container-WHJRNPARHP4CQ"></div>
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "WHJRNPARHP4CQ",
-  }).render("#paypal-container-WHJRNPARHP4CQ")
-</script>
 </body>
 </html>
 ## 支付宝扫码购买
