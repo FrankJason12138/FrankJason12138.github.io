@@ -22,7 +22,11 @@ description: 木一の小木屋
                 {% if post.cover %}
                 <div class="post-cover">
                     <a class="post-link" href="{{ post.url | relative_url }}" title="{{ post.title }}"></a>
-                    <img src="{{ post.cover | relative_url }}" href="{{ post.url | relative_url }}" alt="">
+                    {% if forloop.first %}
+                    <img src="{{ post.cover | relative_url }}" href="{{ post.url | relative_url }}" alt="" loading="eager" decoding="async" fetchpriority="high">
+                    {% else %}
+                    <img src="{{ post.cover | relative_url }}" href="{{ post.url | relative_url }}" alt="" loading="lazy" decoding="async">
+                    {% endif %}
                 </div>
                 {% endif %}
                 <section class="post-preview">
@@ -58,7 +62,7 @@ description: 木一の小木屋
         <div class="g-sidebar">
             <section class="author-card">
                 <div class="avatar">
-                    <img src="{{ site.avatar | relative_url }}" alt="">
+                    <img src="{{ site.avatar | relative_url }}" alt="" loading="lazy" decoding="async">
                 </div>
                 <div class="author-name" rel="author">{{ site.author }}</div>
                 <div class="bio">

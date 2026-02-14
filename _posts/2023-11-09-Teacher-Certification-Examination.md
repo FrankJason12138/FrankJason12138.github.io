@@ -17,9 +17,14 @@ tags: 心理健康教育 教师资格证书考试 教资面试考试 资料分�
 如果大家也想要获取我整理的心理健康教育教师资格面试详细复习资料,可以点击链接 [点击链接即可下载](https://wzhvk-my.sharepoint.com/:f:/g/personal/yglover_wzhvk_onmicrosoft_com/ErdJNwC41p5LlFDJXxY_8owBIWPFVr-V0pEAupDd-PEiQg?e=0QMgiK)进行下载。资料涵盖面试常见问题解析、教学示范课内容、教学理念谈话要点等,可以助你备考。或者可以购买木一老师的线上录播加直播课程
 
 希望这些分享对大家有帮助。心理健康教育事业意义非凡,让我们一起努力,为学生提供更好的成长环境!如有任何问题,欢迎在评论区讨论。
-
+## 评论区
  
+## [点击链接即可下载](https://wzhvk-my.sharepoint.com/:f:/g/personal/yglover_wzhvk_onmicrosoft_com/ErdJNwC41p5LlFDJXxY_8owBIWPFVr-V0pEAupDd-PEiQg?e=0QMgiK)
 
+## 支付宝扫码购买
 
+<a href="http://116.62.103.127:8000/#/2/detail" target="_blank">
+    <img src="/assets/icons/alipay-logo.svg" alt="支付宝" style="width: 150px;">
+</a>
 
 

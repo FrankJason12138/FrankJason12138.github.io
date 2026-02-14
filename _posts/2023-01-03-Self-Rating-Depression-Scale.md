@@ -507,5 +507,16 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
     <canvas id="myRadarChart" width="600" height="100"></canvas>
 </div>
     <script src="../../../assets/js/scriptSDS.js"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=BAARHNfmKzHLXfr68uX0--8arP3l0m-JLplAUepTZZsoSZXXIkhyC4uWP8XjQfCfduITf_zf1cOcrKkwdk&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
+<div id="paypal-container-EUJW9YJAJ3K5G"></div>
+<script>
+  paypal.HostedButtons({
+    hostedButtonId: "EUJW9YJAJ3K5G",
+  }).render("#paypal-container-EUJW9YJAJ3K5G")
+</script>
 </body>
 </html>
+## 支付宝扫码购买
+<a href="https://ditto.dittoshop.cn/#/2/detail" target="_blank">
+    <img src="/assets/icons/alipay-logo.svg" alt="支付宝" style="width: 150px;">
+</a>

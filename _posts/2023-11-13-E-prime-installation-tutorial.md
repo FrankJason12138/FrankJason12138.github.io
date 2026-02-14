@@ -20,4 +20,12 @@ tags: e-prime2.0 e-prime3.0 心理学实验 心理学实验设计
 4.它可以在不同的操作系统下运行，如Windows XP、Windows 7、Windows 8、Windows 10等，只要注意一些安装和设置的细节。
 
 如果你对E-prime2.0/3.0感兴趣，那么你一定不能错过我给大家准备的福利！ 我现在手里有一份 PJB E-prime2.0/3.0的安装教程和软件包 [点击链接即可下载](https://file.dittoshop.cn/share/ZLebgoE2)，可以帮你轻松解决安装和使用的各种问题,如果您拿到安装包无法还是不知道怎么安装，可以购买这份安装教程和软件包的原价是10元，但是现在双十一畅销折优惠，只要9元就可以拿到！而且还可以叠加商家券和平台券，几乎是白送！ 这么好的机会，你还在等什么？快点击下方商品链接购买吧！让你轻松拥有E-prime2.0/3.0的强大功能！让你在学术领域一举成名！
+## 评论区
+## [点击链接即可下载](https://file.dittoshop.cn/share/ZLebgoE2)
+
+## 支付宝扫码购买
+<a href="https://ditto.dittoshop.cn/#/1/detail" target="_blank">
+    <img src="/assets/icons/alipay-logo.svg" alt="支付宝" style="width: 150px;">
+</a>
+
 

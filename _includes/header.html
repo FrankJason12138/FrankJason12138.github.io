@@ -10,7 +10,7 @@
             {% if i[0] == "RSS" %}
               <!-- 如果是 RSS，就显示按钮样式 -->
               <a href="{{ i[1] | relative_url }}" style="display: inline-block; padding: 0 10px; text-decoration: none;">
-                <img src="/assets/icons/rss.png" alt="RSS" style="width: 24px; height: 24px; vertical-align: middle;">
+                <img src="/assets/icons/rss.png" alt="RSS" style="width: 24px; height: 24px; vertical-align: middle;" loading="lazy" decoding="async">
               </a>
             {% else %}
               <!-- 否则正常渲染其他链接 -->
