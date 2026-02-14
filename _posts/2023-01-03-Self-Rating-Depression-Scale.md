@@ -514,11 +514,6 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
     hostedButtonId: "WHJRNPARHP4CQ",
   }).render("#paypal-container-WHJRNPARHP4CQ")
 </script>
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "EUJW9YJAJ3K5G",
-  }).render("#paypal-container-EUJW9YJAJ3K5G")
-</script>
 </body>
 </html>
 ## 支付宝扫码购买
