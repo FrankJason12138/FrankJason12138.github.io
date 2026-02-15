@@ -3,6 +3,7 @@ layout: post
 title: "心理量表汇总"
 date: 2025-04-01
 author: 木一
+cover: 'https://s3.bmp.ovh/imgs/2025/04/01/3b425fa22fcbd3bb.png'
 tags: 心理测评 心理咨询 心理量表 抑郁自评量表 焦虑自评量表 人格测试
 ---
 
