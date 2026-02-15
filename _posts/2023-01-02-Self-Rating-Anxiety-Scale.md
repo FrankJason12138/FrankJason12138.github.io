@@ -9,6 +9,9 @@ tags: 心理咨询 心理量表 心理测试 SAS 焦虑症 焦虑测评  交互�
 ---
 <html lang="zh-CN">
 <head>
+<script 
+  src="https://www.paypal.com/sdk/js?client-id=BAARHNfmKzHLXfr68uX0--8arP3l0m-JLplAUepTZZsoSZXXIkhyC4uWP8XjQfCfduITf_zf1cOcrKkwdk&components=hosted-buttons&disable-funding=venmo&currency=USD">
+</script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/1.0.2/chartjs-plugin-annotation.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.8.2/docx.js"></script>
@@ -543,16 +546,15 @@ tags: 心理咨询 心理量表 心理测试 SAS 焦虑症 焦虑测评  交互�
 </div>
 <p id="result" class="text-center mt-4 text-lg"></p>
     <script src="../../../assets/js/scriptSAS.js"></script>
-    <script src="https://www.paypal.com/sdk/js?client-id=BAARHNfmKzHLXfr68uX0--8arP3l0m-JLplAUepTZZsoSZXXIkhyC4uWP8XjQfCfduITf_zf1cOcrKkwdk&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
-<div id="paypal-container-NDWKTXER7DRKY"></div>
+    <div id="paypal-container-ETWQHQDM7ZDHJ"></div>
 <script>
   paypal.HostedButtons({
-    hostedButtonId: "NDWKTXER7DRKY",
-  }).render("#paypal-container-NDWKTXER7DRKY")
+    hostedButtonId: "ETWQHQDM7ZDHJ",
+  }).render("#paypal-container-ETWQHQDM7ZDHJ")
 </script>
 </body>
 </html>
 ## 支付宝扫码购买
-<a href="https://shop.dittopsych.xyz/#/1/detail" target="_blank">
+<a href="https://shop.dittopsych.xyz/#/2/detail" target="_blank">
     <img src="/assets/icons/alipay-logo.svg" alt="支付宝" style="width: 150px;">
 </a>
