@@ -1,190 +1,238 @@
 ---
 layout: post
-title: '心理量表汇总'
+title: "心理量表汇总"
 date: 2025-04-01
 author: 木一
-cover: 'https://s3.bmp.ovh/imgs/2025/04/01/3b425fa22fcbd3bb.png'
 tags: 心理测评 心理咨询 心理量表 抑郁自评量表 焦虑自评量表 人格测试
 ---
 
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>心理测评量表合集</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Microsoft YaHei', Arial, sans-serif;
-        }
-        
-        body {
-            background-color: #f5f7fa;
-            color: #333;
-            line-height: 1.6;
-            padding: 20px;
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 20px 0;
-        }
-        
-        .header h1 {
-            color: #2c3e50;
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        
-        .header p {
-            color: #7f8c8d;
-            font-size: 1.1em;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-        }
-        
-        .scale-card {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            width: 350px;
-            margin: 20px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .scale-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-        
-        .scale-image {
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .scale-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .scale-card:hover .scale-image img {
-            transform: scale(1.05);
-        }
-        
-        .scale-content {
-            padding: 25px;
-        }
-        
-        .scale-content h2 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-size: 1.5em;
-        }
-        
-        .scale-content p {
-            color: #7f8c8d;
-            margin-bottom: 20px;
-            font-size: 0.95em;
-        }
-        
-        .btn {
-            display: inline-block;
-            background: #3498db;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1em;
-            width: 100%;
-            text-align: center;
-        }
-        
-        .btn:hover {
-            background: #2980b9;
-        }
-        
-        .footer {
-            text-align: center;
-            margin-top: 50px;
-            padding: 20px;
-            color: #7f8c8d;
-            font-size: 0.9em;
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .scale-card {
-                width: 90%;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <h1>心理测评量表合集</h1>
-        <p>专业心理测评工具，助您更好地了解自我</p>
+<style>
+.scale-wrapper {
+    padding: 50px 20px;
+    background: linear-gradient(to bottom, #f5f7fa, #eef2f7);
+}
+
+.hero-section {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.hero-section h1 {
+    font-size: 2.6em;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.hero-section p {
+    color: #6c7a89;
+    font-size: 1.15em;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.badge {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 18px;
+    background: #eaf4ff;
+    color: #2980b9;
+    border-radius: 30px;
+    font-size: 0.9em;
+}
+
+.scale-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.scale-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    width: 340px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.scale-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.15);
+}
+
+.scale-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.scale-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.scale-card:hover img {
+    transform: scale(1.05);
+}
+
+.scale-content {
+    padding: 25px;
+}
+
+.scale-content h2 {
+    margin-bottom: 12px;
+    font-size: 1.4em;
+    color: #2c3e50;
+}
+
+.scale-content p {
+    color: #7f8c8d;
+    font-size: 0.95em;
+    margin-bottom: 20px;
+}
+
+.scale-btn {
+    display: block;
+    text-align: center;
+    padding: 13px;
+    border-radius: 30px;
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.scale-btn:hover {
+    opacity: 0.9;
+}
+
+.result-section {
+    margin-top: 80px;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.result-section h3 {
+    font-size: 1.6em;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.result-section p {
+    color: #6c7a89;
+    line-height: 1.7;
+}
+
+.cta-section {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.cta-btn {
+    display: inline-block;
+    padding: 16px 40px;
+    background: #2c3e50;
+    color: #fff;
+    border-radius: 40px;
+    font-size: 1.1em;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.cta-btn:hover {
+    background: #1a252f;
+}
+
+.floating-cta {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #3498db;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 50px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.floating-cta:hover {
+    background: #2980b9;
+}
+
+@media (max-width: 768px) {
+    .scale-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+</style>
+
+<div class="scale-wrapper">
+
+<div class="hero-section">
+    <h1>专业心理测评平台</h1>
+    <p>通过科学量表工具，帮助您更清晰地了解自己的情绪状态与人格特质。测评结果可生成结构化报告。</p>
+    <div class="badge">专业 · 严谨 · 结果可追踪</div>
+</div>
+
+<div class="scale-container">
+
+<div class="scale-card">
+    <div class="scale-image">
+        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1350&q=80">
     </div>
-    
-    <div class="container">
-        <!-- 卡特尔16PF量表 -->
-        <div class="scale-card">
-            <div class="scale-image">
-                <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="卡特尔16PF量表">
-            </div>
-            <div class="scale-content">
-                <h2>卡特尔16PF人格测试</h2>
-                <p>卡特尔16PF人格测试是经典的人格评估工具，测量16种主要人格特质，广泛应用于职业咨询、人才选拔和个人发展等领域。</p>
-                <a href="https://psych.dittoshop.cn/2023/01/01/Sixteen-Personality-Factor-Questionnaire.html" class="btn" target="_blank">开始测试</a>
-            </div>
-        </div>
-        
-        <!-- SAS量表 -->
-        <div class="scale-card">
-            <div class="scale-image">
-                <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="SAS量表">
-            </div>
-            <div class="scale-content">
-                <h2>焦虑自评量表(SAS)</h2>
-                <p>焦虑自评量表(SAS)用于评估个体焦虑症状的主观感受，适用于具有焦虑症状的成年人，操作简便，结果直观。</p>
-                <a href="https://psych.dittoshop.cn/2023/01/02/Self-Rating-Anxiety-Scale.html" class="btn" target="_blank">开始测试</a>
-            </div>
-        </div>
-        
-        <!-- SDS量表 -->
-        <div class="scale-card">
-            <div class="scale-image">
-                <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="SDS量表">
-            </div>
-            <div class="scale-content">
-                <h2>抑郁自评量表(SDS)</h2>
-                <p>抑郁自评量表(SDS)是评估抑郁状态的常用工具，能有效反映抑郁状态的轻重程度及其在治疗中的变化。</p>
-                <a href="https://psych.dittoshop.cn/2023/01/03/Self-Rating-Depression-Scale.html" class="btn" target="_blank">开始测试</a>
-            </div>
-        </div>
+    <div class="scale-content">
+        <h2>卡特尔16PF人格测试</h2>
+        <p>测量16种核心人格特质，生成专业人格结构报告，适用于职业规划与自我成长分析。</p>
+        <a href="{{ '/2023/01/01/Sixteen-Personality-Factor-Questionnaire.html' | relative_url }}" class="scale-btn">立即测评</a>
     </div>
-    
-    <div class="footer">
-        <p> 心理测评量表合集 | 本网站仅提供测评链接，测评结果仅供参考，如需获得专业指导，请联系木一老师</p>
+</div>
+
+<div class="scale-card">
+    <div class="scale-image">
+        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1350&q=80">
     </div>
-</body>
-</html>
+    <div class="scale-content">
+        <h2>焦虑自评量表 (SAS)</h2>
+        <p>快速评估焦虑程度，帮助识别情绪压力水平。</p>
+        <a href="{{ '/2023/01/02/Self-Rating-Anxiety-Scale.html' | relative_url }}" class="scale-btn">立即测评</a>
+    </div>
+</div>
+
+<div class="scale-card">
+    <div class="scale-image">
+        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1350&q=80">
+    </div>
+    <div class="scale-content">
+        <h2>抑郁自评量表 (SDS)</h2>
+        <p>用于抑郁情绪初步筛查，支持结果对比与跟踪。</p>
+        <a href="{{ '/2023/01/03/Self-Rating-Depression-Scale.html' | relative_url }}" class="scale-btn">立即测评</a>
+    </div>
+</div>
+
+</div>
+
+<div class="result-section">
+    <h3>测评之后您将获得什么？</h3>
+    <p>系统生成结构化分析报告，包含分数解读、心理维度分析与建议方向。结果仅供参考，不作为医学诊断依据。</p>
+</div>
+
+<div class="cta-section">
+    <a href="{{ '/2023/01/01/Sixteen-Personality-Factor-Questionnaire.html' | relative_url }}" class="cta-btn">
+        立即开始专业测评
+    </a>
+</div>
+
+</div>
+
+<a href="{{ '/2023/01/01/Sixteen-Personality-Factor-Questionnaire.html' | relative_url }}" class="floating-cta">
+    开始测评
+</a>
