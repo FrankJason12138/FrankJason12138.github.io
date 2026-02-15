@@ -233,6 +233,4 @@ tags: 心理测评 心理咨询 心理量表 抑郁自评量表 焦虑自评量�
 
 </div>
 
-<a href="{{ '/2023/01/01/Sixteen-Personality-Factor-Questionnaire.html' | relative_url }}" class="floating-cta">
-    开始测评
-</a>
+
