@@ -24,13 +24,32 @@ tags: e-prime2.0 e-prime3.0 心理学实验 心理学实验设计
 ## [点击链接即可下载](https://file.dittoshop.cn/share/ZLebgoE2)
 </style>
 
-<div id="kf-btn" onclick="openKf()">在线咨询木一老师</div>
+<div style="
+    margin-top:40px;
+    padding:20px;
+    background:#f6f9f7;
+    border-radius:12px;
+    text-align:center;
+">
 
-<script>
-function openKf() {
-    window.open("https://work.weixin.qq.com/kfid/kfcb22995e95ee10a7e");
-}
-</script>
+<p style="font-size:16px;">
+不会装？可以随时联系我！
+</p>
+
+<button onclick="openKf()" style="
+    background:#07C160;
+    color:white;
+    padding:12px 24px;
+    border:none;
+    border-radius:50px;
+    font-size:16px;
+    cursor:pointer;
+">
+在线咨询木一老师
+</button>
+
+</div>
+
 
 ## 支付宝扫码购买
 <a href="https://ditto.dittoshop.cn/#/1/detail" target="_blank">
