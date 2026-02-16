@@ -505,7 +505,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
     hostedButtonId: "WHJRNPARHP4CQ",
   }).render("#paypal-container-WHJRNPARHP4CQ")
 </script>
-</style>
+
 
 <style>
 #kf-btn {

@@ -541,7 +541,7 @@ tags: 心理咨询 心理量表 心理测试 SAS 焦虑症 焦虑测评  交互�
     hostedButtonId: "ETWQHQDM7ZDHJ",
   }).render("#paypal-container-ETWQHQDM7ZDHJ")
 </script>
-</style>
+
 
 <style>
 #kf-btn {
