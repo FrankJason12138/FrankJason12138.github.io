@@ -22,31 +22,28 @@ tags: 心理健康教育 教师资格证书考试 教资面试考试 资料分�
 ## [点击链接即可下载](https://wzhvk-my.sharepoint.com/:f:/g/personal/yglover_wzhvk_onmicrosoft_com/ErdJNwC41p5LlFDJXxY_8owBIWPFVr-V0pEAupDd-PEiQg?e=0QMgiK)
 </style>
 
-<div style="
-    margin-top:40px;
-    padding:20px;
-    background:#f6f9f7;
-    border-radius:12px;
-    text-align:center;
-">
+<style>
+#kf-btn {
+    position: fixed;
+    right: 20px;
+    bottom: 80px;
+    background: #4CAF50;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 9999;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+</style>
 
-<p style="font-size:16px;">
-有需要考编面试或教资面试需要一对一的可以点击下方按钮与我取得联系！！！
-</p>
+<div id="kf-btn" onclick="openKf()">在线咨询木一老师</div>
 
-<button onclick="openKf()" style="
-    background:#07C160;
-    color:white;
-    padding:12px 24px;
-    border:none;
-    border-radius:50px;
-    font-size:16px;
-    cursor:pointer;
-">
-在线咨询木一老师
-</button>
-
-</div>
+<script>
+function openKf() {
+    window.open("https://work.weixin.qq.com/kfid/kfcb22995e95ee10a7e");
+}
+</script>
 
 
 ## 支付宝扫码购买

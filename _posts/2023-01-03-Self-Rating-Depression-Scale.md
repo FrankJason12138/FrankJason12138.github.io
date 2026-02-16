@@ -507,6 +507,21 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
 </script>
 </style>
 
+<style>
+#kf-btn {
+    position: fixed;
+    right: 20px;
+    bottom: 80px;
+    background: #4CAF50;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 9999;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+</style>
+
 <div id="kf-btn" onclick="openKf()">在线咨询木一老师</div>
 
 <script>

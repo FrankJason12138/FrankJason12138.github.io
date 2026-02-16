@@ -36,33 +36,28 @@ tags: iiii 4i 四爱 性别 中国 LGBQ 女权 心理性别 女攻男受
 我个人不认为四爱就是有心理问题，偶尔尝试着在感情里换换位思考下，对建立平等关系也许有帮助。总之，爱本无对错，追求自由平等的各种可能都值得被理解尊重。我觉得四爱是一种勇敢的选择，一种美好的愿望，一种自由的表达。我为四爱女生感到骄傲，我为四爱男生感到欣赏，同时我也为其他性别取向的人群鼓舞，或许这才是表现了人类的主观能动性！
 </style>
 
-<div style="
-    margin-top:40px;
-    padding:20px;
-    background:#f6f9f7;
-    border-radius:12px;
-    text-align:center;
-">
+<style>
+#kf-btn {
+    position: fixed;
+    right: 20px;
+    bottom: 80px;
+    background: #4CAF50;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 9999;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+</style>
 
-<p style="font-size:16px;">
-如果你对自我状态有困惑，
-欢迎与我直接交流。
-</p>
+<div id="kf-btn" onclick="openKf()">在线咨询木一老师</div>
 
-<button onclick="openKf()" style="
-    background:#07C160;
-    color:white;
-    padding:12px 24px;
-    border:none;
-    border-radius:50px;
-    font-size:16px;
-    cursor:pointer;
-">
-在线咨询木一老师
-</button>
-
-</div>
-
+<script>
+function openKf() {
+    window.open("https://work.weixin.qq.com/kfid/kfcb22995e95ee10a7e");
+}
+</script>
 
 ## 心理健康测评
 
