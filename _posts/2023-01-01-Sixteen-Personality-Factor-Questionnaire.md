@@ -3134,7 +3134,7 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
 
 <script>
 function openKf() {
-    window.open("https://work.weixin.qq.com/kfid/kfcb22995e95ee10a7e");
+    window.open("https://work.weixin.qq.com/kfid/kfcc2c010a16ab35f28");
 }
 </script>
 </body>
