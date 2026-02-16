@@ -96,17 +96,17 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
             <div class="text-center text-white text-4xl mb-10">卡特尔16PF</div>
             <div class="flex justify-center space-x-10">
                 <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <img src="/assets/img/闪电.jpg" alt="Placeholder image of a 3D model of blue twisted shapes" class="mb-4">
+                    <img src="/assets/img/闪电.webp" alt="Placeholder image of a 3D model of blue twisted shapes" class="mb-4">
                     <div class="text-gray-700 text-base mb-4">极速测试</div>
                     <div class="text-gray-500 text-sm">依托自己并拥护回答，以了解你的性格类型。</div>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <img src="/assets/img/记录.jpg" alt="Placeholder image of a gold molecular structure" class="mb-4">
+                    <img src="/assets/img/记录.webp" alt="Placeholder image of a gold molecular structure" class="mb-4">
                     <div class="text-gray-700 text-base mb-4">查看详细结果</div>
                     <div class="text-gray-500 text-sm">了解您的性格类型如何影响您生活的所有领域。</div>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <img src="/assets/img/人脑.jpg" alt="Placeholder image of purple cards with analytical graphs" class="mb-4">
+                    <img src="/assets/img/人脑.webp" alt="Placeholder image of purple cards with analytical graphs" class="mb-4">
                     <div class="text-gray-700 text-base mb-4">获取你的潜力</div>
                     <div class="text-gray-500 text-sm">通过可选的高级反馈，成长为您想成为的人。</div>
                 </div>
