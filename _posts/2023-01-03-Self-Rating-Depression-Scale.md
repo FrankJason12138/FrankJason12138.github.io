@@ -505,6 +505,15 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
     hostedButtonId: "WHJRNPARHP4CQ",
   }).render("#paypal-container-WHJRNPARHP4CQ")
 </script>
+</style>
+
+<div id="kf-btn" onclick="openKf()">在线咨询木一老师</div>
+
+<script>
+function openKf() {
+    window.open("https://work.weixin.qq.com/kfid/kfcb22995e95ee10a7e");
+}
+</script>
 </body>
 </html>
 ## 支付宝扫码购买

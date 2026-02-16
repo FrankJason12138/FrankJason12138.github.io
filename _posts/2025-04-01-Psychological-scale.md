@@ -233,5 +233,14 @@ tags: 心理测评 心理咨询 心理量表 抑郁自评量表 焦虑自评量�
 </div>
 
 </div>
+</style>
+
+<div id="kf-btn" onclick="openKf()">在线咨询木一老师</div>
+
+<script>
+function openKf() {
+    window.open("https://work.weixin.qq.com/kfid/kfcb22995e95ee10a7e");
+}
+</script>
 
 
