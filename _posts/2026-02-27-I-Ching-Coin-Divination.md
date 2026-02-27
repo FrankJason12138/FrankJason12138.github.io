@@ -4,7 +4,7 @@ title: '当周易遇见Three.js：我做了一个会摇龟壳的在线铜钱占�
 subtitle: '从量子随机数到六十四卦编码的完整实现'
 date: 2026-02-27
 categories: 技术
-cover: '/assets/img/ching.png'
+cover: '/assets/img/ching.webp'
 tags: 周易 Three.js 前端开发 随机数 静态部署
 ---
 
