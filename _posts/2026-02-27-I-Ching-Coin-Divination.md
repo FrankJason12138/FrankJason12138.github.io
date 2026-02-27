@@ -190,6 +190,21 @@ tags: 周易 Three.js 前端开发 随机数 静态部署
 **☰ ☱ ☲ ☳ ☴ ☵ ☶ ☷**
 
 天行健，君子以自强不息。
+<style>
+#kf-btn {
+    position: fixed;
+    right: 20px;
+    bottom: 80px;
+    background: #4CAF50;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 9999;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+</style>
+
 <div id="kf-btn" onclick="openKf()">在线咨询木一老师</div>
 
 <script>
