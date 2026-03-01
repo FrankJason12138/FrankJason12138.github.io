@@ -4,7 +4,7 @@ title: "2026春季第四爱（4i）社交指南：从‘蒹葭’热潮看小众
 subtitle: "为什么大家都在搜Twitter四爱？深度解析4i社区现状与心理契合度"
 date: 2026-03-01
 categories: 情感心理
-cover: '/assets/img/hero.webp'
+cover: '/assets/img/4iflag.webp'
 tags: 四爱 4i 蒹葭 社区指南 心理测试 社交热点
 ---
 
