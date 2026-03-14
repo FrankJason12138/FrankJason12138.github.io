@@ -4,7 +4,7 @@ title: "他只是不想上学，他有什么错？"
 subtitle: "深度解析当代学生厌学现象：当学校变成“托儿所”，家庭教育何去何从？"
 date: 2026-03-14
 categories: 心理教育
-cover: '/assets/img/人脑.webp'
+cover: '/assets/img/yanxve.webp'
 tags: 厌学 心理健康 家庭教育 学校现状 心理画像
 ---
 
