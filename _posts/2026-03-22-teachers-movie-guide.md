@@ -4,7 +4,7 @@ title: "【老师必备】备课没素材？这有个不用下载、海量大片
 subtitle: "解决老师视频素材搜索难、下载烦！海量影视随搜随看，永久保号，长期更新！"
 date: 2026-03-22
 categories: 教育资源
-cover: '/assets/img/classph.webp'
+cover: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
 tags: 教师工具 视频素材 备课神器 影视资源 永久会员
 ---
 
@@ -25,7 +25,7 @@ tags: 教师工具 视频素材 备课神器 影视资源 永久会员
 
 | **电脑端高清体验** | **手机端随身看** |
 | :---: | :---: |
-| ![](/assets/img/webpng.webp) | ![](/assets/img/mbpng.webp) |
+| <img src="/assets/img/webpng.webp" width="100%"> | <img src="/assets/img/mbpng.webp" width="100%"> |
 
 #### 2. 海量影视资源，随搜随有
 无论是正在热映的新片、经典的老电影，还是学术性的纪录片、动画片，这里都能一键搜索。再也不用为了一个几分钟的课件素材跑遍全网。
@@ -45,10 +45,10 @@ tags: 教师工具 视频素材 备课神器 影视资源 永久会员
 
 **看看真实课堂的使用反馈：**
 
-![](/assets/img/classph.webp)
+<img src="/assets/img/classph.webp" width="100%" alt="课堂演示">
 *老师正在利用大屏播放优质影视资源进行教学引导*
 
-![](/assets/img/classpng1.webp)
+<img src="/assets/img/classpng1.webp" width="100%" alt="学生观看">
 *学生们被精彩的影视画面深深吸引，课堂效率瞬间提升*
 
 ---
