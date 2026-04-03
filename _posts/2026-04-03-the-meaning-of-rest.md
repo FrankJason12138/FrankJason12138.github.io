@@ -2,9 +2,9 @@
 layout: post
 title: "孩子放假，家长上班：全国春秋假实施背后的‘休息焦虑’"
 subtitle: "当休息被视为一种‘罪过’，我们是否忘记了生命本来的样子？"
-author: "FrankJason"
+author: "木一"
 date: 2026-04-03
-header-img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+cover: '/assets/img/sfh.webp'
 catalog: true
 tags:
   - 社会观察
