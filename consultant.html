@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ditto · 心理咨询师</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Noto+Serif+SC:wght@300;400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --card: #151515;
+      --card-hover: #1a1a1a;
+      --border: #2a2a2a;
+      --accent: #c9a84c;
+      --accent-dim: #8a6f2e;
+      --text: #e8e4dc;
+      --text-dim: #888;
+      --warm: #f5efe6;
+      --sage: #7a9e7e;
+      --sage-dim: #4a6b4d;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Serif SC', 'Inter', sans-serif;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* ── Noise overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent-dim); border-radius: 2px; }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      backdrop-filter: blur(20px);
+      background: rgba(13,13,13,0.7);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'ZCOOL XiaoWei', serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      padding: 0.5rem 1.4rem;
+      border: 1px solid var(--accent);
+      color: var(--accent) !important;
+      border-radius: 2px;
+      transition: all 0.3s !important;
+    }
+    .nav-cta:hover {
+      background: var(--accent);
+      color: var(--bg) !important;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 8rem 4rem 6rem;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 70% 50%, rgba(201,168,76,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(122,158,126,0.05) 0%, transparent 70%);
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      max-width: 1200px;
+      align-items: center;
+    }
+    .hero-text { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 1rem;
+      border: 1px solid var(--accent-dim);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+    .hero h1 {
+      font-family: 'ZCOOL XiaoWei', serif;
+      font-size: 4rem;
+      line-height: 1.15;
+      letter-spacing: 0.05em;
+      color: var(--warm);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--text-dim);
+      line-height: 2;
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .btn-primary {
+      padding: 0.85rem 2.2rem;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      border-radius: 2px;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    .btn-primary:hover { background: #d4b555; transform: translateY(-1px); }
+    .btn-secondary {
+      padding: 0.85rem 2.2rem;
+      background: transparent;
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-photo {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .photo-frame {
+      width: 340px;
+      height: 420px;
+      position: relative;
+    }
+    .photo-frame::before {
+      content: '';
+      position: absolute;
+      inset: -12px;
+      border: 1px solid var(--accent-dim);
+      border-radius: 4px;
+      transform: rotate(-1deg);
+    }
+    .photo-frame::after {
+      content: '';
+      position: absolute;
+      inset: -24px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      transform: rotate(1deg);
+    }
+    .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1a1a1a 0%, #222 100%);
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      border: 1px solid var(--border);
+    }
+    .photo-placeholder svg { opacity: 0.3; }
+    .photo-label {
+      position: absolute;
+      bottom: -2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+    }
+
+    /* ── Divider ── */
+    .section-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--accent);
+      margin: 0 auto 1rem;
+    }
+    .section-tag {
+      text-align: center;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ── About ── */
+    .about { padding: 8rem 4rem; max-width: 1100px; margin: 0 auto; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      margin-top: 4rem;
+    }
+    .about-left h3 {
+      font-family: 'ZCOOL XiaoWei', serif;
+      font-size: 2rem;
+      color: var(--warm);
+      margin-bottom: 1.5rem;
+    }
+    .about-left p {
+      color: var(--text-dim);
+      font-size: 0.92rem;
+      line-height: 2;
+      margin-bottom: 1.2rem;
+    }
+    .credential-list {
+      list-style: none;
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .credential-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.88rem;
+      color: var(--text-dim);
+    }
+    .credential-list li::before {
+      content: '◆';
+      color: var(--accent);
+      font-size: 0.5rem;
+      margin-top: 0.45rem;
+      flex-shrink: 0;
+    }
+    .about-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .stat-card {
+      padding: 1.8rem 2rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .stat-card:hover {
+      border-color: var(--accent-dim);
+      transform: translateX(4px);
+    }
+    .stat-num {
+      font-family: 'ZCOOL XiaoWei', serif;
+      font-size: 2.8rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label { font-size: 0.82rem; color: var(--text-dim); line-height: 1.6; }
+
+    /* ── Tools / Scales ── */
+    .tools {
+      padding: 8rem 4rem;
+      background: #0a0a0a;
+    }
+    .tools-inner { max-width: 1100px; margin: 0 auto; }
+    .tools-header { text-align: center; margin-bottom: 4rem; }
+    .tools-header h2 {
+      font-family: 'ZCOOL XiaoWei', serif;
+      font-size: 2.4rem;
+      color: var(--warm);
+      margin-bottom: 1rem;
+    }
+    .tools-header p {
+      color: var(--text-dim);
+      font-size: 0.92rem;
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.9;
+    }
+    .scales-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .scale-card {
+      padding: 2rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      transition: all 0.35s;
+      cursor: default;
+    }
+    .scale-card:hover {
+      border-color: var(--accent-dim);
+      background: var(--card-hover);
+      transform: translateY(-4px);
+    }
+    .scale-icon {
+      width: 44px; height: 44px;
+      background: rgba(201,168,76,0.1);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+      font-size: 1.2rem;
+    }
+    .scale-card h4 {
+      font-size: 0.95rem;
+      color: var(--warm);
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.03em;
+    }
+    .scale-card p {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+    .scale-tag {
+      display: inline-block;
+      margin-top: 0.8rem;
+      padding: 0.2rem 0.7rem;
+      border: 1px solid var(--accent-dim);
+      border-radius: 100px;
+      font-size: 0.68rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Process ── */
+    .process { padding: 8rem 4rem; }
+    .process-inner { max-width: 900px; margin: 0 auto; }
+    .process-header { text-align: center; margin-bottom: 4rem; }
+    .process-header h2 {
+      font-family: 'ZCOOL XiaoWei', serif;
+      font-size: 2.4rem;
+      color: var(--warm);
+      margin-bottom: 1rem;
+    }
+    .process-header p { color: var(--text-dim); font-size: 0.92rem; }
+    .steps { display: flex; flex-direction: column; gap: 0; position: relative; }
+    .step {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 2rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      font-family: 'ZCOOL XiaoWei', serif;
+      font-size: 3.5rem;
+      color: var(--accent);
+      opacity: 0.25;
+      line-height: 1;
+      align-self: center;
+    }
+    .step h4 {
+      font-size: 1.05rem;
+      color: var(--warm);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.03em;
+    }
+    .step p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.8; }
+
+    /* ── Testimonials ── */
+    .testimonials { padding: 8rem 4rem; background: #0a0a0a; }
+    .testimonials-inner { max-width: 1100px; margin: 0 auto; }
+    .testimonials-header { text-align: center; margin-bottom: 4rem; }
+    .testimonials-header h2 {
+      font-family: 'ZCOOL XiaoWei', serif;
+      font-size: 2.4rem;
+      color: var(--warm);
+      margin-bottom: 1rem;
+    }
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    .testi-card {
+      padding: 2rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      transition: border-color 0.3s;
+    }
+    .testi-card:hover { border-color: var(--accent-dim); }
+    .testi-stars { color: var(--accent); font-size: 0.75rem; letter-spacing: 2px; margin-bottom: 1rem; }
+    .testi-text {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      line-height: 1.9;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .testi-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-dim), var(--sage-dim));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: var(--warm);
+    }
+    .testi-name { font-size: 0.82rem; color: var(--warm); }
+    .testi-role { font-size: 0.72rem; color: var(--text-dim); }
+
+    /* ── CTA ── */
+    .cta {
+      padding: 10rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(201,168,76,0.08) 0%, transparent 70%);
+    }
+    .cta-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+    .cta h2 {
+      font-family: 'ZCOOL XiaoWei', serif;
+      font-size: 3rem;
+      color: var(--warm);
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+    .cta p { color: var(--text-dim); font-size: 0.92rem; line-height: 2; margin-bottom: 3rem; }
+    .cta .btn-primary { font-size: 1rem; padding: 1rem 3rem; }
+
+    /* ── Footer ── */
+    footer {
+      padding: 3rem 4rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .footer-left { font-size: 0.75rem; color: var(--text-dim); letter-spacing: 0.05em; }
+    .footer-right { font-size: 0.72rem; color: var(--text-dim); }
+    .footer-right a { color: var(--accent); text-decoration: none; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 2rem; }
+      .hero { padding: 7rem 2rem 4rem; }
+      .hero-inner { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+      .hero h1 { font-size: 2.8rem; }
+      .hero-desc { margin: 0 auto 2rem; }
+      .hero-actions { justify-content: center; flex-wrap: wrap; }
+      .hero-photo { order: -1; }
+      .photo-frame { width: 260px; height: 320px; }
+      .about { padding: 5rem 2rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .scales-grid { grid-template-columns: 1fr 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .process, .tools, .testimonials { padding: 5rem 2rem; }
+      .cta { padding: 6rem 2rem; }
+      .cta h2 { font-size: 2.2rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 600px) {
+      .scales-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Ditto</div>
+    <ul class="nav-links">
+      <li><a href="#about">关于我</a></li>
+      <li><a href="#tools">专业工具</a></li>
+      <li><a href="#process">工作流程</a></li>
+      <li><a href="#testimonials">学员反馈</a></li>
+      <li><a href="https://work.weixin.qq.com/kfid/kfcb22995e95ee10a7e" target="_blank" class="nav-cta">预约咨询</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-badge">心理咨询师 · 研究生</div>
+        <h1>在专业与温暖之间<br>找到<span>你的答案</span></h1>
+        <p class="hero-desc">
+          您好，我是 Ditto，西南地区心理学专业在读研究生。
+          我相信每一次咨询，都是一场自我觉察的旅程。
+          在这里，您不必伪装，我会用专业与真诚陪伴您走过那段艰难的路。
+        </p>
+        <div class="hero-actions">
+          <a href="https://work.weixin.qq.com/kfid/kfcb22995e95ee10a7e" target="_blank" class="btn-primary">预约首次咨询</a>
+          <a href="#tools" class="btn-secondary">了解专业工具</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <div class="photo-frame">
+          <img src="assets/img/aboutme.jpg" alt="Ditto · 心理咨询师" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px; border: 1px solid var(--border);">
+        </div>
+        <div class="photo-label">Ditto · 心理咨询师</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="section-tag">About Me</div>
+    <div class="section-divider"></div>
+    <div class="about-grid">
+      <div class="about-left">
+        <h3>不只是倾听，更是专业的引导</h3>
+        <p>
+          我是 Ditto，西南地区某高校心理学专业研究生，研究方向为临床与咨询心理学。
+          系统学习心理咨询与治疗理论，受过认知行为疗法（CBT）、正念减压（MBSR）等专业训练。
+        </p>
+        <p>
+          我相信：<strong style="color:var(--warm)">好的咨询不是给答案，而是帮助您找到属于自己的答案。</strong>
+          在咨询中，我不做评判，只做陪伴与专业引导。
+          同时，我会运用科学心理量表工具，客观评估您的心理状态，让咨询方案更有针对性。
+        </p>
+        <ul class="credential-list">
+          <li>心理学专业研究生，研究方向为临床与咨询心理学</li>
+          <li>系统接受认知行为疗法（CBT）培训</li>
+          <li>参与多次团体心理辅导与个案督导</li>
+          <li>长期学习正念减压（MBSR）理论与实践</li>
+          <li>熟练运用 SCL-90、SDS、SAS 等标准化心理评估工具</li>
+          <li>恪守咨询伦理，保障来访者隐私与安全</li>
+        </ul>
+      </div>
+      <div class="about-right">
+        <div class="stat-card">
+          <div class="stat-num">200+</div>
+          <div class="stat-label">小时系统学习<br>咨询心理学核心课程</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">50+</div>
+          <div class="stat-label">次量表施测<br>与结果解读经验</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">20+</div>
+          <div class="stat-label">次一对一模拟<br>咨询与督导练习</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">对每一位来访者<br>保持真诚与敬畏</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLS / SCALES -->
+  <section class="tools" id="tools">
+    <div class="tools-inner">
+      <div class="tools-header">
+        <div class="section-tag">Professional Tools</div>
+        <div class="section-divider"></div>
+        <h2>科学工具，让改变可见</h2>
+        <p>
+          我会运用标准化心理量表客观评估您的心理状态，<br>
+          让咨询目标更清晰，让改变有据可循。
+          量表结果仅作为专业参考，全程保密。
+        </p>
+      </div>
+      <div class="scales-grid">
+        <div class="scale-card">
+          <div class="scale-icon">🧠</div>
+          <h4>症状自评量表 SCL-90</h4>
+          <p>国际广泛使用的心理健康评估工具，涵盖躯体化、强迫、人际敏感、抑郁、焦虑等9个维度，全面了解您当前的心理状态。</p>
+          <span class="scale-tag">标准化评估</span>
+        </div>
+        <div class="scale-card">
+          <div class="scale-icon">😔</div>
+          <h4>抑郁自评量表 SDS</h4>
+          <p>由 Zung 编制，评估抑郁状态的严重程度与波动情况，帮助识别是否存在抑郁倾向及其严重等级。</p>
+          <span class="scale-tag">情绪评估</span>
+        </div>
+        <div class="scale-card">
+          <div class="scale-icon">😰</div>
+          <h4>焦虑自评量表 SAS</h4>
+          <p>评估焦虑状态的常用工具，涵盖焦虑情感、躯体症状、认知功能等维度，量化焦虑水平。</p>
+          <span class="scale-tag">情绪评估</span>
+        </div>
+        <div class="scale-card">
+          <div class="scale-icon">📊</div>
+          <h4>艾森克人格问卷 EPQ</h4>
+          <p>测量人格的三个基本维度：内外向（E）、神经质（N）、精神质（P），帮助您了解自己的性格特质与人格倾向。</p>
+          <span class="scale-tag">人格测评</span>
+        </div>
+        <div class="scale-card">
+          <div class="scale-icon">🔄</div>
+          <h4>应对方式问卷 CSQ</h4>
+          <p>评估您在压力情境下的应对策略，区分积极应对与消极应对方式，帮助咨询更有针对性地调整。</p>
+          <span class="scale-tag">行为评估</span>
+        </div>
+        <div class="scale-card">
+          <div class="scale-icon">✨</div>
+          <h4>生活事件量表 LES</h4>
+          <p>评估近一年内生活事件对您的影响程度，识别应激源，帮助理解心理问题的诱发因素与作用机制。</p>
+          <span class="scale-tag">应激评估</span>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:3rem;">
+        <p style="font-size:0.8rem;color:var(--text-dim);max-width:500px;margin:0 auto;line-height:1.9;">
+          量表测评仅为辅助工具，结果由专业咨询师解读，<br>
+          不作为诊断依据，不对外公开，全面保护您的隐私安全。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="process-inner">
+      <div class="process-header">
+        <div class="section-tag">Working Process</div>
+        <div class="section-divider"></div>
+        <h2>咨询流程</h2>
+        <p style="color:var(--text-dim);font-size:0.92rem;">从初次接触到来访者中心的专业服务</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div>
+            <h4>预约 & 初访</h4>
+            <p>通过微信或在线表单预约，简要了解您的诉求。第一次会面我们先建立信任关系，共同商定后续咨询的目标与方向。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div>
+            <h4>心理评估</h4>
+            <p>根据需要，我会邀请您完成标准化心理量表测评（SCL-90 / SDS / SAS 等），科学评估您当前的心理状态，作为制定咨询方案的依据。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div>
+            <h4>咨询工作</h4>
+            <p>运用认知行为疗法（CBT）、正念技术、倾听与重构等专业方法，与您一起探索问题根源，重建积极认知模式，习得情绪调节策略。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div>
+            <h4>效果评估 & 跟进</h4>
+            <p>阶段性地用量表复测评估咨询效果，了解心理状态的改善情况，共同决定后续计划。咨询结束后，也欢迎随时回来。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="testimonials-inner">
+      <div class="testimonials-header">
+        <div class="section-tag">Testimonials</div>
+        <div class="section-divider"></div>
+        <h2>他们说</h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">
+            "Ditto 老师让我第一次感受到被完全接纳。量表测评让我更了解自己的状态，咨询后对情绪的掌控感强了很多。"
+          </p>
+          <div class="testi-author">
+            <div class="testi-avatar">L</div>
+            <div>
+              <div class="testi-name">林同学</div>
+              <div class="testi-role">大学生 · 焦虑情绪</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">
+            "做 EPQ 人格测评的时候才发现自己的内倾性格是很正常的，Ditto 老师帮我破除了很多关于性格的误解。"
+          </p>
+          <div class="testi-author">
+            <div class="testi-avatar">Z</div>
+            <div>
+              <div class="testi-name">张女士</div>
+              <div class="testi-role">职场人士 · 自我探索</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">
+            "SDS 测评让我正视了自己的抑郁情绪，不再逃避。咨询过程很温暖，感觉终于有人真正理解我了。"
+          </p>
+          <div class="testi-author">
+            <div class="testi-avatar">W</div>
+            <div>
+              <div class="testi-name">王同学</div>
+              <div class="testi-role">考研学生 · 抑郁情绪</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">
+            "第一次接触心理量表，以为是考试，没想到那么专业。现在每次咨询前都会做一次评估，能看到自己的进步。"
+          </p>
+          <div class="testi-author">
+            <div class="testi-avatar">C</div>
+            <div>
+              <div class="testi-name">陈先生</div>
+              <div class="testi-role">职场新人 · 压力管理</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="contact">
+    <div class="cta-inner">
+      <div class="section-tag">Start Your Journey</div>
+      <div class="section-divider"></div>
+      <h2>您不必独自面对<br>改变，从第一步开始</h2>
+      <p>
+        无论您正在经历焦虑、迷茫、压力，还是想要更好地了解自己，<br>
+        我都在这里。用专业与真诚，陪伴您找到方向。
+      </p>
+      <a href="https://work.weixin.qq.com/kfid/kfcb22995e95ee10a7e" target="_blank" class="btn-primary">立即预约咨询</a>
+      <p style="margin-top:2rem;font-size:0.75rem;color:var(--text-dim);">
+        首次咨询免费 · 咨询过程严格保密 · 量表测评辅助评估
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      © 2025 Ditto · 心理咨询师 · 恪守咨询伦理，保障每一位来访者的隐私与安全
+    </div>
+    <div class="footer-right">
+      量表来源：<a href="https://psych.dittoshop.cn/2025/04/01/Psychological-scale.html" target="_blank">心理量表汇总</a>
+    </div>
+  </footer>
+
+</body>
+</html>
