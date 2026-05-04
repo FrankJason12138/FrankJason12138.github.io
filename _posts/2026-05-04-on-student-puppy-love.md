@@ -3,8 +3,8 @@ layout: post
 title: "关于学生早恋，我要说两句"
 subtitle: "食色男女：在少年心动中学会责任与成长"
 date: 2026-05-04
-author: "FrankJason"
-header-img: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+author: "木一"
+cover: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
 tags:
     - 心理健康
     - 情感成长
