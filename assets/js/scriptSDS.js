@@ -185,10 +185,74 @@ resultDisplay.insertBefore(exportButtonContainer, resultDisplay.firstChild);
 // 滚动到导出按钮位置
 exportButtonContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-    //window.scrollTo({
-    //    top: 0,
-    //    behavior: 'smooth'
-    //});
+// --- 邮件发送逻辑开始 ---
+const emailSection = document.createElement('div');
+emailSection.style.marginTop = '40px';
+emailSection.style.padding = '20px';
+emailSection.style.backgroundColor = '#f3f4f6';
+emailSection.style.borderRadius = '8px';
+emailSection.innerHTML = `
+    <h3 style="font-size: 20px; margin-bottom: 15px;">📧 将详细报告发送到邮箱</h3>
+    <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+        <input type="email" id="user-email" placeholder="请输入您的邮箱地址" 
+               style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; width: 80%; max-width: 300px;">
+        <button id="send-email-btn" style="background-color: #3b82f6; color: white; font-weight: bold; padding: 10px 20px; border-radius: 4px; cursor: pointer; border: none;">
+            发送报告
+        </button>
+        <p id="email-status" style="margin-top: 10px; font-weight: bold;"></p>
+    </div>
+`;
+resultDisplay.appendChild(emailSection);
+
+document.getElementById('send-email-btn').onclick = function() {
+    const email = document.getElementById('user-email').value;
+    const status = document.getElementById('email-status');
+    
+    if (!email || !email.includes('@')) {
+        alert('请输入有效的邮箱地址');
+        return;
+    }
+
+    status.innerText = '正在发送中...';
+    this.disabled = true;
+
+    const canvas = document.getElementById('myRadarChart');
+    const chartImg = canvas.toDataURL('image/png');
+    const resultHtml = resultDisplay.innerText.split('📧')[0].replace(/\n/g, '<br>'); 
+
+    const payload = {
+        email: email,
+        subject: 'SDS 抑郁自评量表报告',
+        body: `
+            <div style="font-family: Arial, sans-serif; padding: 20px; border: 1px solid #eee;">
+                <h2 style="color: #059669;">SDS 抑郁自评量表报告</h2>
+                <div style="font-size: 16px; line-height: 1.6;">${resultHtml}</div>
+                <div style="margin-top: 20px;">
+                    <h3>抑郁程度示意图：</h3>
+                    <img src="${chartImg}" style="max-width: 100%; border: 1px solid #ddd;" />
+                </div>
+                <p style="margin-top: 30px; font-size: 12px; color: #666;">*此报告由 Dittoo 的小窝自动发送。</p>
+            </div>
+        `
+    };
+
+    const gasUrl = 'https://script.google.com/macros/s/AKfycbwWe9Pld6ZXPIZhSxgtLYpBJ7Qlc-1ljD7pwOMe7dL-Cw4NwV_W6q0XZP7paupeCWoK3g/exec';
+
+    fetch(gasUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        cache: 'no-cache',
+        body: JSON.stringify(payload)
+    }).then(() => {
+        status.style.color = 'green';
+        status.innerText = '✅ 发送成功！请检查您的收件箱。';
+    }).catch(err => {
+        status.style.color = 'red';
+        status.innerText = '❌ 发送失败，请稍后再试。';
+        this.disabled = false;
+    });
+};
+// --- 邮件发送逻辑结束 ---
 };
 
 function getAnxietyLevel(score) {
