@@ -24,7 +24,7 @@ document.getElementById("psychologyTest").onsubmit = function(event) {
         <h3>总分： ${totalScore} ，标准分: ${standardScore}</h3>
         <p>抑郁程度: ${anxietyLevel}</p>
         <p>建议: ${recommendation}</p>
-        <h4>*测评结果只对受测者最近情况进行解释，不具备临床经验；注意：由于量表结果为个人隐私，后台不会存储用户数据，点击导出结果后，将下载的文件重命名为姓名+性别+年龄+班级（例如：张三男12初一二班）</h4>
+        <h4>*测评结果只对受测者最近情况进行解释，不具备临床经验；注意：由于量表结果为个人隐私，后台不会存储用户数据，点击导出结果后，将下载的文件发送给客服老师进行一对一分析</h4>
     `;
     resultDisplay.style.textAlign = "center";
 
