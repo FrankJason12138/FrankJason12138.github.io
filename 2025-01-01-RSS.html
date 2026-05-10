@@ -13,19 +13,18 @@ cover: '/assets/img/web3.0.jpg'
 今天是2025年1月1日, 在新的一年里我宣布：为了迎接web3.0时代的到来，本博客开启了上古时代的RSS订阅链接。这是互联网大厂在剥夺头部流量和数据运算算法推荐之前出来的关于网站的自动订阅更新按钮，将链接复制到Feedly、Inoreader或Follow中就能实现文章更新时随时查阅或了解的效果，希望这种方式会给大家带来新的感受，我会继续更新或推荐给大家更多的心理学知识或工具，希望大家喜欢，以下是我的RSS链接，将其复制粘贴到网站上即可获取：
 
 <p style="font-size: 24px; font-weight: bold;">
-  <a id="rss-link" href="{{ '/rss.xml' | relative_url }}">{{ site.url }}{{ site.baseurl }}/rss.xml</a>
+  <a id="rss-link" href="/rss.xml">正在加载链接...</a>
 </p>
 
 <script>
   (function() {
     var rssLink = document.getElementById('rss-link');
     if (rssLink) {
-      // 动态获取当前页面的域名和基础路径
+      // 自动获取当前访问的域名 (例如 https://psych.dittoshop.cn 或 https://frankjason12138.github.io)
       var origin = window.location.origin;
-      var path = rssLink.getAttribute('href');
-      // 如果 path 是以 / 开头的绝对路径，则直接拼接 origin
-      // 如果 site.baseurl 有值，relative_url 已经处理好了
-      var fullUrl = origin + path;
+      // 拼接 RSS 路径
+      var fullUrl = origin + "/rss.xml";
+      
       rssLink.href = fullUrl;
       rssLink.innerText = fullUrl;
     }
