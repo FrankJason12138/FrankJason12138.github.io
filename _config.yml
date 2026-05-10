@@ -8,7 +8,7 @@ baseurl: ""  # 你部署在 GitHub Pages 的根目录，所以为空
 nav:
   RSS: '/2025-01-01-RSS.html'
   关于我: '/consultant.html'
-  心理测评: 'https://psych.dittoshop.cn/2025/04/01/Psychological-scale.html'
+  心理测评: '/2025/04/01/Psychological-scale.html'
   港湾: '/'
   标签: '/tags.html'
 
