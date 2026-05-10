@@ -970,7 +970,7 @@
         }
 
 
-        resultDisplay.innerHTML += "<h4>*测评结果只对受测者最近情况进行解释，注意：由于量表结果为个人隐私，后台不会存储用户数据，长截图后，重命名为您的姓名+性别+年龄+班级（例如：张三男12初一二班）</h4>";
+        resultDisplay.innerHTML += "<h4>*测评结果只对受测者最近情况进行解释，注意：由于量表结果为个人隐私，后台不会存储用户数据，长截图后发送给客服老师</h4>";
         resultDisplay.style.textAlign = "center";
         
        
@@ -985,16 +985,6 @@
         
         
         
-        window.scrollTo(0, 0);
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        resultDisplay.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     
