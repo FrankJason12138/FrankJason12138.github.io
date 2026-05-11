@@ -1,12 +1,81 @@
+// 导航逻辑
+let currentQuestionIndex = 0;
+const questions = document.querySelectorAll('.question-group');
+const wrapper = document.getElementById('question-wrapper');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const submitBtn = document.getElementById('submit-btn');
+const progressBar = document.getElementById('progress-bar');
+const errorMsg = document.getElementById('error-msg');
+
+function updateNavigation() {
+    const offset = -currentQuestionIndex * 400; // 每个 question-group 的 min-height 是 400px
+    wrapper.style.transform = `translateY(${offset}px)`;
+    
+    prevBtn.disabled = currentQuestionIndex === 0;
+    
+    if (currentQuestionIndex === questions.length - 1) {
+        nextBtn.style.display = 'none';
+        submitBtn.style.display = 'block';
+    } else {
+        nextBtn.style.display = 'block';
+        submitBtn.style.display = 'none';
+    }
+    
+    const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+    progressBar.style.width = `${progress}%`;
+    errorMsg.innerText = '';
+}
+
+prevBtn.addEventListener('click', () => {
+    if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        updateNavigation();
+    }
+});
+
+nextBtn.addEventListener('click', () => {
+    if (currentQuestionIndex < questions.length - 1) {
+        currentQuestionIndex++;
+        updateNavigation();
+    }
+});
+
+// 初始化
+updateNavigation();
+
+// 自动跳转到下一个问题（当选择后）
+questions.forEach((group, index) => {
+    const inputs = group.querySelectorAll('input[type="radio"]');
+    inputs.forEach(input => {
+        input.addEventListener('change', () => {
+            if (currentQuestionIndex < questions.length - 1) {
+                setTimeout(() => {
+                    currentQuestionIndex++;
+                    updateNavigation();
+                }, 300); // 延迟一点点，让用户看到选中效果
+            }
+        });
+    });
+});
+
 document.getElementById("psychologyTest").onsubmit = function(event) {
     event.preventDefault();
 
-    var isAllAnswered = Array.from(document.querySelectorAll('.question-group')).every(group => {
-        return Array.from(group.querySelectorAll('input[type="radio"]')).some(input => input.checked);
+    // 检查所有问题是否已回答，并找到第一个未回答的问题
+    let firstUnansweredIndex = -1;
+    const isAllAnswered = Array.from(questions).every((group, index) => {
+        const answered = Array.from(group.querySelectorAll('input[type="radio"]')).some(input => input.checked);
+        if (!answered && firstUnansweredIndex === -1) {
+            firstUnansweredIndex = index;
+        }
+        return answered;
     });
 
     if (!isAllAnswered) {
-        alert("对不起，请检查漏掉的问题");
+        errorMsg.innerText = `第 ${firstUnansweredIndex + 1} 题尚未回答，请检查`;
+        currentQuestionIndex = firstUnansweredIndex;
+        updateNavigation();
         return;
     }
 
