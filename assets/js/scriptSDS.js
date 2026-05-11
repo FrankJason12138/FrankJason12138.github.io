@@ -14,12 +14,21 @@ function updateNavigation() {
     
     prevBtn.disabled = currentQuestionIndex === 0;
     
-    if (currentQuestionIndex === questions.length - 1) {
-        nextBtn.style.display = 'none';
+    // Check if all questions are answered
+    const allAnswered = Array.from(questions).every(group => {
+        return Array.from(group.querySelectorAll('input[type="radio"]')).some(input => input.checked);
+    });
+
+    if (allAnswered) {
         submitBtn.style.display = 'block';
     } else {
-        nextBtn.style.display = 'block';
         submitBtn.style.display = 'none';
+    }
+
+    if (currentQuestionIndex === questions.length - 1) {
+        nextBtn.style.display = 'none';
+    } else {
+        nextBtn.style.display = 'block';
     }
     
     const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
@@ -44,11 +53,12 @@ nextBtn.addEventListener('click', () => {
 // 初始化
 updateNavigation();
 
-// 自动跳转到下一个问题（当选择后）
+// 自动跳转到下一个问题（当选择后）并更新导航（显示提交按钮）
 questions.forEach((group, index) => {
     const inputs = group.querySelectorAll('input[type="radio"]');
     inputs.forEach(input => {
         input.addEventListener('change', () => {
+            updateNavigation(); // Update to check if all answered
             if (currentQuestionIndex < questions.length - 1) {
                 setTimeout(() => {
                     currentQuestionIndex++;

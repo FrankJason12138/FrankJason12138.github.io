@@ -106,7 +106,7 @@ tags: 心理咨询 心理量表 心理测试 SAS 焦虑症 焦虑测评  交互�
             transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .question-group {
-            padding: 40px;
+            padding: 40px 60px;
             box-sizing: border-box;
             min-height: 400px;
             display: flex;
@@ -120,16 +120,13 @@ tags: 心理咨询 心理量表 心理测试 SAS 焦虑症 焦虑测评  交互�
             color: #333;
             line-height: 1.4;
         }
-        .nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px 40px;
-            background: #fff;
-            border-top: 1px solid #eee;
-        }
         .nav-btn {
-            padding: 10px 25px;
-            border-radius: 25px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 30;
+            padding: 20px 10px;
+            border-radius: 5px;
             border: 1px solid #006400;
             background: white;
             color: #006400;
@@ -138,7 +135,13 @@ tags: 心理咨询 心理量表 心理测试 SAS 焦虑症 焦虑测评  交互�
             transition: all 0.2s;
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+        }
+        #prev-btn {
+            left: 5px;
+        }
+        #next-btn {
+            right: 5px;
         }
         .nav-btn:hover:not(:disabled) {
             background: #006400;
@@ -148,6 +151,7 @@ tags: 心理咨询 心理量表 心理测试 SAS 焦虑症 焦虑测评  交互�
             border-color: #ccc;
             color: #ccc;
             cursor: not-allowed;
+            opacity: 0.5;
         }
         .progress-container {
             width: 100%;
@@ -202,17 +206,18 @@ tags: 心理咨询 心理量表 心理测试 SAS 焦虑症 焦虑测评  交互�
             </div>
         </div>
     </div>
-    <div id="resultDisplay">
-    <h4 class="text-center mt-8 px-4">下面有20条文字，请仔细阅读每一条,把意思弄明白，然后根据您最近“一周”的实际感觉,在程度中选择与你的情况相符的分数。每道题不要花费太久思考，凭第一印象回答。<br> 
-1.	目前主要的情绪和躯体症状的自评请根据自觉症状的程度选择。；<br> 
-2.	评定时间为过去一周内或现在；<br></h4>
-
+    <div id="quiz-intro">
+    <h4 class="text-center mt-8 px-4">下面有20条文字，请仔细阅读每一条,把意思弄明白，然后根据您最近“一周”的实际感觉,在程度中选择与你的情况相符的分数。每道题不要花费太久思考，凭第一印象回答。<br>
+    1.	目前主要的情绪和躯体症状的自评请根据自觉症状的程度选择。；<br>
+    2.	评定时间为过去一周内或现在；<br></h4>
 <div class="max-w-6xl mx-auto px-4 py-8">
     <div id="quiz-container">
         <div class="progress-container"><div id="progress-bar"></div></div>
         <form id="psychologyTest">
+            <button type="button" class="nav-btn" id="prev-btn" disabled title="上一题"><i class="fas fa-chevron-left"></i></button>
+            <button type="button" class="nav-btn" id="next-btn" title="下一题"><i class="fas fa-chevron-right"></i></button>
             <div class="question-wrapper" id="question-wrapper">
-                <!-- 问题1 -->
+                <!-- 问题 1-20 Content remains same -->
                 <div class="question-group">
                     <div class="q-counter">题目 1 / 20</div>
                     <div class="question-label">1. 我感到比往常更加神经过敏和焦虑：</div>
@@ -233,6 +238,8 @@ tags: 心理咨询 心理量表 心理测试 SAS 焦虑症 焦虑测评  交互�
                         <span class="checkmark"></span>
                     </label>
                 </div>
+                <!-- ... other questions ... -->
+
                 <!-- 问题2 -->
                 <div class="question-group">
                     <div class="q-counter">题目 2 / 20</div>
@@ -650,9 +657,9 @@ tags: 心理咨询 心理量表 心理测试 SAS 焦虑症 焦虑测评  交互�
                 </div>
             </div>
             <div id="error-msg"></div>
-            <div class="nav-buttons">
-                <button type="button" class="nav-btn" id="prev-btn" disabled><i class="fas fa-chevron-up"></i> 上一题</button>
-                <button type="button" class="nav-btn" id="next-btn">下一题 <i class="fas fa-chevron-down"></i></button>
+            <button type="button" class="nav-btn" id="prev-btn" disabled><i class="fas fa-chevron-left"></i></button>
+            <button type="button" class="nav-btn" id="next-btn"><i class="fas fa-chevron-right"></i></button>
+            <div style="text-align: center; padding-bottom: 20px;">
                 <input type="submit" value="提交测评" class="submit-button" id="submit-btn">
             </div>
         </form>
@@ -664,7 +671,17 @@ tags: 心理咨询 心理量表 心理测试 SAS 焦虑症 焦虑测评  交互�
 </div>
 <p id="resultDisplay" class="text-center mt-4 text-lg"></p>
     <script src="{{ '/assets/js/scriptSAS.js' | relative_url }}"></script>
-    <div id="paypal-container-ETWQHQDM7ZDHJ"></div>
+    
+    <div style="margin-top: 40px; text-align: center; border-top: 1px solid #eee; padding-top: 20px;">
+        <h3>支持与购买</h3>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap;">
+            <div id="paypal-container-ETWQHQDM7ZDHJ"></div>
+            <a href="https://shop.dittopsych.xyz/#/2/detail" target="_blank">
+                <img src="/assets/icons/alipay-logo.svg" alt="支付宝" style="width: 150px;">
+            </a>
+        </div>
+    </div>
+
 <script>
   paypal.HostedButtons({
     hostedButtonId: "ETWQHQDM7ZDHJ",
@@ -696,7 +713,3 @@ function openKf() {
 </script>
 </body>
 </html>
-## 支付宝扫码购买
-<a href="https://shop.dittopsych.xyz/#/2/detail" target="_blank">
-    <img src="/assets/icons/alipay-logo.svg" alt="支付宝" style="width: 150px;">
-</a>

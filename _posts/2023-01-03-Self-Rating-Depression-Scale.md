@@ -106,7 +106,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
             transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .question-group {
-            padding: 40px;
+            padding: 40px 60px;
             box-sizing: border-box;
             min-height: 400px;
             display: flex;
@@ -120,16 +120,13 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
             color: #333;
             line-height: 1.4;
         }
-        .nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px 40px;
-            background: #fff;
-            border-top: 1px solid #eee;
-        }
         .nav-btn {
-            padding: 10px 25px;
-            border-radius: 25px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 30;
+            padding: 20px 10px;
+            border-radius: 5px;
             border: 1px solid #006400;
             background: white;
             color: #006400;
@@ -138,7 +135,13 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
             transition: all 0.2s;
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+        }
+        #prev-btn {
+            left: 5px;
+        }
+        #next-btn {
+            right: 5px;
         }
         .nav-btn:hover:not(:disabled) {
             background: #006400;
@@ -148,6 +151,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
             border-color: #ccc;
             color: #ccc;
             cursor: not-allowed;
+            opacity: 0.5;
         }
         .progress-container {
             width: 100%;
@@ -615,26 +619,37 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
                 </div>
             </div>
             <div id="error-msg"></div>
-            <div class="nav-buttons">
-                <button type="button" class="nav-btn" id="prev-btn" disabled><i class="fas fa-chevron-up"></i> 上一题</button>
-                <button type="button" class="nav-btn" id="next-btn">下一题 <i class="fas fa-chevron-down"></i></button>
+            <button type="button" class="nav-btn" id="prev-btn" disabled><i class="fas fa-chevron-left"></i></button>
+            <button type="button" class="nav-btn" id="next-btn"><i class="fas fa-chevron-right"></i></button>
+            <div style="text-align: center; padding-bottom: 20px;">
                 <input type="submit" value="提交测评" class="submit-button" id="submit-btn">
             </div>
         </form>
     </div>
 </div></div>
 
-<p id="result" class="text-center mt-4"></p>
+<p id="resultDisplay" class="text-center mt-4"></p>
 <div id="canvasContainer" style="display: none; justify-content: center; align-items: center; height: 100%; opacity: 0; transition: opacity 0.5s ease-in-out;">
     <canvas id="myRadarChart" width="600" height="100"></canvas>
 </div>
     <script src="{{ '/assets/js/scriptSDS.js' | relative_url }}"></script>
-    <div id="paypal-container-WHJRNPARHP4CQ"></div>
+    
+    <div style="margin-top: 40px; text-align: center; border-top: 1px solid #eee; padding-top: 20px;">
+        <h3>支持与购买</h3>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap;">
+            <div id="paypal-container-WHJRNPARHP4CQ"></div>
+            <a href="https://shop.dittopsych.xyz/#/1/detail" target="_blank">
+                <img src="/assets/icons/alipay-logo.svg" alt="支付宝" style="width: 150px;">
+            </a>
+        </div>
+    </div>
+
 <script>
   paypal.HostedButtons({
     hostedButtonId: "WHJRNPARHP4CQ",
   }).render("#paypal-container-WHJRNPARHP4CQ")
 </script>
+
 
 
 <style>
