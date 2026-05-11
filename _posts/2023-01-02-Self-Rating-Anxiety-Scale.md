@@ -97,7 +97,7 @@ tags: 心理咨询 心理量表 心理测试 SAS 焦虑症 焦虑测评  交互�
             margin: 0 auto;
             position: relative;
             overflow: hidden;
-            min-height: 450px;
+            height: 600px; /* Taller to show neighbors */
             background: white;
             border-radius: 15px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
@@ -112,6 +112,8 @@ tags: 心理咨询 心理量表 心理测试 SAS 焦虑症 焦虑测评  交互�
             display: flex;
             flex-direction: column;
             justify-content: center;
+            transition: opacity 0.5s;
+            opacity: 0;
         }
         .question-label {
             font-size: 24px;
@@ -120,13 +122,18 @@ tags: 心理咨询 心理量表 心理测试 SAS 焦虑症 焦虑测评  交互�
             color: #333;
             line-height: 1.4;
         }
+        .nav-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
         .nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
             z-index: 30;
-            padding: 20px 10px;
-            border-radius: 5px;
+            padding: 10px 20px;
+            border-radius: 8px;
             border: 1px solid #006400;
             background: white;
             color: #006400;
@@ -136,12 +143,7 @@ tags: 心理咨询 心理量表 心理测试 SAS 焦虑症 焦虑测评  交互�
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-        #prev-btn {
-            left: 5px;
-        }
-        #next-btn {
-            right: 5px;
+            gap: 8px;
         }
         .nav-btn:hover:not(:disabled) {
             background: #006400;
@@ -151,7 +153,7 @@ tags: 心理咨询 心理量表 心理测试 SAS 焦虑症 焦虑测评  交互�
             border-color: #ccc;
             color: #ccc;
             cursor: not-allowed;
-            opacity: 0.5;
+            opacity: 0.3;
         }
         .progress-container {
             width: 100%;
@@ -214,8 +216,6 @@ tags: 心理咨询 心理量表 心理测试 SAS 焦虑症 焦虑测评  交互�
     <div id="quiz-container">
         <div class="progress-container"><div id="progress-bar"></div></div>
         <form id="psychologyTest">
-            <button type="button" class="nav-btn" id="prev-btn" disabled title="上一题"><i class="fas fa-chevron-left"></i></button>
-            <button type="button" class="nav-btn" id="next-btn" title="下一题"><i class="fas fa-chevron-right"></i></button>
             <div class="question-wrapper" id="question-wrapper">
                 <!-- 问题 1-20 Content remains same -->
                 <div class="question-group">

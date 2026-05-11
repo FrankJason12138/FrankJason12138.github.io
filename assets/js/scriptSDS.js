@@ -9,8 +9,27 @@ const progressBar = document.getElementById('progress-bar');
 const errorMsg = document.getElementById('error-msg');
 
 function updateNavigation() {
-    const offset = -currentQuestionIndex * 400; // 每个 question-group 的 min-height 是 400px
+    const containerHeight = document.getElementById('quiz-container').offsetHeight;
+    const itemHeight = 400; // matching .question-group min-height
+    const offset = -currentQuestionIndex * itemHeight + (containerHeight - itemHeight) / 2;
+    
     wrapper.style.transform = `translateY(${offset}px)`;
+    
+    questions.forEach((group, index) => {
+        group.classList.remove('active', 'prev', 'next');
+        group.style.opacity = '0';
+        
+        if (index === currentQuestionIndex) {
+            group.classList.add('active');
+            group.style.opacity = '1';
+        } else if (index === currentQuestionIndex - 1) {
+            group.classList.add('prev');
+            group.style.opacity = '0.3';
+        } else if (index === currentQuestionIndex + 1) {
+            group.classList.add('next');
+            group.style.opacity = '0.3';
+        }
+    });
     
     prevBtn.disabled = currentQuestionIndex === 0;
     
@@ -95,13 +114,13 @@ document.getElementById("psychologyTest").onsubmit = function(event) {
 
     var standardScore = Math.round(totalScore * 1.25);
 
-    var anxietyLevel = getAnxietyLevel(standardScore);
-    var recommendation = getRecommendation(anxietyLevel);
+    var depressionLevel = getDepressionLevel(standardScore);
+    var recommendation = getRecommendation(depressionLevel);
 
     var resultDisplay = document.getElementById("resultDisplay");
     resultDisplay.innerHTML = `
         <h3>总分： ${totalScore} ，标准分: ${standardScore}</h3>
-        <p>抑郁程度: ${anxietyLevel}</p>
+        <p>抑郁程度: ${depressionLevel}</p>
         <p>建议: ${recommendation}</p>
         <h4>*测评结果只对受测者最近情况进行解释，不具备临床经验；注意：由于量表结果为个人隐私，后台不会存储用户数据，点击导出结果后，将下载的文件发送给客服老师进行一对一分析</h4>
     `;
@@ -163,14 +182,14 @@ document.getElementById("psychologyTest").onsubmit = function(event) {
         ctx.roundRect(outerX, outerY, currentValueWidth, outerHeight, outerHeight / 2);
         ctx.fill();
         
-        // 焦虑分段线
+        // 抑郁分段线
         [0.264, 0.528, 0.792].forEach(point => {
             var markerX = outerX + point * outerWidth;
             ctx.fillStyle = '#000';
             ctx.fillRect(markerX, outerY - 5, 1, outerHeight + 10);
         });
         
-        // 焦虑分段标签
+        // 抑郁分段标签
         ctx.font = `${Math.max(14, canvas.width * 0.03)}px Arial`;
         ctx.textAlign = 'center';
         ctx.fillStyle = '#000';
@@ -340,15 +359,15 @@ if (!document.getElementById('email-section')) {
 // --- 邮件发送逻辑结束 ---
 };
 
-function getAnxietyLevel(score) {
+function getDepressionLevel(score) {
     if (score < 50) return "正常";
     if (score < 60) return "轻度抑郁";
     if (score < 70) return "中度抑郁";
     return "重度抑郁";
 }
 
-function getRecommendation(anxietyLevel) {
-    switch(anxietyLevel) {
+function getRecommendation(depressionLevel) {
+    switch(depressionLevel) {
         case "正常":
             return "您最近没有抑郁情绪。请继续保持。";
         case "轻度抑郁":
@@ -358,6 +377,6 @@ function getRecommendation(anxietyLevel) {
         case "重度抑郁":
             return "请尽快找心理专家咨询。您存在的主要问题有：您经常：感到情绪沮丧、郁闷、早晨心情沉重、要哭或想哭、夜间睡眠不好、饭量下降、性功能不正常、体重减轻、便秘、感到心跳加快、感到疲劳、头脑不清楚、感到做事困难、坐卧不安、觉得未来没有希望、容易激怒、觉得难以下决定、感到自己无用、生活没有意义、想到死、不喜爱自己平时喜爱的东西。";
         default:
-            return "无法确定焦虑水平。请咨询专业人士获取更准确的评估。";
+            return "无法确定抑郁水平。请咨询专业人士获取更准确的评估。";
     }
 }

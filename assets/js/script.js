@@ -9,8 +9,36 @@ const progressBar = document.getElementById('progress-bar');
 const errorMsg = document.getElementById('error-msg');
 
 function updateNavigation() {
-    const offset = -currentQuestionIndex * 400; // 每个 question-group 的 min-height 是 400px
+    const containerHeight = document.getElementById('quiz-container').offsetHeight;
+    let offset = 0;
+    
+    // Calculate offset to center the current question
+    const currentQuestion = questions[currentQuestionIndex];
+    if (currentQuestion) {
+        let topPos = 0;
+        for (let i = 0; i < currentQuestionIndex; i++) {
+            topPos += questions[i].offsetHeight;
+        }
+        offset = -topPos + (containerHeight - currentQuestion.offsetHeight) / 2;
+    }
+    
     wrapper.style.transform = `translateY(${offset}px)`;
+    
+    questions.forEach((group, index) => {
+        group.classList.remove('active', 'prev', 'next');
+        group.style.opacity = '0';
+        
+        if (index === currentQuestionIndex) {
+            group.classList.add('active');
+            group.style.opacity = '1';
+        } else if (index === currentQuestionIndex - 1) {
+            group.classList.add('prev');
+            group.style.opacity = '0.3';
+        } else if (index === currentQuestionIndex + 1) {
+            group.classList.add('next');
+            group.style.opacity = '0.3';
+        }
+    });
     
     prevBtn.disabled = currentQuestionIndex === 0;
     

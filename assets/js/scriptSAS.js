@@ -9,8 +9,27 @@ const progressBar = document.getElementById('progress-bar');
 const errorMsg = document.getElementById('error-msg');
 
 function updateNavigation() {
-    const offset = -currentQuestionIndex * 400; // 每个 question-group 的 min-height 是 400px
+    const containerHeight = document.getElementById('quiz-container').offsetHeight;
+    const itemHeight = 400; // matching .question-group min-height
+    const offset = -currentQuestionIndex * itemHeight + (containerHeight - itemHeight) / 2;
+    
     wrapper.style.transform = `translateY(${offset}px)`;
+    
+    questions.forEach((group, index) => {
+        group.classList.remove('active', 'prev', 'next');
+        group.style.opacity = '0';
+        
+        if (index === currentQuestionIndex) {
+            group.classList.add('active');
+            group.style.opacity = '1';
+        } else if (index === currentQuestionIndex - 1) {
+            group.classList.add('prev');
+            group.style.opacity = '0.3';
+        } else if (index === currentQuestionIndex + 1) {
+            group.classList.add('next');
+            group.style.opacity = '0.3';
+        }
+    });
     
     prevBtn.disabled = currentQuestionIndex === 0;
     
