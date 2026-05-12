@@ -9,9 +9,6 @@ tags: 心理咨询 心理量表 心理测试 SAS 焦虑症 焦虑测评  交互�
 ---
 <html lang="zh-CN">
 <head>
-<script 
-  src="https://www.paypal.com/sdk/js?client-id=BAARHNfmKzHLXfr68uX0--8arP3l0m-JLplAUepTZZsoSZXXIkhyC4uWP8XjQfCfduITf_zf1cOcrKkwdk&components=hosted-buttons&disable-funding=venmo&currency=USD">
-</script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/1.0.2/chartjs-plugin-annotation.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.8.2/docx.js"></script>
@@ -97,7 +94,7 @@ tags: 心理咨询 心理量表 心理测试 SAS 焦虑症 焦虑测评  交互�
             margin: 0 auto;
             position: relative;
             overflow: hidden;
-            height: 600px; /* Taller to show neighbors */
+            height: 500px; /* Reduced from 600px */
             background: white;
             border-radius: 15px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
@@ -106,9 +103,9 @@ tags: 心理咨询 心理量表 心理测试 SAS 焦虑症 焦虑测评  交互�
             transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .question-group {
-            padding: 40px 60px;
+            padding: 20px 60px; /* Reduced padding */
             box-sizing: border-box;
-            min-height: 400px;
+            min-height: 350px; /* Reduced from 400px */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -674,18 +671,83 @@ tags: 心理咨询 心理量表 心理测试 SAS 焦虑症 焦虑测评  交互�
     
     <div style="margin-top: 40px; text-align: center; border-top: 1px solid #eee; padding-top: 20px;">
         <h3>支持与购买</h3>
-        <div style="display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap;">
-            <div id="paypal-container-ETWQHQDM7ZDHJ"></div>
-            <a href="https://shop.dittopsych.xyz/#/2/detail" target="_blank">
-                <img src="/assets/icons/alipay-logo.svg" alt="支付宝" style="width: 150px;">
-            </a>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap;" markdown="1">
+
+[PayPal 支付](https://www.paypal.com/ncp/payment/ETWQHQDM7ZDHJ)
+
+<a href="https://shop.dittopsych.xyz/#/2/detail" target="_blank">
+    <img src="/assets/icons/alipay-logo.svg" alt="支付宝" style="width: 150px;">
+</a>
+
         </div>
     </div>
 
 <script>
-  paypal.HostedButtons({
-    hostedButtonId: "ETWQHQDM7ZDHJ",
-  }).render("#paypal-container-ETWQHQDM7ZDHJ")
+// Override the navigation logic to match the new container/item heights
+function updateNavigation() {
+    const containerHeight = document.getElementById('quiz-container').offsetHeight;
+    const itemHeight = 350; // Updated to match .question-group min-height
+    const offset = -currentQuestionIndex * itemHeight + (containerHeight - itemHeight) / 2;
+    
+    const wrapper = document.getElementById('question-wrapper');
+    const questions = document.querySelectorAll('.question-group');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const submitBtn = document.getElementById('submit-btn');
+    const progressBar = document.getElementById('progress-bar');
+    const errorMsg = document.getElementById('error-msg');
+
+    if (!wrapper) return;
+
+    wrapper.style.transform = `translateY(${offset}px)`;
+    
+    questions.forEach((group, index) => {
+        group.classList.remove('active', 'prev', 'next');
+        group.style.opacity = '0';
+        
+        if (index === currentQuestionIndex) {
+            group.classList.add('active');
+            group.style.opacity = '1';
+        } else if (index === currentQuestionIndex - 1) {
+            group.classList.add('prev');
+            group.style.opacity = '0.3';
+        } else if (index === currentQuestionIndex + 1) {
+            group.classList.add('next');
+            group.style.opacity = '0.3';
+        }
+    });
+    
+    if (prevBtn) prevBtn.disabled = currentQuestionIndex === 0;
+    
+    const allAnswered = Array.from(questions).every(group => {
+        return Array.from(group.querySelectorAll('input[type="radio"]')).some(input => input.checked);
+    });
+
+    if (submitBtn) {
+        if (allAnswered) {
+            submitBtn.style.display = 'block';
+        } else {
+            submitBtn.style.display = 'none';
+        }
+    }
+
+    if (nextBtn) {
+        if (currentQuestionIndex === questions.length - 1) {
+            nextBtn.style.display = 'none';
+        } else {
+            nextBtn.style.display = 'block';
+        }
+    }
+    
+    if (progressBar) {
+        const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+        progressBar.style.width = `${progress}%`;
+    }
+    if (errorMsg) errorMsg.innerText = '';
+}
+
+// Re-run initialization after the script has loaded
+setTimeout(updateNavigation, 100);
 </script>
 
 
