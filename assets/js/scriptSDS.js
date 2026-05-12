@@ -1,5 +1,9 @@
 // 导航逻辑
-let currentQuestionIndex = 0;
+// 兼容性处理：如果全局 currentQuestionIndex 已经由其他脚本定义，则使用它
+if (typeof window.currentQuestionIndex === 'undefined') {
+    window.currentQuestionIndex = 0;
+}
+
 const questions = document.querySelectorAll('.question-group');
 const wrapper = document.getElementById('question-wrapper');
 const prevBtn = document.getElementById('prev-btn');
@@ -9,355 +13,321 @@ const progressBar = document.getElementById('progress-bar');
 const errorMsg = document.getElementById('error-msg');
 
 function updateNavigation() {
-    const containerHeight = document.getElementById('quiz-container').offsetHeight;
-    const itemHeight = 400; // matching .question-group min-height
-    const offset = -currentQuestionIndex * itemHeight + (containerHeight - itemHeight) / 2;
-    
-    wrapper.style.transform = `translateY(${offset}px)`;
+    // 如果没有 wrapper，说明可能使用的是 display: block/none 的简单切换模式
+    if (wrapper) {
+        const containerHeight = document.getElementById('quiz-container').offsetHeight;
+        const itemHeight = 350; // SDS specific item height
+        const offset = -window.currentQuestionIndex * itemHeight + (containerHeight - itemHeight) / 2;
+        wrapper.style.transform = `translateY(${offset}px)`;
+    }
     
     questions.forEach((group, index) => {
         group.classList.remove('active', 'prev', 'next');
         group.style.opacity = '0';
         
-        if (index === currentQuestionIndex) {
+        if (index === window.currentQuestionIndex) {
             group.classList.add('active');
             group.style.opacity = '1';
-        } else if (index === currentQuestionIndex - 1) {
+        } else if (index === window.currentQuestionIndex - 1) {
             group.classList.add('prev');
             group.style.opacity = '0.3';
-        } else if (index === currentQuestionIndex + 1) {
+        } else if (index === window.currentQuestionIndex + 1) {
             group.classList.add('next');
             group.style.opacity = '0.3';
         }
     });
     
-    prevBtn.disabled = currentQuestionIndex === 0;
+    if (prevBtn) prevBtn.disabled = window.currentQuestionIndex === 0;
     
     // Check if all questions are answered
     const allAnswered = Array.from(questions).every(group => {
         return Array.from(group.querySelectorAll('input[type="radio"]')).some(input => input.checked);
     });
 
-    if (allAnswered) {
-        submitBtn.style.display = 'block';
-    } else {
-        submitBtn.style.display = 'none';
+    if (submitBtn) {
+        if (allAnswered) {
+            submitBtn.style.display = 'block';
+        } else {
+            submitBtn.style.display = 'none';
+        }
     }
 
-    if (currentQuestionIndex === questions.length - 1) {
-        nextBtn.style.display = 'none';
-    } else {
-        nextBtn.style.display = 'block';
+    if (nextBtn) {
+        if (window.currentQuestionIndex === questions.length - 1) {
+            nextBtn.style.display = 'none';
+        } else {
+            nextBtn.style.display = 'block';
+        }
     }
     
-    const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
-    progressBar.style.width = `${progress}%`;
-    errorMsg.innerText = '';
+    if (progressBar) {
+        const progress = ((window.currentQuestionIndex + 1) / questions.length) * 100;
+        progressBar.style.width = `${progress}%`;
+    }
+    
+    if (errorMsg) errorMsg.innerText = '';
 }
 
-prevBtn.addEventListener('click', () => {
-    if (currentQuestionIndex > 0) {
-        currentQuestionIndex--;
-        updateNavigation();
-    }
-});
+if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+        if (window.currentQuestionIndex > 0) {
+            window.currentQuestionIndex--;
+            updateNavigation();
+        }
+    });
+}
 
-nextBtn.addEventListener('click', () => {
-    if (currentQuestionIndex < questions.length - 1) {
-        currentQuestionIndex++;
-        updateNavigation();
-    }
-});
+if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+        if (window.currentQuestionIndex < questions.length - 1) {
+            window.currentQuestionIndex++;
+            updateNavigation();
+        }
+    });
+}
 
 // 初始化
-updateNavigation();
+try {
+    updateNavigation();
+} catch (e) {
+    console.warn("SDS Navigation init failed:", e);
+}
 
-// 自动跳转到下一个问题（当选择后）并更新导航（显示提交按钮）
+// 自动跳转到下一个问题
 questions.forEach((group, index) => {
     const inputs = group.querySelectorAll('input[type="radio"]');
     inputs.forEach(input => {
         input.addEventListener('change', () => {
-            updateNavigation(); // Update to check if all answered
-            if (currentQuestionIndex < questions.length - 1) {
+            updateNavigation();
+            if (window.currentQuestionIndex < questions.length - 1) {
                 setTimeout(() => {
-                    currentQuestionIndex++;
+                    window.currentQuestionIndex++;
                     updateNavigation();
-                }, 300); // 延迟一点点，让用户看到选中效果
+                }, 300);
             }
         });
     });
 });
 
-document.getElementById("psychologyTest").onsubmit = function(event) {
-    event.preventDefault();
+const testForm = document.getElementById("psychologyTest");
+if (testForm) {
+    testForm.onsubmit = function(event) {
+        event.preventDefault();
 
-    // 检查所有问题是否已回答，并找到第一个未回答的问题
-    let firstUnansweredIndex = -1;
-    const isAllAnswered = Array.from(questions).every((group, index) => {
-        const answered = Array.from(group.querySelectorAll('input[type="radio"]')).some(input => input.checked);
-        if (!answered && firstUnansweredIndex === -1) {
-            firstUnansweredIndex = index;
-        }
-        return answered;
-    });
-
-    if (!isAllAnswered) {
-        errorMsg.innerText = `第 ${firstUnansweredIndex + 1} 题尚未回答，请检查`;
-        currentQuestionIndex = firstUnansweredIndex;
-        updateNavigation();
-        return;
-    }
-
-    var totalScore = Array.from(document.querySelectorAll('input[type="radio"]:checked')).reduce((sum, input) => {
-        return sum + parseInt(input.value);
-    }, 0);
-
-    var standardScore = Math.round(totalScore * 1.25);
-
-    var depressionLevel = getDepressionLevel(standardScore);
-    var recommendation = getRecommendation(depressionLevel);
-
-    var resultDisplay = document.getElementById("resultDisplay");
-    resultDisplay.innerHTML = `
-        <h3>总分： ${totalScore} ，标准分: ${standardScore}</h3>
-        <p>抑郁程度: ${depressionLevel}</p>
-        <p>建议: ${recommendation}</p>
-        <h4>*测评结果只对受测者最近情况进行解释，不具备临床经验；注意：由于量表结果为个人隐私，后台不会存储用户数据，点击导出结果后，将下载的文件发送给客服老师进行一对一分析</h4>
-    `;
-    resultDisplay.style.textAlign = "center";
-
-    var canvas = document.getElementById('myRadarChart');
-    var ctx = canvas.getContext('2d');
-    
-    function setCanvasSize() {
-        var containerWidth = document.getElementById('canvasContainer').offsetWidth;
-        canvas.width = Math.min(800, containerWidth - 20);
-        canvas.height = Math.max(200, canvas.width * 0.3);
-        draw(1);
-    }
-
-    setCanvasSize();
-    window.addEventListener('resize', setCanvasSize);
-
-    var canvasWidth, outerWidth, outerX, outerHeight, outerY;
-
-    function updateDimensions() {
-        canvasWidth = canvas.width;
-        outerWidth = canvasWidth * 0.9;
-        outerX = (canvasWidth - outerWidth) / 2;
-        outerHeight = Math.min(30, canvas.height * 0.15);
-        outerY = canvas.height * 0.5;
-    }
-
-    function getRelativePosition(score) {
-        if (score <= 50) return score / 50 * 0.264;
-        if (score <= 59) return 0.264 + (score - 50) / 10 * (0.528 - 0.264);
-        if (score <= 69) return 0.528 + (score - 59) / 10 * (0.792 - 0.528);
-        return Math.min(0.792 + (score - 69) / 30 * (1 - 0.792), 1);
-    }
-
-    function draw(progress) {
-        updateDimensions();
-        var currentValue = progress * standardScore;
-        var currentValueWidth = outerWidth * getRelativePosition(currentValue);
-        
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        // 背景条
-        ctx.fillStyle = '#e0e0e0';
-        ctx.beginPath();
-        ctx.roundRect(outerX, outerY, outerWidth, outerHeight, outerHeight / 2);
-        ctx.fill();
-        
-        // 带渐变的内部条
-        var gradient = ctx.createLinearGradient(outerX, 0, outerX + outerWidth, 0);
-        gradient.addColorStop(0, 'green');
-        gradient.addColorStop(0.264, 'yellow');
-        gradient.addColorStop(0.528, 'orange');
-        gradient.addColorStop(0.792, 'red');
-        gradient.addColorStop(1, 'darkred');
-        
-        ctx.fillStyle = gradient;
-        ctx.beginPath();
-        ctx.roundRect(outerX, outerY, currentValueWidth, outerHeight, outerHeight / 2);
-        ctx.fill();
-        
-        // 抑郁分段线
-        [0.264, 0.528, 0.792].forEach(point => {
-            var markerX = outerX + point * outerWidth;
-            ctx.fillStyle = '#000';
-            ctx.fillRect(markerX, outerY - 5, 1, outerHeight + 10);
-        });
-        
-        // 抑郁分段标签
-        ctx.font = `${Math.max(14, canvas.width * 0.03)}px Arial`;
-        ctx.textAlign = 'center';
-        ctx.fillStyle = '#000';
-        ['正常', '轻度抑郁', '中度抑郁', '重度抑郁'].forEach((label, index) => {
-            var x = outerX + index * outerWidth * 0.264;
-            ctx.fillText(label, x, outerY + outerHeight + canvas.height * 0.1);
+        let firstUnansweredIndex = -1;
+        const isAllAnswered = Array.from(questions).every((group, index) => {
+            const answered = Array.from(group.querySelectorAll('input[type="radio"]')).some(input => input.checked);
+            if (!answered && firstUnansweredIndex === -1) {
+                firstUnansweredIndex = index;
+            }
+            return answered;
         });
 
-        // 三角形标记
-        var markerX = outerX + currentValueWidth;
-        ctx.fillStyle = 'black';
-        ctx.beginPath();
-        ctx.moveTo(markerX, outerY - outerHeight * 0.5);
-        ctx.lineTo(markerX - outerHeight * 0.25, outerY - outerHeight * 0.83);
-        ctx.lineTo(markerX + outerHeight * 0.25, outerY - outerHeight * 0.83);
-        ctx.fill();
-
-        // "您在这"标签
-        ctx.fillText('您在这', markerX, outerY - outerHeight);
-    }
-
-    var startTime;
-    function animate(timestamp) {
-        if (!startTime) startTime = timestamp;
-        var elapsed = timestamp - startTime;
-        var progress = Math.min(elapsed / 2000, 1);
-        draw(progress);
-        if (progress < 1) requestAnimationFrame(animate);
-    }
-    
-    requestAnimationFrame(animate);
-
-    var canvasContainer = document.getElementById('canvasContainer');
-    canvasContainer.style.display = 'flex';
-    canvasContainer.style.justifyContent = 'center';
-    canvasContainer.style.alignItems = 'center';
-    canvasContainer.style.marginTop = '20px';
-    setTimeout(() => canvasContainer.style.opacity = 1, 100);
-    // 在 resultDisplay.innerHTML 赋值后添加：
-var exportButtonContainer = document.createElement('div');
-exportButtonContainer.id = 'exportButtonContainer';
-exportButtonContainer.style.textAlign = 'center';
-exportButtonContainer.style.marginTop = '20px';
-
-var exportButton = document.createElement('button');
-exportButton.innerHTML = '导出测评结果';
-exportButton.className = 'bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4 mb-4';
-exportButton.onclick = function() {
-    const resultText = resultDisplay.innerText;
-    const canvas = document.getElementById('myRadarChart');
-    const imageDataUrl = canvas.toDataURL('image/png');
-    
-    const htmlContent = `
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <meta charset="utf-8">
-          <title>SDS测评结果</title>
-          <style>
-            body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
-            .results { margin-bottom: 30px; }
-            img { max-width: 100%; height: auto; }
-          </style>
-        </head>
-        <body>
-          <div class="results">
-            ${resultText}
-          </div>
-          <div>
-            <img src="${imageDataUrl}" alt="SDS测评图表">
-          </div>
-        </body>
-      </html>
-    `;
-    
-    const blob = new Blob([htmlContent], { type: 'text/html' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'SDS测评结果.html';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-};
-
-// 将按钮添加到容器中并插入到结果显示区域的最前面
-exportButtonContainer.appendChild(exportButton);
-resultDisplay.insertBefore(exportButtonContainer, resultDisplay.firstChild);
-
-// 滚动到导出按钮位置
-exportButtonContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-// --- 邮件发送逻辑开始 ---
-if (!document.getElementById('email-section')) {
-    const emailSection = document.createElement('div');
-    emailSection.id = 'email-section';
-    emailSection.style.marginTop = '40px';
-    emailSection.style.padding = '20px';
-    emailSection.style.backgroundColor = '#f3f4f6';
-    emailSection.style.borderRadius = '8px';
-    emailSection.innerHTML = `
-        <h3 style="font-size: 20px; margin-bottom: 15px;">📧 将详细报告发送到邮箱</h3>
-        <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
-            <input type="email" id="user-email" placeholder="请输入您的邮箱地址" 
-                   style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; width: 80%; max-width: 300px;">
-            <button id="send-email-btn" style="background-color: #3b82f6; color: white; font-weight: bold; padding: 10px 20px; border-radius: 4px; cursor: pointer; border: none;">
-                发送报告
-            </button>
-            <p id="email-status" style="margin-top: 10px; font-weight: bold;"></p>
-        </div>
-    `;
-    resultDisplay.appendChild(emailSection);
-
-    document.getElementById('send-email-btn').onclick = function() {
-        const email = document.getElementById('user-email').value;
-        const status = document.getElementById('email-status');
-        
-        if (!email || !email.includes('@')) {
-            alert('请输入有效的邮箱地址');
+        if (!isAllAnswered) {
+            if (errorMsg) errorMsg.innerText = `第 ${firstUnansweredIndex + 1} 题尚未回答，请检查`;
+            window.currentQuestionIndex = firstUnansweredIndex;
+            updateNavigation();
             return;
         }
 
-        status.style.color = 'blue';
-        status.innerText = '正在发送中，请稍候...';
-        this.disabled = true;
+        var totalScore = 0;
+        questions.forEach(group => {
+            const checked = group.querySelector('input[type="radio"]:checked');
+            if (checked) {
+                totalScore += parseInt(checked.value);
+            }
+        });
 
-        const canvas = document.getElementById('myRadarChart');
-        const chartImg = canvas ? canvas.toDataURL('image/png') : '';
-        
-        // 提取结果内容，排除掉刚添加的邮件区域
-        const resultClone = resultDisplay.cloneNode(true);
-        const redundant = resultClone.querySelector('#email-section');
-        if (redundant) redundant.remove();
-        const redundantBtn = resultClone.querySelector('#exportButtonContainer');
-        if (redundantBtn) redundantBtn.remove();
-        const resultHtml = resultClone.innerHTML;
+        var standardScore = Math.round(totalScore * 1.25);
+        var depressionLevel = getDepressionLevel(standardScore);
+        var recommendation = getRecommendation(depressionLevel);
 
-        const payload = {
-            email: email,
-            subject: 'SDS 抑郁自评量表报告',
-            body: `
-                <div style="font-family: Arial, sans-serif; padding: 20px; border: 1px solid #eee;">
-                    <h2 style="color: #059669;">SDS 抑郁自评量表报告</h2>
-                    <div style="font-size: 16px; line-height: 1.6;">${resultHtml}</div>
-                    ${chartImg ? `<div style="margin-top: 20px;"><h3>抑郁程度示意图：</h3><img src="${chartImg}" style="max-width: 100%; border: 1px solid #ddd;" /></div>` : ''}
-                    <p style="margin-top: 30px; font-size: 12px; color: #666;">*此报告由 Dittoo 的小窝自动发送。</p>
+        var resultDisplay = document.getElementById("resultDisplay");
+        if (!resultDisplay) return;
+
+        resultDisplay.innerHTML = `
+            <div id="sds-result-card" style="background: #fdf2f2; padding: 20px; border-radius: 10px; border: 1px solid #feb2b2; margin-top: 20px;">
+                <h3 style="color: #c53030;">测评结果</h3>
+                <p style="font-size: 24px; font-weight: bold;">总分： ${totalScore} ，标准分: ${standardScore}</p>
+                <p style="font-size: 20px;">抑郁程度: <span style="color: ${depressionLevel === '正常' ? 'green' : 'red'};">${depressionLevel}</span></p>
+                <div style="text-align: left; background: white; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                    <p><strong>建议:</strong> ${recommendation}</p>
                 </div>
-            `
+                <p style="font-size: 12px; color: #666; margin-top: 15px;">*测评结果只对受测者最近情况进行解释，不具备临床诊断意义；由于量表结果为个人隐私，后台不会存储用户数据。</p>
+            </div>
+        `;
+        resultDisplay.style.textAlign = "center";
+
+        // 绘制图表
+        var canvas = document.getElementById('myRadarChart');
+        if (canvas) {
+            var ctx = canvas.getContext('2d');
+            
+            function setCanvasSize() {
+                var containerWidth = document.getElementById('canvasContainer').offsetWidth;
+                canvas.width = Math.min(800, containerWidth - 20);
+                canvas.height = Math.max(200, canvas.width * 0.3);
+                drawChart(1);
+            }
+
+            function getRelativePosition(score) {
+                if (score <= 50) return score / 50 * 0.264;
+                if (score <= 59) return 0.264 + (score - 50) / 10 * (0.528 - 0.264);
+                if (score <= 69) return 0.528 + (score - 59) / 10 * (0.792 - 0.528);
+                return Math.min(0.792 + (score - 69) / 30 * (1 - 0.792), 1);
+            }
+
+            function drawChart(progress) {
+                var canvasWidth = canvas.width;
+                var outerWidth = canvasWidth * 0.9;
+                var outerX = (canvasWidth - outerWidth) / 2;
+                var outerHeight = Math.min(30, canvas.height * 0.15);
+                var outerY = canvas.height * 0.5;
+
+                var currentValue = progress * standardScore;
+                var currentValueWidth = outerWidth * getRelativePosition(currentValue);
+                
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // 背景条
+                ctx.fillStyle = '#e0e0e0';
+                ctx.beginPath();
+                if (ctx.roundRect) {
+                    ctx.roundRect(outerX, outerY, outerWidth, outerHeight, outerHeight / 2);
+                } else {
+                    ctx.rect(outerX, outerY, outerWidth, outerHeight);
+                }
+                ctx.fill();
+                
+                // 渐变内部条
+                var gradient = ctx.createLinearGradient(outerX, 0, outerX + outerWidth, 0);
+                gradient.addColorStop(0, 'green');
+                gradient.addColorStop(0.264, 'yellow');
+                gradient.addColorStop(0.528, 'orange');
+                gradient.addColorStop(0.792, 'red');
+                gradient.addColorStop(1, 'darkred');
+                
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                if (ctx.roundRect) {
+                    ctx.roundRect(outerX, outerY, currentValueWidth, outerHeight, outerHeight / 2);
+                } else {
+                    ctx.rect(outerX, outerY, currentValueWidth, outerHeight);
+                }
+                ctx.fill();
+                
+                // 分段线
+                [0.264, 0.528, 0.792].forEach(point => {
+                    var markerX = outerX + point * outerWidth;
+                    ctx.fillStyle = '#000';
+                    ctx.fillRect(markerX, outerY - 5, 1, outerHeight + 10);
+                });
+                
+                // 标签
+                ctx.font = `${Math.max(12, canvas.width * 0.025)}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.fillStyle = '#000';
+                ['正常', '轻度抑郁', '中度抑郁', '重度抑郁'].forEach((label, index) => {
+                    var x = outerX + index * outerWidth * 0.264;
+                    ctx.fillText(label, x, outerY + outerHeight + 25);
+                });
+
+                var markerX = outerX + currentValueWidth;
+                ctx.fillStyle = 'black';
+                ctx.beginPath();
+                ctx.moveTo(markerX, outerY - 5);
+                ctx.lineTo(markerX - 5, outerY - 15);
+                ctx.lineTo(markerX + 5, outerY - 15);
+                ctx.fill();
+                ctx.fillText('您在这', markerX, outerY - 20);
+            }
+
+            setCanvasSize();
+            window.addEventListener('resize', setCanvasSize);
+
+            var startTime;
+            function animate(timestamp) {
+                if (!startTime) startTime = timestamp;
+                var elapsed = timestamp - startTime;
+                var progress = Math.min(elapsed / 1500, 1);
+                drawChart(progress);
+                if (progress < 1) requestAnimationFrame(animate);
+            }
+            requestAnimationFrame(animate);
+
+            var canvasContainer = document.getElementById('canvasContainer');
+            if (canvasContainer) {
+                canvasContainer.style.display = 'flex';
+                setTimeout(() => canvasContainer.style.opacity = 1, 100);
+            }
+        }
+
+        // 导出和邮件发送逻辑（同SAS模式）
+        var exportButtonContainer = document.createElement('div');
+        exportButtonContainer.id = 'exportButtonContainer';
+        exportButtonContainer.style.textAlign = 'center';
+        exportButtonContainer.style.marginTop = '20px';
+
+        var exportButton = document.createElement('button');
+        exportButton.innerHTML = '导出测评结果';
+        exportButton.className = 'bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4 mb-4';
+        exportButton.onclick = function() {
+            const htmlContent = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>SDS测评结果</title></head><body>${resultDisplay.innerHTML}</body></html>`;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'SDS测评结果.html';
+            link.click();
+            URL.revokeObjectURL(url);
         };
 
-        const gasUrl = 'https://script.google.com/macros/s/AKfycbwWe9Pld6ZXPIZhSxgtLYpBJ7Qlc-1ljD7pwOMe7dL-Cw4NwV_W6q0XZP7paupeCWoK3g/exec';
+        exportButtonContainer.appendChild(exportButton);
+        resultDisplay.insertBefore(exportButtonContainer, resultDisplay.firstChild);
 
-        fetch(gasUrl, {
-            method: 'POST',
-            body: JSON.stringify(payload)
-        }).then(() => {
-            status.style.color = 'green';
-            status.innerText = '✅ 发送成功！请检查您的收件箱。';
-        }).catch(err => {
-            console.error('Mail Error:', err);
-            status.style.color = 'green';
-            status.innerText = '✅ 任务已提交！请在 1-2 分钟内检查收件箱。';
-        });
+        // 邮件部分
+        if (!document.getElementById('email-section')) {
+            const emailSection = document.createElement('div');
+            emailSection.id = 'email-section';
+            emailSection.style.marginTop = '40px';
+            emailSection.style.padding = '20px';
+            emailSection.style.backgroundColor = '#f3f4f6';
+            emailSection.style.borderRadius = '8px';
+            emailSection.innerHTML = `
+                <h3 style="font-size: 20px; margin-bottom: 15px;">📧 将详细报告发送到邮箱</h3>
+                <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+                    <input type="email" id="user-email" placeholder="请输入您的邮箱地址" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; width: 80%; max-width: 300px;">
+                    <button id="send-email-btn" style="background-color: #ef4444; color: white; font-weight: bold; padding: 10px 20px; border-radius: 4px; border: none;">发送报告</button>
+                    <p id="email-status" style="margin-top: 10px; font-weight: bold;"></p>
+                </div>`;
+            resultDisplay.appendChild(emailSection);
+
+            document.getElementById('send-email-btn').onclick = function() {
+                const email = document.getElementById('user-email').value;
+                const status = document.getElementById('email-status');
+                if (!email || !email.includes('@')) { alert('请输入有效的邮箱地址'); return; }
+                status.innerText = '正在发送中...';
+                
+                const canvas = document.getElementById('myRadarChart');
+                const chartImg = canvas ? canvas.toDataURL('image/png') : '';
+                const resultClone = resultDisplay.cloneNode(true);
+                ['#email-section', '#exportButtonContainer'].forEach(s => { const el = resultClone.querySelector(s); if(el) el.remove(); });
+
+                fetch('https://script.google.com/macros/s/AKfycbwWe9Pld6ZXPIZhSxgtLYpBJ7Qlc-1ljD7pwOMe7dL-Cw4NwV_W6q0XZP7paupeCWoK3g/exec', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        email: email,
+                        subject: 'SDS 抑郁自评量表报告',
+                        body: `<div style="font-family: Arial; padding: 20px;">${resultClone.innerHTML}${chartImg ? `<br><img src="${chartImg}" />` : ''}</div>`
+                    })
+                }).then(() => { status.innerText = '✅ 发送成功！'; })
+                  .catch(() => { status.innerText = '✅ 任务已提交，请稍后检查。'; });
+            };
+        }
+
+        document.getElementById('sds-result-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
     };
 }
-// --- 邮件发送逻辑结束 ---
-};
 
 function getDepressionLevel(score) {
     if (score < 50) return "正常";
@@ -368,15 +338,10 @@ function getDepressionLevel(score) {
 
 function getRecommendation(depressionLevel) {
     switch(depressionLevel) {
-        case "正常":
-            return "您最近没有抑郁情绪。请继续保持。";
-        case "轻度抑郁":
-            return "请进行自我调节，或寻求他人的支持、帮助。您存在的主要问题有：您经常：早晨心情沉重、体重减轻、头脑不清楚、感到自己无用。您有时：饭量下降、感到做事困难、觉得未来没有希望、觉得难以下决定、生活没有意义、不喜爱自己平时喜爱的东西。您偶尔：感到情绪沮丧、郁闷、要哭或想哭、便秘、感到疲劳。";
-        case "中度抑郁":
-            return "请找心理专家咨询。您存在的主要问题有：您经常：感到情绪沮丧、郁闷、要哭或想哭、夜间睡眠不好、体重减轻、便秘、感到心跳加快、感到疲劳、坐卧不安、容易激怒、想到死。";
-        case "重度抑郁":
-            return "请尽快找心理专家咨询。您存在的主要问题有：您经常：感到情绪沮丧、郁闷、早晨心情沉重、要哭或想哭、夜间睡眠不好、饭量下降、性功能不正常、体重减轻、便秘、感到心跳加快、感到疲劳、头脑不清楚、感到做事困难、坐卧不安、觉得未来没有希望、容易激怒、觉得难以下决定、感到自己无用、生活没有意义、想到死、不喜爱自己平时喜爱的东西。";
-        default:
-            return "无法确定抑郁水平。请咨询专业人士获取更准确的评估。";
+        case "正常": return "您最近没有抑郁情绪。请继续保持。";
+        case "轻度抑郁": return "请进行自我调节，或寻求他人的支持、帮助。";
+        case "中度抑郁": return "请找心理专家咨询。";
+        case "重度抑郁": return "请尽快找心理专家咨询。";
+        default: return "无法确定抑郁水平。";
     }
 }
