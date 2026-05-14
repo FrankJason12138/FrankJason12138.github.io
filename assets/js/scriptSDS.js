@@ -157,7 +157,7 @@ console.log("=== SDS SCRIPT INITIALIZING ===");
         wrap.style.marginTop = '20px';
         const btn = document.createElement('button');
         btn.innerText = '导出测评结果 (HTML)';
-        btn.className = 'bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full shadow-md transition';
+        btn.className = 'bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full shadow-md transition';
         btn.onclick = function() {
             const content = document.getElementById('resultDisplay').innerHTML;
             const canvas = document.getElementById('myRadarChart');

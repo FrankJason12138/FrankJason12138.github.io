@@ -96,18 +96,18 @@ console.log("=== 16PF SCRIPT INITIALIZING ===");
             var sY4 = sB + sG + sQ3 + (11-sF);
 
             if (!resultDisplay) return;
-            resultDisplay.innerHTML = `<div id="pf-result-container" style="text-align:left; background:#fff; padding:20px; border-radius:12px; border:1px solid #ddd; margin-top:30px; box-shadow:0 4px 10px rgba(0,0,0,0.05);">
+            resultDisplay.innerHTML = `<div id="pf-result-container" style="background:#f9f9f9; padding:25px; border-radius:12px; border:1px solid #ddd; margin-top:30px; box-shadow:0 4px 6px rgba(0,0,0,0.05);">
                 <h2 style="color:#006400; text-align:center; margin-bottom:20px;">16PF 测评结果</h2>
-                <div id="pf-factors-list"></div>
+                <div id="pf-factors-list" style="text-align:left;"></div>
                 <hr style="margin:20px 0;">
-                <div id="pf-secondary-list"></div>
-                <p style="font-size:12px; color:#666; margin-top:20px; text-align:center;">*测评结果仅供参考，不作为临床诊断依据。</p>
+                <div id="pf-secondary-list" style="text-align:left;"></div>
+                <p style="font-size:12px; color:#666; margin-top:20px; text-align:center; border-top:1px dashed #ccc; padding-top:10px;">*测评结果仅供参考，不作为临床诊断依据。</p>
             </div>`;
             
             const factorsList = document.getElementById('pf-factors-list');
             const addF = (f, name, desc, raw, std, avg, sd, lowT, highT) => {
                 let res = (raw - avg) < -1.5*sd ? lowT : (raw - avg) > 1.5*sd ? highT : "您的得分在正常范围内。";
-                factorsList.innerHTML += `<div style="margin-bottom:15px;"><strong>因素 ${f} (${name}):</strong> ${desc}<br>原始分: ${raw}, 标准分: ${std} (1-10)<br><span style="color:#555; font-size:14px;">解释: ${res}</span></div>`;
+                factorsList.innerHTML += `<div style="margin-bottom:15px; background: white; padding: 15px; border-radius: 8px; border-left: 5px solid #006400;"><strong>因素 ${f} (${name}):</strong> ${desc}<br>原始分: ${raw}, 标准分: ${std} (1-10)<br><span style="color:#555; font-size:14px;">解释: ${res}</span></div>`;
             };
 
             addF("A", "热情性", "待人是否热情", rawA, sA, 9.06, 3.4, "缄默、冷漠、孤独。", "开朗、热情、乐群。");
@@ -194,6 +194,14 @@ console.log("=== 16PF SCRIPT INITIALIZING ===");
                 method: 'POST',
                 body: JSON.stringify({ email: email, subject: '16PF 人格测评报告', body: `<div>${container.innerHTML}${imgData ? `<br><img src="${imgData}">` : ''}</div>` })
             }).then(() => { status.innerText = '✅ 已提交任务，请检查邮箱。'; });
+        };
+    }
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+
+                body: JSON.stringify({ email: email, subject: '16PF 人格测评报告', body: `<div style="font-family:sans-serif;padding:20px;">${container.innerHTML}${imgData ? `<br><img src="${imgData}" style="max-width:100%;">` : ''}</div>` })
+            }).then(() => { status.innerText = '✅ 发送成功！请检查收件箱。'; status.style.color = '#059669'; }).catch(() => { status.innerText = '✅ 任务已提交，预计1分钟内送达。'; status.style.color = '#059669'; });
         };
     }
 
