@@ -1,7 +1,7 @@
 /**
  * 卡特尔 16PF 逻辑脚本
  * 
- * 处理复杂的 16 种人格因素分数计算、雷达图绘制和结果展示。
+ * 处理复杂的 16 种人格因素分数计算、雷达图绘制 and 结果展示。
  */
 
 console.log("=== 16PF SCRIPT INITIALIZING ===");
@@ -36,7 +36,7 @@ console.log("=== 16PF SCRIPT INITIALIZING ===");
                 return;
             }
 
-            // 因素分数计算逻辑 (保持原样)
+            // 因素分数计算逻辑
             const getScore = (indices) => {
                 let s = 0;
                 indices.forEach(idx => {
@@ -63,7 +63,6 @@ console.log("=== 16PF SCRIPT INITIALIZING ===");
             var rawQ3 = getScore([23, 24, 48, 73, 98, 123, 147, 148, 172, 173]);
             var rawQ4 = getScore([25, 49, 50, 74, 75, 99, 100, 124, 125, 149, 150, 174, 175]);
 
-            // 原始分到标准分映射 (1-10)
             const mapA = (s) => (s<=1?1:s<=3?2:s<=5?3:s==6?4:s<=8?5:s<=11?6:s<=13?7:s==14?8:s<=16?9:10);
             const mapB = (s) => (s<=3?1:s==4?2:s==5?3:s==6?4:s==7?5:s==8?6:s==9?7:s==10?8:s==11?9:10);
             const mapC = (s) => (s<=5?1:s<=7?2:s<=9?3:s<=11?4:s<=13?5:s<=16?6:s<=18?7:s<=20?8:s<=22?9:10);
@@ -83,7 +82,6 @@ console.log("=== 16PF SCRIPT INITIALIZING ===");
 
             var sA=mapA(rawA), sB=mapB(rawB), sC=mapC(rawC), sE=mapE(rawE), sF=mapF(rawF), sG=mapG(rawG), sH=mapH(rawH), sI=mapI(rawI), sL=mapL(rawL), sM=mapM(rawM), sN=mapN(rawN), sO=mapO(rawO), sQ1=mapQ1(rawQ1), sQ2=mapQ2(rawQ2), sQ3=mapQ3(rawQ3), sQ4=mapQ4(rawQ4);
 
-            // 次级因素计算
             var sX1 = ((38 + 2*sL + 3*sO + 4*sQ4) - (2*sC + 2*sH + 2*sQ2)) / 10;
             var sX2 = ((2*sA + 3*sE + 4*sF + 5*sH) - (2*sQ2 + 11)) / 10;
             var sX3 = ((77 + 2*sC + 2*sE + 2*sF + 2*sN) - (4*sA + 6*sI + 2*sM)) / 10;
@@ -96,18 +94,18 @@ console.log("=== 16PF SCRIPT INITIALIZING ===");
             var sY4 = sB + sG + sQ3 + (11-sF);
 
             if (!resultDisplay) return;
-            resultDisplay.innerHTML = `<div id="pf-result-container" style="background:#f9f9f9; padding:25px; border-radius:12px; border:1px solid #ddd; margin-top:30px; box-shadow:0 4px 6px rgba(0,0,0,0.05);">
+            resultDisplay.innerHTML = `<div id="pf-result-container" style="text-align:left; background:#fff; padding:20px; border-radius:12px; border:1px solid #ddd; margin-top:30px; box-shadow:0 4px 10px rgba(0,0,0,0.05);">
                 <h2 style="color:#006400; text-align:center; margin-bottom:20px;">16PF 测评结果</h2>
-                <div id="pf-factors-list" style="text-align:left;"></div>
+                <div id="pf-factors-list"></div>
                 <hr style="margin:20px 0;">
-                <div id="pf-secondary-list" style="text-align:left;"></div>
-                <p style="font-size:12px; color:#666; margin-top:20px; text-align:center; border-top:1px dashed #ccc; padding-top:10px;">*测评结果仅供参考，不作为临床诊断依据。</p>
+                <div id="pf-secondary-list"></div>
+                <p style="font-size:12px; color:#666; margin-top:20px; text-align:center;">*测评结果仅供参考，不作为临床诊断依据。</p>
             </div>`;
-            
+
             const factorsList = document.getElementById('pf-factors-list');
             const addF = (f, name, desc, raw, std, avg, sd, lowT, highT) => {
                 let res = (raw - avg) < -1.5*sd ? lowT : (raw - avg) > 1.5*sd ? highT : "您的得分在正常范围内。";
-                factorsList.innerHTML += `<div style="margin-bottom:15px; background: white; padding: 15px; border-radius: 8px; border-left: 5px solid #006400;"><strong>因素 ${f} (${name}):</strong> ${desc}<br>原始分: ${raw}, 标准分: ${std} (1-10)<br><span style="color:#555; font-size:14px;">解释: ${res}</span></div>`;
+                factorsList.innerHTML += `<div style="margin-bottom:15px;"><strong>因素 ${f} (${name}):</strong> ${desc}<br>原始分: ${raw}, 标准分: ${std} (1-10)<br><span style="color:#555; font-size:14px;">解释: ${res}</span></div>`;
             };
 
             addF("A", "热情性", "待人是否热情", rawA, sA, 9.06, 3.4, "缄默、冷漠、孤独。", "开朗、热情、乐群。");
@@ -165,9 +163,9 @@ console.log("=== 16PF SCRIPT INITIALIZING ===");
         div.style.marginTop = '20px';
         const btn = document.createElement('button');
         btn.innerText = '导出测评结果 (HTML)';
-        btn.className = 'bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full shadow-md';
+        btn.className = 'bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full shadow-md transition';
         btn.onclick = () => {
-            const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>16PF结果</title></head><body>${container.innerHTML}</body></html>`;
+            const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>16PF结果</title><style>body{font-family:sans-serif;padding:40px;line-height:1.6;color:#333;max-width:800px;margin:auto}.card{background:#f9f9f9;padding:25px;border-radius:12px;border:1px solid #ddd}</style></head><body><div class="card">${container.innerHTML}</div></body></html>`;
             const blob = new Blob([html], {type: 'text/html'});
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a'); a.href = url; a.download = '16PF测评结果.html'; a.click();
@@ -177,29 +175,26 @@ console.log("=== 16PF SCRIPT INITIALIZING ===");
         
         // Email section
         const emailDiv = document.createElement('div');
-        emailDiv.style.marginTop = '30px';
-        emailDiv.style.padding = '20px';
-        emailDiv.style.background = '#f3f4f6';
-        emailDiv.style.borderRadius = '10px';
-        emailDiv.innerHTML = `<h4>📧 发送结果到邮箱</h4><input type="email" id="pf-email" placeholder="邮箱" style="padding:5px; border-radius:5px;"><button id="pf-email-btn" style="margin-left:10px; background:#2563eb; color:white; padding:5px 15px; border-radius:5px; border:none;">发送</button><p id="pf-status"></p>`;
+        emailDiv.id = 'email-section';
+        emailDiv.style.cssText = 'margin-top:30px;padding:20px;background:#f3f4f6;border-radius:10px;text-align:center;';
+        emailDiv.innerHTML = `
+            <h4 style="margin-bottom:15px;color:#374151;">📧 发送详细报告至邮箱</h4>
+            <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
+                <input type="email" id="pf-email" placeholder="您的邮箱地址" style="padding:8px 15px;border:1px solid #ccc;border-radius:5px;width:250px;">
+                <button id="pf-email-btn" style="background:#2563eb;color:white;padding:8px 20px;border-radius:5px;border:none;cursor:pointer;font-weight:bold;">发送报告</button>
+            </div>
+            <p id="pf-status" style="margin-top:10px;font-size:14px;"></p>
+        `;
         container.appendChild(emailDiv);
         document.getElementById('pf-email-btn').onclick = () => {
             const email = document.getElementById('pf-email').value;
             const status = document.getElementById('pf-status');
-            if (!email.includes('@')) { alert('无效邮箱'); return; }
-            status.innerText = '正在发送...';
+            if (!email.includes('@')) { alert('请输入有效邮箱'); return; }
+            status.innerText = '正在发送...'; status.style.color = '#2563eb';
             const canvas = document.getElementById('myRadarChart');
             const imgData = canvas ? canvas.toDataURL('image/png') : '';
             fetch('https://script.google.com/macros/s/AKfycbwWe9Pld6ZXPIZhSxgtLYpBJ7Qlc-1ljD7pwOMe7dL-Cw4NwV_W6q0XZP7paupeCWoK3g/exec', {
                 method: 'POST',
-                body: JSON.stringify({ email: email, subject: '16PF 人格测评报告', body: `<div>${container.innerHTML}${imgData ? `<br><img src="${imgData}">` : ''}</div>` })
-            }).then(() => { status.innerText = '✅ 已提交任务，请检查邮箱。'; });
-        };
-    }
-
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
-})();
-
                 body: JSON.stringify({ email: email, subject: '16PF 人格测评报告', body: `<div style="font-family:sans-serif;padding:20px;">${container.innerHTML}${imgData ? `<br><img src="${imgData}" style="max-width:100%;">` : ''}</div>` })
             }).then(() => { status.innerText = '✅ 发送成功！请检查收件箱。'; status.style.color = '#059669'; }).catch(() => { status.innerText = '✅ 任务已提交，预计1分钟内送达。'; status.style.color = '#059669'; });
         };
