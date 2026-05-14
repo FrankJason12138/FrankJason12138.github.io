@@ -113,8 +113,6 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
             margin-top: 24px;
         }
         .nav-btn {
-            position: static;
-            transform: none;
             padding: 9px 22px;
             border-radius: 8px;
             border: 1px solid #006400;
@@ -1509,9 +1507,9 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
     <label class="custom-radio"><input type="radio" name="question187" value="2"> (B)不确定</label>
     <label class="custom-radio"><input type="radio" name="question187" value="3"> (C)不是的</label>
 </div>
-        <div id="error-msg"></div>
         <div class="nav-controls">
             <button type="button" class="nav-btn" id="prev-btn" disabled><i class="fas fa-chevron-left"></i></button>
+            <div id="error-msg"></div>
             <button type="button" class="nav-btn" id="next-btn"><i class="fas fa-chevron-right"></i></button>
         </div>
         <div style="text-align: center; padding-bottom: 20px;">
@@ -1519,19 +1517,21 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
         </div>
 </form></div>
 
-<p id="resultDisplay" class="text-center mt-4"></p>
-        <div id="canvasContainer" style="display: flex; justify-content: center; align-items: center; height: 100%;">
-        <canvas id="myRadarChart" width="600px" height="600px"></canvas>
-        </div>
+    <div id="canvasContainer" style="display: none; justify-content: center; align-items: center; height: 100%; opacity: 0; transition: opacity 0.5s ease-in-out;">
+        <canvas id="myRadarChart" width="600" height="600"></canvas>
+    </div>
+    <p id="resultDisplay" class="text-center mt-4"></p>
+
     <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
+
     <script>
     (function () {
         var TOTAL = 187;
         var current = 0; // 0-indexed
 
         /* ── helpers ── */
-        var allQuestions = document.querySelectorAll('.question-group');
-        function getGroup(i) { return allQuestions[i]; }
+        var allGroups = document.querySelectorAll('.question-group');
+        function getGroup(i) { return allGroups[i]; }
 
         function getCheckedValue(i) {
             var g = getGroup(i);
@@ -1576,7 +1576,6 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
             // Show submit only when ALL questions answered
             if (submitBtn) {
                 var allDone = true;
-                // For performance, we could check only when current is TOTAL-1
                 if (current === TOTAL - 1) {
                     for (var j = 0; j < TOTAL; j++) {
                         if (!getCheckedValue(j)) { allDone = false; break; }
@@ -1646,22 +1645,6 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
         render();
     })();
     </script>
-    
-    <div style="margin-top: 40px; text-align: center; border-top: 1px solid #eee; padding-top: 20px;">
-        <h3>支持与购买</h3>
-        <div style="display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap;">
-            <div id="paypal-container-SAH33ARQMQA6E"></div>
-            <a href="https://shop.dittopsych.xyz/#/3/detail" target="_blank">
-                <img src="/assets/icons/alipay-logo.svg" alt="支付宝" style="width: 150px;">
-            </a>
-        </div>
-    </div>
-
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "SAH33ARQMQA6E",
-  }).render("#paypal-container-SAH33ARQMQA6E")
-</script>
 
 <style>
 #kf-btn {
