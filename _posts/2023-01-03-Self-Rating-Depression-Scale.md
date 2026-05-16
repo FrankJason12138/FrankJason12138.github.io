@@ -186,363 +186,363 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
             </div>
         </div>
     </div>
+
     <div id="quiz-intro">
-    <h4 class="text-center mt-8 px-4">下面有20条文字，请仔细阅读每一条，把意思弄明白，然后根据您最近“一周”的实际感觉，在程度中选择与你的情况相符的分数。每道题不要花费太久思考，凭第一印象回答。<br> 
-    1. 目前主要的情绪和躯体症状的自评请根据自觉症状的程度选择；<br> 
-    2. 评定时间为过去一周内或现在；<br></h4>
+<h4 class="text-center mt-8 px-4">下面有20条文字，请仔细阅读每一条，把意思弄明白，然后根据您最近“一周”的实际感觉，在程度中选择与你的情况相符的分数。每道题不要花费太久思考，凭第一印象回答。<br> 
+1. 目前主要的情绪和躯体症状的自评请根据自觉症状的程度选择；<br> 
+2. 评定时间为过去一周内或现在；<br></h4>
 
-    <div class="max-w-6xl mx-auto px-4 py-8">
-        <div id="quiz-container">
-            <div class="progress-container"><div id="progress-bar"></div></div>
-            <form id="psychologyTest">
-                <!-- 问题 1 -->
-                <div class="question-group active" id="qg-0">
-                    <div class="q-counter">题目 1 / 20</div>
-                    <div class="question-label">1. 我觉得闷闷不乐，情绪低沉：</div>
-                    <label class="custom-radio"><input type="radio" name="question1" value="1"> (A) 没有或很少时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question1" value="2"> (B) 小部分时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question1" value="3"> (C) 相当多时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question1" value="4"> (D) 绝大部分或全部时间都有</label>
-                </div>
-                <!-- 问题 2 -->
-                <div class="question-group" id="qg-1">
-                    <div class="q-counter">题目 2 / 20</div>
-                    <div class="question-label">2. 我觉得一天中早晨最好：</div>
-                    <label class="custom-radio"><input type="radio" name="question2" value="4"> (A) 没有或很少时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question2" value="3"> (B) 小部分时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question2" value="2"> (C) 相当多时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question2" value="1"> (D) 绝大部分或全部时间都有</label>
-                </div>
-                <!-- 问题 3 -->
-                <div class="question-group" id="qg-2">
-                    <div class="q-counter">题目 3 / 20</div>
-                    <div class="question-label">3. 一阵阵哭出来或觉得想哭：</div>
-                    <label class="custom-radio"><input type="radio" name="question3" value="1"> (A) 没有或很少时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question3" value="2"> (B) 小部分时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question3" value="3"> (C) 相当多时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question3" value="4"> (D) 绝大部分或全部时间都有</label>
-                </div>
-                <!-- 问题 4 -->
-                <div class="question-group" id="qg-3">
-                    <div class="q-counter">题目 4 / 20</div>
-                    <div class="question-label">4. 我晚上睡眠不好：</div>
-                    <label class="custom-radio"><input type="radio" name="question4" value="1"> (A) 没有或很少时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question4" value="2"> (B) 小部分时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question4" value="3"> (C) 相当多时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question4" value="4"> (D) 绝大部分或全部时间都有</label>
-                </div>
-                <!-- 问题 5 -->
-                <div class="question-group" id="qg-4">
-                    <div class="q-counter">题目 5 / 20</div>
-                    <div class="question-label">5. 我吃得跟平常一样多：</div>
-                    <label class="custom-radio"><input type="radio" name="question5" value="4"> (A) 没有或很少时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question5" value="3"> (B) 小部分时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question5" value="2"> (C) 相当多时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question5" value="1"> (D) 绝大部分或全部时间都有</label>
-                </div>
-                <!-- 问题 6 -->
-                <div class="question-group" id="qg-5">
-                    <div class="q-counter">题目 6 / 20</div>
-                    <div class="question-label">6. 我与异性密切接触时和以往一样感到愉快：</div>
-                    <label class="custom-radio"><input type="radio" name="question6" value="4"> (A) 没有或很少时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question6" value="3"> (B) 小部分时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question6" value="2"> (C) 相当多时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question6" value="1"> (D) 绝大部分或全部时间都有</label>
-                </div>
-                <!-- 问题 7 -->
-                <div class="question-group" id="qg-6">
-                    <div class="q-counter">题目 7 / 20</div>
-                    <div class="question-label">7. 我发觉我的体重在下降：</div>
-                    <label class="custom-radio"><input type="radio" name="question7" value="1"> (A) 没有或很少时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question7" value="2"> (B) 小部分时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question7" value="3"> (C) 相当多时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question7" value="4"> (D) 绝大部分或全部时间都有</label>
-                </div>
-                <!-- 问题 8 -->
-                <div class="question-group" id="qg-7">
-                    <div class="q-counter">题目 8 / 20</div>
-                    <div class="question-label">8. 我有便秘的苦恼：</div>
-                    <label class="custom-radio"><input type="radio" name="question8" value="1"> (A) 没有或很少时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question8" value="2"> (B) 小部分时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question8" value="3"> (C) 相当多时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question8" value="4"> (D) 绝大部分或全部时间都有</label>
-                </div>
-                <!-- 问题 9 -->
-                <div class="question-group" id="qg-8">
-                    <div class="q-counter">题目 9 / 20</div>
-                    <div class="question-label">9. 心跳比平常快：</div>
-                    <label class="custom-radio"><input type="radio" name="question9" value="1"> (A) 没有或很少时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question9" value="2"> (B) 小部分时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question9" value="3"> (C) 相当多时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question9" value="4"> (D) 绝大部分或全部时间都有</label>
-                </div>
-                <!-- 问题 10 -->
-                <div class="question-group" id="qg-9">
-                    <div class="q-counter">题目 10 / 20</div>
-                    <div class="question-label">10. 我无缘无故地感到疲乏：</div>
-                    <label class="custom-radio"><input type="radio" name="question10" value="1"> (A) 没有或很少时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question10" value="2"> (B) 小部分时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question10" value="3"> (C) 相当多时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question10" value="4"> (D) 绝大部分或全部时间都有</label>
-                </div>
-                <!-- 问题 11 -->
-                <div class="question-group" id="qg-10">
-                    <div class="q-counter">题目 11 / 20</div>
-                    <div class="question-label">11. 我的头脑和平常一样清楚：</div>
-                    <label class="custom-radio"><input type="radio" name="question11" value="4"> (A) 没有或很少时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question11" value="3"> (B) 小部分时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question11" value="2"> (C) 相当多时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question11" value="1"> (D) 绝大部分或全部时间都有</label>
-                </div>
-                <!-- 问题 12 -->
-                <div class="question-group" id="qg-11">
-                    <div class="q-counter">题目 12 / 20</div>
-                    <div class="question-label">12. 我觉得经常做的事情并没有困难：</div>
-                    <label class="custom-radio"><input type="radio" name="question12" value="4"> (A) 没有或很少时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question12" value="3"> (B) 小部分时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question12" value="2"> (C) 相当多时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question12" value="1"> (D) 绝大部分或全部时间都有</label>
-                </div>
-                <!-- 问题 13 -->
-                <div class="question-group" id="qg-12">
-                    <div class="q-counter">题目 13 / 20</div>
-                    <div class="question-label">13. 我觉得不安而平静不下来：</div>
-                    <label class="custom-radio"><input type="radio" name="question13" value="1"> (A) 没有或很少时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question13" value="2"> (B) 小部分时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question13" value="3"> (C) 相当多时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question13" value="4"> (D) 绝大部分或全部时间都有</label>
-                </div>
-                <!-- 问题 14 -->
-                <div class="question-group" id="qg-13">
-                    <div class="q-counter">题目 14 / 20</div>
-                    <div class="question-label">14. 我对未来抱有希望：</div>
-                    <label class="custom-radio"><input type="radio" name="question14" value="4"> (A) 没有或很少时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question14" value="3"> (B) 小部分时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question14" value="2"> (C) 相当多时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question14" value="1"> (D) 绝大部分或全部时间都有</label>
-                </div>
-                <!-- 问题 15 -->
-                <div class="question-group" id="qg-14">
-                    <div class="q-counter">题目 15 / 20</div>
-                    <div class="question-label">15. 我比平常容易生气激动：</div>
-                    <label class="custom-radio"><input type="radio" name="question15" value="1"> (A) 没有或很少时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question15" value="2"> (B) 小部分时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question15" value="3"> (C) 相当多时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question15" value="4"> (D) 绝大部分或全部时间都有</label>
-                </div>
-                <!-- 问题 16 -->
-                <div class="question-group" id="qg-15">
-                    <div class="q-counter">题目 16 / 20</div>
-                    <div class="question-label">16. 我觉得做出决定是容易的：</div>
-                    <label class="custom-radio"><input type="radio" name="question16" value="4"> (A) 没有或很少时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question16" value="3"> (B) 小部分时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question16" value="2"> (C) 相当多时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question16" value="1"> (D) 绝大部分或全部时间都有</label>
-                </div>
-                <!-- 问题 17 -->
-                <div class="question-group" id="qg-16">
-                    <div class="q-counter">题目 17 / 20</div>
-                    <div class="question-label">17. 我觉得自己是个有用的人，有人需要我：</div>
-                    <label class="custom-radio"><input type="radio" name="question17" value="4"> (A) 没有或很少时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question17" value="3"> (B) 小部分时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question17" value="2"> (C) 相当多时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question17" value="1"> (D) 绝大部分或全部时间都有</label>
-                </div>
-                <!-- 问题 18 -->
-                <div class="question-group" id="qg-17">
-                    <div class="q-counter">题目 18 / 20</div>
-                    <div class="question-label">18. 我的生活过得很有意思：</div>
-                    <label class="custom-radio"><input type="radio" name="question18" value="4"> (A) 没有或很少时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question18" value="3"> (B) 小部分时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question18" value="2"> (C) 相当多时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question18" value="1"> (D) 绝大部分或全部时间都有</label>
-                </div>
-                <!-- 问题 19 -->
-                <div class="question-group" id="qg-18">
-                    <div class="q-counter">题目 19 / 20</div>
-                    <div class="question-label">19. 我认为如果我死了，别人会生活得更好：</div>
-                    <label class="custom-radio"><input type="radio" name="question19" value="1"> (A) 没有或很少时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question19" value="2"> (B) 小部分时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question19" value="3"> (C) 相当多时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question19" value="4"> (D) 绝大部分或全部时间都有</label>
-                </div>
-                <!-- 问题 20 -->
-                <div class="question-group" id="qg-19">
-                    <div class="q-counter">题目 20 / 20</div>
-                    <div class="question-label">20. 平常感兴趣的事我仍然感兴趣：</div>
-                    <label class="custom-radio"><input type="radio" name="question20" value="4"> (A) 没有或很少时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question20" value="3"> (B) 小部分时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question20" value="2"> (C) 相当多时间有</label>
-                    <label class="custom-radio"><input type="radio" name="question20" value="1"> (D) 绝大部分或全部时间都有</label>
-                </div>
+<div class="max-w-6xl mx-auto px-4 py-8">
+<div id="quiz-container">
+<div class="progress-container"><div id="progress-bar"></div></div>
+<form id="psychologyTest">
+<!-- 问题 1 -->
+<div class="question-group active" id="qg-0">
+<div class="q-counter">题目 1 / 20</div>
+<div class="question-label">1. 我觉得闷闷不乐，情绪低沉：</div>
+<label class="custom-radio"><input type="radio" name="question1" value="1"> (A) 没有或很少时间有</label>
+<label class="custom-radio"><input type="radio" name="question1" value="2"> (B) 小部分时间有</label>
+<label class="custom-radio"><input type="radio" name="question1" value="3"> (C) 相当多时间有</label>
+<label class="custom-radio"><input type="radio" name="question1" value="4"> (D) 绝大部分或全部时间都有</label>
+</div>
+<!-- 问题 2 -->
+<div class="question-group" id="qg-1">
+<div class="q-counter">题目 2 / 20</div>
+<div class="question-label">2. 我觉得一天中早晨最好：</div>
+<label class="custom-radio"><input type="radio" name="question2" value="4"> (A) 没有或很少时间有</label>
+<label class="custom-radio"><input type="radio" name="question2" value="3"> (B) 小部分时间有</label>
+<label class="custom-radio"><input type="radio" name="question2" value="2"> (C) 相当多时间有</label>
+<label class="custom-radio"><input type="radio" name="question2" value="1"> (D) 绝大部分或全部时间都有</label>
+</div>
+<!-- 问题 3 -->
+<div class="question-group" id="qg-2">
+<div class="q-counter">题目 3 / 20</div>
+<div class="question-label">3. 一阵阵哭出来或觉得想哭：</div>
+<label class="custom-radio"><input type="radio" name="question3" value="1"> (A) 没有或很少时间有</label>
+<label class="custom-radio"><input type="radio" name="question3" value="2"> (B) 小部分时间有</label>
+<label class="custom-radio"><input type="radio" name="question3" value="3"> (C) 相当多时间有</label>
+<label class="custom-radio"><input type="radio" name="question3" value="4"> (D) 绝大部分或全部时间都有</label>
+</div>
+<!-- 问题 4 -->
+<div class="question-group" id="qg-3">
+<div class="q-counter">题目 4 / 20</div>
+<div class="question-label">4. 我晚上睡眠不好：</div>
+<label class="custom-radio"><input type="radio" name="question4" value="1"> (A) 没有或很少时间有</label>
+<label class="custom-radio"><input type="radio" name="question4" value="2"> (B) 小部分时间有</label>
+<label class="custom-radio"><input type="radio" name="question4" value="3"> (C) 相当多时间有</label>
+<label class="custom-radio"><input type="radio" name="question4" value="4"> (D) 绝大部分或全部时间都有</label>
+</div>
+<!-- 问题 5 -->
+<div class="question-group" id="qg-4">
+<div class="q-counter">题目 5 / 20</div>
+<div class="question-label">5. 我吃得跟平常一样多：</div>
+<label class="custom-radio"><input type="radio" name="question5" value="4"> (A) 没有或很少时间有</label>
+<label class="custom-radio"><input type="radio" name="question5" value="3"> (B) 小部分时间有</label>
+<label class="custom-radio"><input type="radio" name="question5" value="2"> (C) 相当多时间有</label>
+<label class="custom-radio"><input type="radio" name="question5" value="1"> (D) 绝大部分或全部时间都有</label>
+</div>
+<!-- 问题 6 -->
+<div class="question-group" id="qg-5">
+<div class="q-counter">题目 6 / 20</div>
+<div class="question-label">6. 我与异性密切接触时和以往一样感到愉快：</div>
+<label class="custom-radio"><input type="radio" name="question6" value="4"> (A) 没有或很少时间有</label>
+<label class="custom-radio"><input type="radio" name="question6" value="3"> (B) 小部分时间有</label>
+<label class="custom-radio"><input type="radio" name="question6" value="2"> (C) 相当多时间有</label>
+<label class="custom-radio"><input type="radio" name="question6" value="1"> (D) 绝大部分或全部时间都有</label>
+</div>
+<!-- 问题 7 -->
+<div class="question-group" id="qg-6">
+<div class="q-counter">题目 7 / 20</div>
+<div class="question-label">7. 我发觉我的体重在下降：</div>
+<label class="custom-radio"><input type="radio" name="question7" value="1"> (A) 没有或很少时间有</label>
+<label class="custom-radio"><input type="radio" name="question7" value="2"> (B) 小部分时间有</label>
+<label class="custom-radio"><input type="radio" name="question7" value="3"> (C) 相当多时间有</label>
+<label class="custom-radio"><input type="radio" name="question7" value="4"> (D) 绝大部分或全部时间都有</label>
+</div>
+<!-- 问题 8 -->
+<div class="question-group" id="qg-7">
+<div class="q-counter">题目 8 / 20</div>
+<div class="question-label">8. 我有便秘的苦恼：</div>
+<label class="custom-radio"><input type="radio" name="question8" value="1"> (A) 没有或很少时间有</label>
+<label class="custom-radio"><input type="radio" name="question8" value="2"> (B) 小部分时间有</label>
+<label class="custom-radio"><input type="radio" name="question8" value="3"> (C) 相当多时间有</label>
+<label class="custom-radio"><input type="radio" name="question8" value="4"> (D) 绝大部分或全部时间都有</label>
+</div>
+<!-- 问题 9 -->
+<div class="question-group" id="qg-8">
+<div class="q-counter">题目 9 / 20</div>
+<div class="question-label">9. 心跳比平常快：</div>
+<label class="custom-radio"><input type="radio" name="question9" value="1"> (A) 没有或很少时间有</label>
+<label class="custom-radio"><input type="radio" name="question9" value="2"> (B) 小部分时间有</label>
+<label class="custom-radio"><input type="radio" name="question9" value="3"> (C) 相当多时间有</label>
+<label class="custom-radio"><input type="radio" name="question9" value="4"> (D) 绝大部分或全部时间都有</label>
+</div>
+<!-- 问题 10 -->
+<div class="question-group" id="qg-9">
+<div class="q-counter">题目 10 / 20</div>
+<div class="question-label">10. 我无缘无故地感到疲乏：</div>
+<label class="custom-radio"><input type="radio" name="question10" value="1"> (A) 没有或很少时间有</label>
+<label class="custom-radio"><input type="radio" name="question10" value="2"> (B) 小部分时间有</label>
+<label class="custom-radio"><input type="radio" name="question10" value="3"> (C) 相当多时间有</label>
+<label class="custom-radio"><input type="radio" name="question10" value="4"> (D) 绝大部分或全部时间都有</label>
+</div>
+<!-- 问题 11 -->
+<div class="question-group" id="qg-10">
+<div class="q-counter">题目 11 / 20</div>
+<div class="question-label">11. 我的头脑和平常一样清楚：</div>
+<label class="custom-radio"><input type="radio" name="question11" value="4"> (A) 没有或很少时间有</label>
+<label class="custom-radio"><input type="radio" name="question11" value="3"> (B) 小部分时间有</label>
+<label class="custom-radio"><input type="radio" name="question11" value="2"> (C) 相当多时间有</label>
+<label class="custom-radio"><input type="radio" name="question11" value="1"> (D) 绝大部分或全部时间都有</label>
+</div>
+<!-- 问题 12 -->
+<div class="question-group" id="qg-11">
+<div class="q-counter">题目 12 / 20</div>
+<div class="question-label">12. 我觉得经常做的事情并没有困难：</div>
+<label class="custom-radio"><input type="radio" name="question12" value="4"> (A) 没有或很少时间有</label>
+<label class="custom-radio"><input type="radio" name="question12" value="3"> (B) 小部分时间有</label>
+<label class="custom-radio"><input type="radio" name="question12" value="2"> (C) 相当多时间有</label>
+<label class="custom-radio"><input type="radio" name="question12" value="1"> (D) 绝大部分或全部时间都有</label>
+</div>
+<!-- 问题 13 -->
+<div class="question-group" id="qg-12">
+<div class="q-counter">题目 13 / 20</div>
+<div class="question-label">13. 我觉得不安而平静不下来：</div>
+<label class="custom-radio"><input type="radio" name="question13" value="1"> (A) 没有或很少时间有</label>
+<label class="custom-radio"><input type="radio" name="question13" value="2"> (B) 小部分时间有</label>
+<label class="custom-radio"><input type="radio" name="question13" value="3"> (C) 相当多时间有</label>
+<label class="custom-radio"><input type="radio" name="question13" value="4"> (D) 绝大部分或全部时间都有</label>
+</div>
+<!-- 问题 14 -->
+<div class="question-group" id="qg-13">
+<div class="q-counter">题目 14 / 20</div>
+<div class="question-label">14. 我对未来抱有希望：</div>
+<label class="custom-radio"><input type="radio" name="question14" value="4"> (A) 没有或很少时间有</label>
+<label class="custom-radio"><input type="radio" name="question14" value="3"> (B) 小部分时间有</label>
+<label class="custom-radio"><input type="radio" name="question14" value="2"> (C) 相当多时间有</label>
+<label class="custom-radio"><input type="radio" name="question14" value="1"> (D) 绝大部分或全部时间都有</label>
+</div>
+<!-- 问题 15 -->
+<div class="question-group" id="qg-14">
+<div class="q-counter">题目 15 / 20</div>
+<div class="question-label">15. 我比平常容易生气激动：</div>
+<label class="custom-radio"><input type="radio" name="question15" value="1"> (A) 没有或很少时间有</label>
+<label class="custom-radio"><input type="radio" name="question15" value="2"> (B) 小部分时间有</label>
+<label class="custom-radio"><input type="radio" name="question15" value="3"> (C) 相当多时间有</label>
+<label class="custom-radio"><input type="radio" name="question15" value="4"> (D) 绝大部分或全部时间都有</label>
+</div>
+<!-- 问题 16 -->
+<div class="question-group" id="qg-15">
+<div class="q-counter">题目 16 / 20</div>
+<div class="question-label">16. 我觉得做出决定是容易的：</div>
+<label class="custom-radio"><input type="radio" name="question16" value="4"> (A) 没有或很少时间有</label>
+<label class="custom-radio"><input type="radio" name="question16" value="3"> (B) 小部分时间有</label>
+<label class="custom-radio"><input type="radio" name="question16" value="2"> (C) 相当多时间有</label>
+<label class="custom-radio"><input type="radio" name="question16" value="1"> (D) 绝大部分或全部时间都有</label>
+</div>
+<!-- 问题 17 -->
+<div class="question-group" id="qg-16">
+<div class="q-counter">题目 17 / 20</div>
+<div class="question-label">17. 我觉得自己是个有用的人，有人需要我：</div>
+<label class="custom-radio"><input type="radio" name="question17" value="4"> (A) 没有或很少时间有</label>
+<label class="custom-radio"><input type="radio" name="question17" value="3"> (B) 小部分时间有</label>
+<label class="custom-radio"><input type="radio" name="question17" value="2"> (C) 相当多时间有</label>
+<label class="custom-radio"><input type="radio" name="question17" value="1"> (D) 绝大部分或全部时间都有</label>
+</div>
+<!-- 问题 18 -->
+<div class="question-group" id="qg-17">
+<div class="q-counter">题目 18 / 20</div>
+<div class="question-label">18. 我的生活过得很有意思：</div>
+<label class="custom-radio"><input type="radio" name="question18" value="4"> (A) 没有或很少时间有</label>
+<label class="custom-radio"><input type="radio" name="question18" value="3"> (B) 小部分时间有</label>
+<label class="custom-radio"><input type="radio" name="question18" value="2"> (C) 相当多时间有</label>
+<label class="custom-radio"><input type="radio" name="question18" value="1"> (D) 绝大部分或全部时间都有</label>
+</div>
+<!-- 问题 19 -->
+<div class="question-group" id="qg-18">
+<div class="q-counter">题目 19 / 20</div>
+<div class="question-label">19. 我认为如果我死了，别人会生活得更好：</div>
+<label class="custom-radio"><input type="radio" name="question19" value="1"> (A) 没有或很少时间有</label>
+<label class="custom-radio"><input type="radio" name="question19" value="2"> (B) 小部分时间有</label>
+<label class="custom-radio"><input type="radio" name="question19" value="3"> (C) 相当多时间有</label>
+<label class="custom-radio"><input type="radio" name="question19" value="4"> (D) 绝大部分或全部时间都有</label>
+</div>
+<!-- 问题 20 -->
+<div class="question-group" id="qg-19">
+<div class="q-counter">题目 20 / 20</div>
+<div class="question-label">20. 平常感兴趣的事我仍然感兴趣：</div>
+<label class="custom-radio"><input type="radio" name="question20" value="4"> (A) 没有或很少时间有</label>
+<label class="custom-radio"><input type="radio" name="question20" value="3"> (B) 小部分时间有</label>
+<label class="custom-radio"><input type="radio" name="question20" value="2"> (C) 相当多时间有</label>
+<label class="custom-radio"><input type="radio" name="question20" value="1"> (D) 绝大部分或全部时间都有</label>
+</div>
 
-                <div id="error-msg"></div>
+<div id="error-msg"></div>
 
-                <!-- Nav buttons -->
-                <div class="nav-controls">
-                    <button type="button" class="nav-btn" id="prev-btn" disabled>
-                        <i class="fas fa-chevron-left"></i> 上一题
-                    </button>
-                    <button type="button" class="nav-btn" id="next-btn">
-                        下一题 <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
+<!-- Nav buttons -->
+<div class="nav-controls">
+<button type="button" class="nav-btn" id="prev-btn" disabled>
+<i class="fas fa-chevron-left"></i> 上一题
+</button>
+<button type="button" class="nav-btn" id="next-btn">
+下一题 <i class="fas fa-chevron-right"></i>
+</button>
+</div>
 
-                <div style="text-align: center; padding-bottom: 10px;">
-                    <input type="submit" value="提交测评" class="submit-button" id="submit-btn">
-                </div>
-            </form>
-        </div>
-    </div>
-    </div>
+<div style="text-align: center; padding-bottom: 10px;">
+<input type="submit" value="提交测评" class="submit-button" id="submit-btn">
+</div>
+</form>
+</div>
+</div>
+</div>
 
-    <div id="canvasContainer" style="display: none; justify-content: center; align-items: center; height: 100%; opacity: 0; transition: opacity 0.5s ease-in-out;">
-        <canvas id="myRadarChart" width="600" height="150"></canvas>
-    </div>
-    <p id="resultDisplay" class="text-center mt-4 text-lg"></p>
+<div id="canvasContainer" style="display: none; justify-content: center; align-items: center; height: 100%; opacity: 0; transition: opacity 0.5s ease-in-out;">
+<canvas id="myRadarChart" width="600" height="150"></canvas>
+</div>
+<p id="resultDisplay" class="text-center mt-4 text-lg"></p>
 
-    <script src="{{ '/assets/js/scriptSDS.js' | relative_url }}"></script>
-    
-    <div style="margin-top: 40px; text-align: center; border-top: 1px solid #eee; padding-top: 20px;">
-        <h3>支持与购买</h3>
-        <div style="display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap;" markdown="1">
+<script src="{{ '/assets/js/scriptSDS.js' | relative_url }}"></script>
+
+<div style="margin-top: 40px; text-align: center; border-top: 1px solid #eee; padding-top: 20px;">
+<h3>支持与购买</h3>
+<div style="display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap;" markdown="1">
 
 [PayPal 支付](https://www.paypal.com/ncp/payment/WHJRNPARHP4CQ)
 
 <a href="https://shop.dittopsych.xyz/#/1/detail" target="_blank">
-    <img src="/assets/icons/alipay-logo.svg" alt="支付宝" style="width: 150px;">
+<img src="/assets/icons/alipay-logo.svg" alt="支付宝" style="width: 150px;">
 </a>
 
-        </div>
-    </div>
+</div>
+</div>
 
-    <script>
-    (function () {
-        var TOTAL = 20;
-        var current = 0; // 0-indexed
+<script>
+(function () {
+var TOTAL = 20;
+var current = 0; // 0-indexed
 
-        /* ── helpers ── */
-        function getGroup(i) { return document.getElementById('qg-' + i); }
+/* ── helpers ── */
+function getGroup(i) { return document.getElementById('qg-' + i); }
 
-        function getCheckedValue(i) {
-            var radios = getGroup(i).querySelectorAll('input[type="radio"]');
-            for (var r = 0; r < radios.length; r++) {
-                if (radios[r].checked) return radios[r].value;
-            }
-            return null;
-        }
+function getCheckedValue(i) {
+var radios = getGroup(i).querySelectorAll('input[type="radio"]');
+for (var r = 0; r < radios.length; r++) {
+if (radios[r].checked) return radios[r].value;
+}
+return null;
+}
 
-        function syncSelectedStyle(groupIndex) {
-            var group = getGroup(groupIndex);
-            var labels = group.querySelectorAll('.custom-radio');
-            labels.forEach(function (lbl) {
-                var inp = lbl.querySelector('input[type="radio"]');
-                lbl.classList.toggle('selected', inp.checked);
-            });
-        }
+function syncSelectedStyle(groupIndex) {
+var group = getGroup(groupIndex);
+var labels = group.querySelectorAll('.custom-radio');
+labels.forEach(function (lbl) {
+var inp = lbl.querySelector('input[type="radio"]');
+lbl.classList.toggle('selected', inp.checked);
+});
+}
 
-        /* ── render current question ── */
-        function render() {
-            for (var i = 0; i < TOTAL; i++) {
-                var g = getGroup(i);
-                if (g) g.classList.toggle('active', i === current);
-            }
-            syncSelectedStyle(current);
+/* ── render current question ── */
+function render() {
+for (var i = 0; i < TOTAL; i++) {
+var g = getGroup(i);
+if (g) g.classList.toggle('active', i === current);
+}
+syncSelectedStyle(current);
 
-            var prevBtn   = document.getElementById('prev-btn');
-            var nextBtn   = document.getElementById('next-btn');
-            var submitBtn = document.getElementById('submit-btn');
-            var pb        = document.getElementById('progress-bar');
+var prevBtn   = document.getElementById('prev-btn');
+var nextBtn   = document.getElementById('next-btn');
+var submitBtn = document.getElementById('submit-btn');
+var pb        = document.getElementById('progress-bar');
 
-            if (prevBtn) prevBtn.disabled = (current === 0);
+if (prevBtn) prevBtn.disabled = (current === 0);
 
-            // Show next or hide it on last question
-            if (nextBtn) {
-                nextBtn.style.display = (current === TOTAL - 1) ? 'none' : 'inline-block';
-            }
+// Show next or hide it on last question
+if (nextBtn) {
+nextBtn.style.display = (current === TOTAL - 1) ? 'none' : 'inline-block';
+}
 
-            // Show submit only when ALL questions answered
-            if (submitBtn) {
-                var allDone = true;
-                for (var j = 0; j < TOTAL; j++) {
-                    if (!getCheckedValue(j)) { allDone = false; break; }
-                }
-                submitBtn.style.display = allDone ? 'block' : 'none';
-            }
+// Show submit only when ALL questions answered
+if (submitBtn) {
+var allDone = true;
+for (var j = 0; j < TOTAL; j++) {
+if (!getCheckedValue(j)) { allDone = false; break; }
+}
+submitBtn.style.display = allDone ? 'block' : 'none';
+}
 
-            if (pb) pb.style.width = ((current + 1) / TOTAL * 100) + '%';
+if (pb) pb.style.width = ((current + 1) / TOTAL * 100) + '%';
 
-            var errMsg = document.getElementById('error-msg');
-            if (errMsg) errMsg.innerText = '';
-        }
+var errMsg = document.getElementById('error-msg');
+if (errMsg) errMsg.innerText = '';
+}
 
-        /* ── attach radio listeners – auto-advance on selection ── */
-        function attachRadioListeners() {
-            for (var i = 0; i < TOTAL; i++) {
-                (function (idx) {
-                    var radios = getGroup(idx).querySelectorAll('input[type="radio"]');
-                    radios.forEach(function (radio) {
-                        radio.addEventListener('change', function () {
-                            syncSelectedStyle(idx);
-                            // Auto-advance to next question after short delay
-                            if (idx < TOTAL - 1) {
-                                setTimeout(function () {
-                                    current = idx + 1;
-                                    render();
-                                }, 220);
-                            } else {
-                                // Last question: just refresh to show submit button
-                                render();
-                            }
-                        });
-                    });
-                })(i);
-            }
-        }
+/* ── attach radio listeners – auto-advance on selection ── */
+function attachRadioListeners() {
+for (var i = 0; i < TOTAL; i++) {
+(function (idx) {
+var radios = getGroup(idx).querySelectorAll('input[type="radio"]');
+radios.forEach(function (radio) {
+radio.addEventListener('change', function () {
+syncSelectedStyle(idx);
+// Auto-advance to next question after short delay
+if (idx < TOTAL - 1) {
+setTimeout(function () {
+current = idx + 1;
+render();
+}, 220);
+} else {
+// Last question: just refresh to show submit button
+render();
+}
+});
+});
+})(i);
+}
+}
 
-        /* ── nav button listeners ── */
-        function attachNavListeners() {
-            var prevBtn = document.getElementById('prev-btn');
-            var nextBtn = document.getElementById('next-btn');
+/* ── nav button listeners ── */
+function attachNavListeners() {
+var prevBtn = document.getElementById('prev-btn');
+var nextBtn = document.getElementById('next-btn');
 
-            if (prevBtn) {
-                prevBtn.addEventListener('click', function () {
-                    if (current > 0) { current--; render(); }
-                });
-            }
-            if (nextBtn) {
-                nextBtn.addEventListener('click', function () {
-                    if (current < TOTAL - 1) { current++; render(); }
-                });
-            }
-        }
+if (prevBtn) {
+prevBtn.addEventListener('click', function () {
+if (current > 0) { current--; render(); }
+});
+}
+if (nextBtn) {
+nextBtn.addEventListener('click', function () {
+if (current < TOTAL - 1) { current++; render(); }
+});
+}
+}
 
-        /* ── expose currentQuestionIndex for scriptSDS.js compatibility ── */
-        Object.defineProperty(window, 'currentQuestionIndex', {
-            get: function () { return current; },
-            set: function (v) { current = v; render(); }
-        });
+/* ── expose currentQuestionIndex for scriptSDS.js compatibility ── */
+Object.defineProperty(window, 'currentQuestionIndex', {
+get: function () { return current; },
+set: function (v) { current = v; render(); }
+});
 
-        /* ── init ── */
-        attachRadioListeners();
-        attachNavListeners();
-        render();
-    })();
-    </script>
-
+/* ── init ── */
+attachRadioListeners();
+attachNavListeners();
+render();
+})();
+</script>
 
 <style>
 #kf-btn {
-    position: fixed;
-    right: 20px;
-    bottom: 80px;
-    background: #4CAF50;
-    color: white;
-    padding: 12px 18px;
-    border-radius: 50px;
-    cursor: pointer;
-    z-index: 9999;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+position: fixed;
+right: 20px;
+bottom: 80px;
+background: #4CAF50;
+color: white;
+padding: 12px 18px;
+border-radius: 50px;
+cursor: pointer;
+z-index: 9999;
+box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 </style>
 
@@ -550,7 +550,7 @@ tags: 心理咨询 心理量表 心理测试 SDS 抑郁症 抑郁自评测评  �
 
 <script>
 function openKf() {
-    window.open("https://work.weixin.qq.com/kfid/kfcb22995e95ee10a7e");
+window.open("https://work.weixin.qq.com/kfid/kfcb22995e95ee10a7e");
 }
 </script>
 </body>
