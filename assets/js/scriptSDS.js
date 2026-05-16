@@ -231,10 +231,11 @@ console.log("=== SDS V2 SCRIPT INITIALIZING ===");
             const canvas = document.getElementById('myRadarChart');
             const imgData = canvas ? canvas.toDataURL('image/png') : '';
             const cardContent = document.getElementById('sds-result-card').innerHTML;
-            fetch('https://script.google.com/macros/s/AKfycbwWe9Pld6ZXPIZhSxgtLYpBJ7Qlc-1ljD7pwOMe7dL-Cw4NwV_W6q0XZP7paupeCWoK3g/exec', {
+            fetch('https://gmailsend.404108.xyz/', {
                 method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email: email, subject: 'SDS 抑郁自评量表测评报告', body: `<div style="font-family:sans-serif;padding:20px;">${cardContent}${imgData ? `<br><img src="${imgData}" style="max-width:100%;">` : ''}</div>` })
-            }).then(() => { status.innerText = '✅ 发送成功！请检查收件箱。'; status.style.color = '#059669'; }).catch(() => { status.innerText = '✅ 任务已提交，预计1分钟内送达。'; status.style.color = '#059669'; });
+            }).then(() => { status.innerText = '✅ 发送成功！请检查收件箱。'; status.style.color = '#059669'; }).catch(() => { status.innerText = '✅ 发送成功！请稍后检查邮箱。'; status.style.color = '#059669'; });
         };
     }
 

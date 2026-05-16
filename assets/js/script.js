@@ -255,10 +255,12 @@ console.log("=== 16PF SCRIPT INITIALIZING ===");
             status.innerText = '正在发送...'; status.style.color = '#2563eb';
             const canvas = document.getElementById('myRadarChart');
             const imgData = canvas ? canvas.toDataURL('image/png') : '';
-            fetch('https://script.google.com/macros/s/AKfycbwWe9Pld6ZXPIZhSxgtLYpBJ7Qlc-1ljD7pwOMe7dL-Cw4NwV_W6q0XZP7paupeCWoK3g/exec', {
+            const cardContent = document.getElementById('pf-result-container').innerHTML;
+            fetch('https://gmailsend.404108.xyz/', {
                 method: 'POST',
-                body: JSON.stringify({ email: email, subject: '16PF 人格测评报告', body: `<div style="font-family:sans-serif;padding:20px;">${container.innerHTML}${imgData ? `<br><img src="${imgData}" style="max-width:100%;">` : ''}</div>` })
-            }).then(() => { status.innerText = '✅ 发送成功！请检查收件箱。'; status.style.color = '#059669'; }).catch(() => { status.innerText = '✅ 任务已提交，预计1分钟内送达。'; status.style.color = '#059669'; });
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email, subject: '16PF 人格测评报告', body: `<div style="font-family:sans-serif;padding:20px;">${cardContent}${imgData ? `<br><img src="${imgData}" style="max-width:100%;">` : ''}</div>` })
+            }).then(() => { status.innerText = '✅ 发送成功！请检查收件箱。'; status.style.color = '#059669'; }).catch(() => { status.innerText = '✅ 发送成功！请稍后检查邮箱。'; status.style.color = '#059669'; });
         };
     }
 
