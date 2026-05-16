@@ -1644,8 +1644,9 @@ function openKf() {
 </script>
 </body>
 </html>
-
 ## 支付宝扫码购买
 <a href="https://shop.dittopsych.xyz/#/3/detail" target="_blank">
     <img src="/assets/icons/alipay-logo.svg" alt="支付宝" style="width: 150px;">
 </a>
+
+
