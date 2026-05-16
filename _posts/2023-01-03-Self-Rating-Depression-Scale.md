@@ -383,7 +383,6 @@ min-height: 20px;
 <div style="margin-top: 40px; text-align: center; border-top: 1px solid #eee; padding-top: 20px;">
 <h3>支持与购买</h3>
 <div style="display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap;" markdown="1">
-[PayPal 支付](https://www.paypal.com/ncp/payment/WHJRNPARHP4CQ)
 <a href="https://shop.dittopsych.xyz/#/1/detail" target="_blank">
 <img src="/assets/icons/alipay-logo.svg" alt="支付宝" style="width: 150px;">
 </a>

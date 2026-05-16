@@ -1516,23 +1516,17 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
             <input type="submit" value="提交测评" class="submit-button" id="submit-btn">
         </div>
 </form></div>
-
-    <div id="canvasContainer" style="display: none; justify-content: center; align-items: center; height: 100%; opacity: 0; transition: opacity 0.5s ease-in-out;">
+       <div id="canvasContainer" style="display: none; justify-content: center; align-items: center; height: 100%; opacity: 0; transition: opacity 0.5s ease-in-out;">
         <canvas id="myRadarChart" width="600" height="600"></canvas>
     </div>
     <p id="resultDisplay" class="text-center mt-4"></p>
-
     <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
-
     <script>
     (function () {
         var TOTAL = 187;
         var current = 0; // 0-indexed
-
-        /* ── helpers ── */
         var allGroups = document.querySelectorAll('.question-group');
         function getGroup(i) { return allGroups[i]; }
-
         function getCheckedValue(i) {
             var g = getGroup(i);
             if (!g) return null;
@@ -1542,7 +1536,6 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
             }
             return null;
         }
-
         function syncSelectedStyle(groupIndex) {
             var group = getGroup(groupIndex);
             if (!group) return;
@@ -1552,28 +1545,20 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
                 lbl.classList.toggle('selected', inp.checked);
             });
         }
-
-        /* ── render current question ── */
         function render() {
             for (var i = 0; i < TOTAL; i++) {
                 var g = getGroup(i);
                 if (g) g.classList.toggle('active', i === current);
             }
             syncSelectedStyle(current);
-
             var prevBtn   = document.getElementById('prev-btn');
             var nextBtn   = document.getElementById('next-btn');
             var submitBtn = document.getElementById('submit-btn');
             var pb        = document.getElementById('progress-bar');
-
             if (prevBtn) prevBtn.disabled = (current === 0);
-
-            // Show next or hide it on last question
             if (nextBtn) {
                 nextBtn.style.display = (current === TOTAL - 1) ? 'none' : 'inline-block';
             }
-
-            // Show submit only when ALL questions answered
             if (submitBtn) {
                 var allDone = true;
                 if (current === TOTAL - 1) {
@@ -1585,14 +1570,10 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
                 }
                 submitBtn.style.display = allDone ? 'block' : 'none';
             }
-
-            if (pb) pb.style.width = ((current + 1) / TOTAL * 100) + '%';
-
-            var errMsg = document.getElementById('error-msg');
+               if (pb) pb.style.width = ((current + 1) / TOTAL * 100) + '%';
+               var errMsg = document.getElementById('error-msg');
             if (errMsg) errMsg.innerText = '';
         }
-
-        /* ── attach radio listeners – auto-advance on selection ── */
         function attachRadioListeners() {
             for (var i = 0; i < TOTAL; i++) {
                 (function (idx) {
@@ -1615,12 +1596,9 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
                 })(i);
             }
         }
-
-        /* ── nav button listeners ── */
         function attachNavListeners() {
             var prevBtn = document.getElementById('prev-btn');
             var nextBtn = document.getElementById('next-btn');
-
             if (prevBtn) {
                 prevBtn.addEventListener('click', function () {
                     if (current > 0) { current--; render(); }
@@ -1632,14 +1610,10 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
                 });
             }
         }
-
-        /* ── expose currentQuestionIndex for script.js compatibility ── */
         Object.defineProperty(window, 'currentQuestionIndex', {
             get: function () { return current; },
             set: function (v) { current = v; render(); }
         });
-
-        /* ── init ── */
         attachRadioListeners();
         attachNavListeners();
         render();
@@ -1670,6 +1644,7 @@ function openKf() {
 </script>
 </body>
 </html>
+
 ## 支付宝扫码购买
 <a href="https://shop.dittopsych.xyz/#/3/detail" target="_blank">
     <img src="/assets/icons/alipay-logo.svg" alt="支付宝" style="width: 150px;">
