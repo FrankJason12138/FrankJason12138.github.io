@@ -7,185 +7,193 @@ categories: 心理量表
 cover: 'https://s3.bmp.ovh/imgs/2025/04/01/b4f9f207b8b48862.jpg'
 tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF 交互网站 人格因素
 ---
-<html lang="zh-CN">
-<head>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script 
   src="https://www.paypal.com/sdk/js?client-id=BAARHNfmKzHLXfr68uX0--8arP3l0m-JLplAUepTZZsoSZXXIkhyC4uWP8XjQfCfduITf_zf1cOcrKkwdk&components=hosted-buttons&disable-funding=venmo&currency=USD">
 </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Page</title>
-    <link href="{{ '/assets/css/tailwind.css' | relative_url }}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:400,500,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Noto Sans SC', sans-serif;
-            background-color: #f4f7f6;
-        }
+<link href="{{ '/assets/css/tailwind.css' | relative_url }}" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:400,500,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+    body {
+        font-family: 'Noto Sans SC', sans-serif;
+        background-color: #f4f7f6;
+    }
 
-        /* ── Quiz container ── */
-        #quiz-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            padding: 30px 50px 24px;
-            box-sizing: border-box;
-            position: relative;
-        }
+    /* ── Quiz container ── */
+    #quiz-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        padding: 30px 50px 24px;
+        box-sizing: border-box;
+        position: relative;
+    }
 
-        /* Progress bar */
-        .progress-container {
-            width: 100%;
-            height: 6px;
-            background: #e0e0e0;
-            border-radius: 3px;
-            margin-bottom: 28px;
-        }
-        #progress-bar {
-            height: 100%;
-            background: #006400;
-            border-radius: 3px;
-            width: 1%;
-            transition: width 0.3s;
-        }
+    /* Progress bar */
+    .progress-container {
+        width: 100%;
+        height: 6px;
+        background: #e0e0e0;
+        border-radius: 3px;
+        margin-bottom: 28px;
+    }
+    #progress-bar {
+        height: 100%;
+        background: #006400;
+        border-radius: 3px;
+        width: 1%;
+        transition: width 0.3s;
+    }
 
-        /* Question panels – only .active is shown */
-        .question-group {
-            display: none;
-        }
-        .question-group.active {
-            display: block;
-        }
+    /* Question panels – only .active is shown */
+    .question-group {
+        display: none;
+    }
+    .question-group.active {
+        display: block;
+    }
 
-        .q-counter {
-            font-size: 13px;
-            color: #888;
-            margin-bottom: 12px;
-        }
-        .question-label {
-            font-size: 20px;
-            font-weight: 700;
-            color: #333;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
+    .q-counter {
+        font-size: 13px;
+        color: #888;
+        margin-bottom: 12px;
+    }
+    .question-label {
+        font-size: 20px;
+        font-weight: 700;
+        color: #333;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
 
-        /* Radio options */
-        .custom-radio {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 13px 16px;
-            margin: 8px 0;
-            cursor: pointer;
-            font-size: 17px;
-            background: #fff;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            transition: background 0.15s, border-color 0.15s;
-        }
-        .custom-radio:hover {
-            background-color: #f0fff0;
-            border-color: #98FB98;
-        }
-        .custom-radio.selected {
-            background-color: #e8f5e9;
-            border-color: #006400;
-        }
-        .custom-radio input[type="radio"] {
-            width: 18px;
-            height: 18px;
-            margin: 0;
-            accent-color: #006400;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
+    /* Radio options */
+    .custom-radio {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 13px 16px;
+        margin: 8px 0;
+        cursor: pointer;
+        font-size: 17px;
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        transition: background 0.15s, border-color 0.15s;
+    }
+    .custom-radio:hover {
+        background-color: #f0fff0;
+        border-color: #98FB98;
+    }
+    .custom-radio.selected {
+        background-color: #e8f5e9;
+        border-color: #006400;
+    }
+    .custom-radio input[type="radio"] {
+        width: 18px;
+        height: 18px;
+        margin: 0;
+        accent-color: #006400;
+        cursor: pointer;
+        flex-shrink: 0;
+    }
 
-        /* Nav buttons */
-        .nav-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 24px;
-        }
-        .nav-btn {
-            padding: 9px 22px;
-            border-radius: 8px;
-            border: 1px solid #006400;
-            background: white;
-            color: #006400;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 15px;
-            transition: all 0.2s;
-        }
-        .nav-btn:hover:not(:disabled) {
-            background: #006400;
-            color: white;
-        }
-        .nav-btn:disabled {
-            border-color: #ccc;
-            color: #ccc;
-            cursor: not-allowed;
-            opacity: 0.4;
-        }
+    /* Nav buttons */
+    .nav-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 24px;
+    }
+    .nav-btn {
+        padding: 9px 22px;
+        border-radius: 8px;
+        border: 1px solid #006400;
+        background: white;
+        color: #006400;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 15px;
+        transition: all 0.2s;
+    }
+    .nav-btn:hover:not(:disabled) {
+        background: #006400;
+        color: white;
+    }
+    .nav-btn:disabled {
+        border-color: #ccc;
+        color: #ccc;
+        cursor: not-allowed;
+        opacity: 0.4;
+    }
 
-        /* Submit button */
-        .submit-button {
-            background-color: #006400;
-            color: white;
-            font-size: 18px;
-            padding: 12px 40px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            display: none;
-            width: 100%;
-            margin-top: 8px;
-            transition: background-color 0.2s;
-        }
-        .submit-button:hover {
-            background-color: #004d00;
-        }
+    /* Submit button */
+    .submit-button {
+        background-color: #006400;
+        color: white;
+        font-size: 18px;
+        padding: 12px 40px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        display: none;
+        width: 100%;
+        margin-top: 8px;
+        transition: background-color 0.2s;
+    }
+    .submit-button:hover {
+        background-color: #004d00;
+    }
 
-        #error-msg {
-            color: #ff4d4d;
-            text-align: center;
-            margin-top: 8px;
-            font-weight: 600;
-            min-height: 20px;
-        }
-    </style>
-</head>
+    #error-msg {
+        color: #ff4d4d;
+        text-align: center;
+        margin-top: 8px;
+        font-weight: 600;
+        min-height: 20px;
+    }
 
-<body>
-    <div class="bg-green-400 py-20">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center text-white text-4xl mb-10">卡特尔16PF</div>
-            <div class="flex justify-center space-x-10">
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <img src="{{ '/assets/img/闪电.webp' | relative_url }}" loading="lazy" alt="极速测试" class="mb-4">
-                    <div class="text-gray-700 text-base mb-4">极速测试</div>
-                    <div class="text-gray-500 text-sm">依托自己并拥护回答，以了解你的性格类型。</div>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <img src="{{ '/assets/img/记录.webp' | relative_url }}" loading="lazy" alt="查看详细结果" class="mb-4">
-                    <div class="text-gray-700 text-base mb-4">查看详细结果</div>
-                    <div class="text-gray-500 text-sm">了解您的性格类型如何影响您生活的所有领域。</div>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <img src="{{ '/assets/img/人脑.webp' | relative_url }}" loading="lazy" alt="获取你的潜力" class="mb-4">
-                    <div class="text-gray-700 text-base mb-4">获取你的潜力</div>
-                    <div class="text-gray-500 text-sm">通过可选的高级反馈，成长为您想成为的人。</div>
-                </div>
+    #kf-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 80px;
+        background: #4CAF50;
+        color: white;
+        padding: 12px 18px;
+        border-radius: 50px;
+        cursor: pointer;
+        z-index: 9999;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+</style>
+
+<div class="bg-green-400 py-20">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center text-white text-4xl mb-10">卡特尔16PF</div>
+        <div class="flex justify-center space-x-10">
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <img src="{{ '/assets/img/闪电.webp' | relative_url }}" loading="lazy" alt="极速测试" class="mb-4">
+                <div class="text-gray-700 text-base mb-4">极速测试</div>
+                <div class="text-gray-500 text-sm">依托自己并拥护回答，以了解你的性格类型。</div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <img src="{{ '/assets/img/记录.webp' | relative_url }}" loading="lazy" alt="查看详细结果" class="mb-4">
+                <div class="text-gray-700 text-base mb-4">查看详细结果</div>
+                <div class="text-gray-500 text-sm">了解您的性格类型如何影响您生活的所有领域。</div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <img src="{{ '/assets/img/人脑.webp' | relative_url }}" loading="lazy" alt="获取你的潜力" class="mb-4">
+                <div class="text-gray-700 text-base mb-4">获取你的潜力</div>
+                <div class="text-gray-500 text-sm">通过可选的高级反馈，成长为您想成为的人。</div>
             </div>
         </div>
     </div>
-    <div id="quiz-intro">
+</div>
+
+<div id="quiz-intro">
     <h4 class="text-center mt-8 px-4">本测验共有187道题目, 都是有关个人的兴趣和态度等问题.每个人对这些问题是会有不同看法的,回答也是不同的因而对问题如何回答，并没有对与不对之分,只是表明你对这些问题的态度.请你要尽量表达个人的意见,不要有顾虑。应当记住的是：<br> 
 1.	每一测题只能选择一个答案；<br> 
 2.	不可漏掉任何测题；<br> 
@@ -1617,6 +1625,15 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
         attachRadioListeners();
         attachNavListeners();
         render();
+
+        // 确保提交时显示雷达图容器
+        document.getElementById('psychologyTest').addEventListener('submit', function() {
+            var container = document.getElementById('canvasContainer');
+            if (container) {
+                container.style.display = 'flex';
+                container.style.opacity = '1';
+            }
+        });
     })();
 </script>
 
@@ -1652,8 +1669,5 @@ function openKf() {
         点击前往购买页
     </a>
 </div>
-
-</body>
-</html>
 
 
