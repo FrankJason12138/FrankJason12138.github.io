@@ -23,17 +23,16 @@ search: true
 nightMode: true
 mathjax: true
 
-# 添加Valine配置
+# 添加Waline配置（使用LeanCloud后端）
 comments:
-  valine: true
-  valine_appid: '1VHYQQZEOXBDf3nfJFxMuWf6-gzGzoHsz'        # 替换为你的LeanCloud App ID
-  valine_appkey: 'pwpHvNRl8L8QtQ05qr5qK40O'      # 替换为你的LeanCloud App Key
-  valine_placeholder: '说点什么吧...'            # 评论框占位符
-  valine_notify: false                          # 邮件通知
-  valine_verify: false                          # 验证码
-  valine_avatar: 'monsterid'                          # 头像风格
-  valine_guest_info: nick,mail,link            # 评论者信息字段
-  valine_pageSize: 10                          # 评论分页
+  waline: true
+  waline_serverUrl: 'https://waline.1vxf.com'  # Waline官方演示服务（临时用）
+  # 或自建：改为你部署的 Waline LeanCloud 后端地址
+  waline_placeholder: '说点什么吧...'
+  waline_lang: 'zh-CN'
+  waline_dark: 'auto'
+  waline_imageUpload: false
+  waline_requiredMeta: ['nick', 'mail']
 
 
 # 分享
