@@ -23,11 +23,10 @@ search: true
 nightMode: true
 mathjax: true
 
-# 添加Waline配置（使用LeanCloud后端）
+# 添加Waline配置（改用官方托管服务）
 comments:
   waline: true
-  waline_serverUrl: 'https://waline.1vxf.com'  # Waline官方演示服务（临时用）
-  # 或自建：改为你部署的 Waline LeanCloud 后端地址
+  waline_serverUrl: 'https://waline.myxo.cloud'  # 官方公共服务
   waline_placeholder: '说点什么吧...'
   waline_lang: 'zh-CN'
   waline_dark: 'auto'
