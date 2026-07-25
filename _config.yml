@@ -26,7 +26,7 @@ mathjax: true
 # 添加Waline配置（改用官方托管服务）
 comments:
   waline: true
-  waline_serverUrl: 'https://waline.myxo.cloud'  # 官方公共服务
+  waline_serverUrl: 'https://commit.404108.xyz'  # your worker URL
   waline_placeholder: '说点什么吧...'
   waline_lang: 'zh-CN'
   waline_dark: 'auto'

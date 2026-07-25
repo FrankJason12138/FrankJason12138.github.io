@@ -15,11 +15,11 @@ Setup steps:
      approved INTEGER DEFAULT 1
    );
 
-2. Deploy the Worker and bind the D1 database to the Worker as the environment variable `COMMENTS_D1`.
+2. Deploy the Worker and bind the D1 database to the Worker as the environment variable `MY_BINDING`.
    Example `wrangler.toml` snippet:
 
    [[d1_databases]]
-   binding = "COMMENTS_D1"
+   binding = "MY_BINDING"
    database_name = "your-d1-name"
 
 3. Set your Waline `site.comments.waline_serverUrl` in `_config.yml` to the Worker URL (for example, `https://<your-worker-subdomain>.workers.dev`).

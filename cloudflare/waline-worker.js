@@ -1,7 +1,7 @@
 // waline-worker.js
 // Cloudflare Worker to provide a minimal Waline-compatible API backed by D1.
 // Requirements:
-// - Bind your D1 database to the Worker as environment binding name: COMMENTS_D1
+// - Bind your D1 database to the Worker as environment binding name: MY_BINDING
 // - Create a table `comments` with schema suggested in WALINE_D1_README.md below.
 
 export default {
@@ -23,7 +23,7 @@ export default {
         if (request.method === 'GET') {
           const params = url.searchParams;
           const type = params.get('type') || 'list';
-          const db = env.COMMENTS_D1;
+          const db = env.MY_BINDING;
 
           if (type === 'count') {
             // support comma-separated urls
@@ -60,7 +60,7 @@ export default {
         }
 
         if (request.method === 'POST') {
-          const db = env.COMMENTS_D1;
+          const db = env.MY_BINDING;
           const body = await request.json().catch(() => ({}));
           // Waline client may send { comment: { ... } } or direct fields
           const commentPayload = body.comment || body;
