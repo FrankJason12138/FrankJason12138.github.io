@@ -125,40 +125,32 @@
   </script>
 
   {% if site.comments.waline %}
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@waline/client@v0.17.0/dist/waline.css" />
-  <script src="https://cdn.jsdelivr.net/npm/@waline/client@v0.17.0/dist/waline.umd.js"></script>
-   
-  <script>
-    function initWaline() {
-      console.log('[Waline] Attempting to initialize. Waline defined:', typeof Waline !== 'undefined');
-      if (typeof Waline !== 'undefined') {
-        console.log('[Waline] Library loaded. Initializing...');
-        try {
-          Waline.init({
-            el: '#waline',
-            serverURL: '{{ site.comments.waline_serverUrl }}',
-            placeholder: '{{ site.comments.waline_placeholder }}',
-            lang: '{{ site.comments.waline_lang }}',
-            dark: '{{ site.comments.waline_dark }}',
-            imageUpload: {{ site.comments.waline_imageUpload }},
-            requiredMeta: {{ site.comments.waline_requiredMeta | jsonify }},
-            commentSorting: 'latest'
-          });
-          console.log('[Waline] Initialization successful');
-        } catch (err) {
-          console.error('[Waline] Initialization error:', err);
-        }
-      } else {
-        console.log('[Waline] Library not ready, retrying...');
-        setTimeout(initWaline, 100);
+  <div id="waline"></div>
+
+  <script type="module">
+    async function initWaline() {
+      try {
+        console.log('[Waline] Loading module...');
+        const { init } = await import('https://cdn.jsdelivr.net/npm/@waline/client@v0.17.0/dist/index.js');
+        console.log('[Waline] Module loaded, initializing...');
+        init({
+          el: '#waline',
+          serverURL: '{{ site.comments.waline_serverUrl }}',
+          placeholder: '{{ site.comments.waline_placeholder }}',
+          lang: '{{ site.comments.waline_lang }}',
+          dark: '{{ site.comments.waline_dark }}',
+          imageUpload: {{ site.comments.waline_imageUpload }},
+          requiredMeta: {{ site.comments.waline_requiredMeta | jsonify }},
+          commentSorting: 'latest'
+        });
+        console.log('[Waline] Initialization successful');
+      } catch (err) {
+        console.error('[Waline] Error:', err);
       }
     }
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initWaline);
-    } else {
-      initWaline();
-    }
+    initWaline();
   </script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@waline/client@v0.17.0/dist/waline.css" />
   {% endif %}
 
   <script src="{{ "/assets/js/prism.js" | relative_url }}"></script>
