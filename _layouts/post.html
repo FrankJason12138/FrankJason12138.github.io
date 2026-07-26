@@ -127,18 +127,29 @@
   {% if site.comments.waline %}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@waline/client@v0.17.0/dist/waline.css" />
   <script src="https://cdn.jsdelivr.net/npm/@waline/client@v0.17.0/dist/waline.umd.js"></script>
-  
+   
   <script>
-    Waline.init({
-      el: '#waline',
-      serverURL: '{{ site.comments.waline_serverUrl }}',
-      placeholder: '{{ site.comments.waline_placeholder }}',
-      lang: '{{ site.comments.waline_lang }}',
-      dark: '{{ site.comments.waline_dark }}',
-      imageUpload: {{ site.comments.waline_imageUpload }},
-      requiredMeta: {{ site.comments.waline_requiredMeta | jsonify }},
-      commentSorting: 'latest'
-    });
+    function initWaline() {
+      if (typeof Waline !== 'undefined') {
+        Waline.init({
+          el: '#waline',
+          serverURL: '{{ site.comments.waline_serverUrl }}',
+          placeholder: '{{ site.comments.waline_placeholder }}',
+          lang: '{{ site.comments.waline_lang }}',
+          dark: '{{ site.comments.waline_dark }}',
+          imageUpload: {{ site.comments.waline_imageUpload }},
+          requiredMeta: {{ site.comments.waline_requiredMeta | jsonify }},
+          commentSorting: 'latest'
+        });
+      } else {
+        setTimeout(initWaline, 100);
+      }
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initWaline);
+    } else {
+      initWaline();
+    }
   </script>
   {% endif %}
 
