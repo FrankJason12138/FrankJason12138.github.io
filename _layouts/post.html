@@ -126,40 +126,179 @@
 
   {% if site.comments.waline %}
   <section class="comment-section">
-    <h3>评论</h3>
+    <h3 style="margin-bottom: 1.5rem; font-size: 1.25rem; font-weight: 600;">评论</h3>
+     
+    <div id="comments-list" style="margin-bottom: 2rem;"></div>
+
     <div id="comment-box">
+      <h4 style="margin-bottom: 1rem; font-size: 1rem; font-weight: 500;">发表评论</h4>
       <form id="comment-form">
-        <input type="text" name="nick" placeholder="昵称" required />
-        <input type="email" name="mail" placeholder="邮箱" required />
-        <input type="url" name="site" placeholder="网址 (可选)" />
-        <textarea name="comment" placeholder="评论内容..." required></textarea>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
+          <input type="text" name="nick" placeholder="昵称" {% unless site.comments.waline_requiredMeta contains 'nick' %}{% endunless %} />
+          <input type="email" name="mail" placeholder="邮箱" {% unless site.comments.waline_requiredMeta contains 'mail' %}{% endunless %} />
+        </div>
+        <input type="url" name="site" placeholder="网址 (可选)" style="width: 100%; margin-bottom: 0.75rem;" />
+        <textarea name="comment" placeholder="说说你的想法..." required style="width: 100%; margin-bottom: 0.75rem;"></textarea>
         <input type="hidden" name="url" value="{{ page.url }}" />
         <input type="hidden" name="parent_id" value="" />
-        <button type="submit">提交</button>
+        <button type="submit" style="align-self: flex-start;">提交评论</button>
       </form>
     </div>
-    <div id="comments-list" style="margin-top: 2rem;"></div>
   </section>
 
   <style>
-    .comment-section { max-width: 100%; margin: 2rem 0; }
-    #comment-form { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
-    #comment-form input, #comment-form textarea { padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; }
-    #comment-form textarea { min-height: 100px; }
-    #comment-form button { padding: 0.5rem 1rem; background: #0066cc; color: white; border: none; border-radius: 4px; cursor: pointer; }
-    #comment-form button:hover { background: #0052a3; }
-    .comment-item { margin: 1rem 0; padding: 1rem; border-left: 3px solid #eee; background: #f9f9f9; }
-    .comment-item.nested { margin-left: 2rem; }
-    .comment-meta { font-size: 0.85rem; color: #666; margin-bottom: 0.5rem; }
-    .comment-text { line-height: 1.6; }
-    .comment-reply { font-size: 0.85rem; margin-top: 0.5rem; }
-    .comment-reply a { color: #0066cc; cursor: pointer; text-decoration: none; }
-    .comment-reply a:hover { text-decoration: underline; }
+    .comment-section {
+      width: 100%;
+      max-width: 100%;
+      margin: 3rem 0;
+      color: #333;
+    }
+     
+    #comment-box {
+      background: #fafbfc;
+      border: 1px solid #e1e4e8;
+      border-radius: 6px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    #comment-form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #comment-form input[type="text"],
+    #comment-form input[type="email"],
+    #comment-form input[type="url"],
+    #comment-form textarea {
+      padding: 0.75rem;
+      border: 1px solid #d1d5da;
+      border-radius: 6px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+    }
+
+    #comment-form input[type="text"]:focus,
+    #comment-form input[type="email"]:focus,
+    #comment-form input[type="url"]:focus,
+    #comment-form textarea:focus {
+      outline: none;
+      border-color: #0366d6;
+      box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.1);
+    }
+
+    #comment-form textarea {
+      min-height: 120px;
+      resize: vertical;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, monospace;
+    }
+
+    #comment-form button {
+      padding: 0.5rem 1rem;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: background-color 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    #comment-form button:hover {
+      background: #218838;
+    }
+
+    #comment-form button:active {
+      background: #1e7e34;
+    }
+
+    .comment-item {
+      margin: 1.25rem 0;
+      padding: 1rem;
+      background: white;
+      border: 1px solid #e1e4e8;
+      border-radius: 6px;
+      transition: box-shadow 0.2s;
+    }
+
+    .comment-item:hover {
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .comment-item.nested {
+      margin-left: 0;
+      margin-top: 0.75rem;
+      background: #f6f8fa;
+      border-left: 3px solid #0366d6;
+      padding-left: calc(1rem - 2px);
+    }
+
+    .comment-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: #586069;
+      margin-bottom: 0.75rem;
+    }
+
+    .comment-meta strong {
+      color: #24292e;
+      font-weight: 600;
+    }
+
+    .comment-text {
+      line-height: 1.6;
+      color: #24292e;
+      word-break: break-word;
+      white-space: pre-wrap;
+    }
+
+    .comment-reply {
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+    }
+
+    .comment-reply a {
+      color: #0366d6;
+      cursor: pointer;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .comment-reply a:hover {
+      color: #0256c7;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      #comment-form > div {
+        grid-template-columns: 1fr !important;
+      }
+       
+      #comment-box {
+        padding: 1rem;
+      }
+
+      .comment-item.nested {
+        margin-left: 0;
+      }
+    }
   </style>
 
   <script>
     const WORKER_URL = '{{ site.comments.waline_serverUrl }}';
     const PAGE_URL = '{{ page.url }}';
+    const REQUIRED_META = {{ site.comments.waline_requiredMeta | jsonify }};
+     
+    // 设置必填字段
+    const nickInput = document.querySelector('input[name="nick"]');
+    const mailInput = document.querySelector('input[name="mail"]');
+    if (REQUIRED_META.includes('nick')) nickInput.required = true;
+    if (REQUIRED_META.includes('mail')) mailInput.required = true;
      
     async function loadComments() {
       try {
@@ -177,6 +316,9 @@
       const container = document.getElementById('comments-list');
       container.innerHTML = '';
        
+      // 按时间倒序（最新优先）
+      comments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+       
       const grouped = {};
       comments.forEach(c => {
         if (!c.parent_id) {
@@ -188,11 +330,11 @@
         }
       });
 
-      Object.values(grouped).forEach(({ comment, replies }) => {
+      Object.values(grouped).sort((a, b) => new Date(b.comment.created_at) - new Date(a.comment.created_at)).forEach(({ comment, replies }) => {
         if (comment) {
           const div = createCommentHTML(comment, false);
           container.appendChild(div);
-          replies.forEach(reply => {
+          replies.sort((a, b) => new Date(a.created_at) - new Date(b.created_at)).forEach(reply => {
             const replyDiv = createCommentHTML(reply, true);
             container.appendChild(replyDiv);
           });
@@ -203,13 +345,16 @@
     function createCommentHTML(comment, isNested) {
       const div = document.createElement('div');
       div.className = isNested ? 'comment-item nested' : 'comment-item';
+      const date = new Date(comment.created_at);
+      const timeStr = date.toLocaleDateString('zh-CN') + ' ' + date.toLocaleTimeString('zh-CN', {hour: '2-digit', minute:'2-digit'});
+       
       div.innerHTML = `
         <div class="comment-meta">
-          <strong>${escapeHtml(comment.nickname)}</strong> 
-          ${comment.mail ? `&lt;${escapeHtml(comment.mail)}&gt;` : ''}
-          · ${new Date(comment.created_at).toLocaleString()}
+          <strong>${escapeHtml(comment.nickname)}</strong>
+          <span>·</span>
+          <span>${timeStr}</span>
         </div>
-        <div class="comment-text">${escapeHtml(comment.content).replace(/\n/g, '<br>')}</div>
+        <div class="comment-text">${escapeHtml(comment.content)}</div>
         <div class="comment-reply">
           <a onclick="replyTo('${comment.id}', '${escapeHtml(comment.nickname)}')">回复</a>
         </div>
@@ -218,21 +363,30 @@
     }
 
     function escapeHtml(text) {
-      const div = document.createElement('div');
-      div.textContent = text;
-      return div.innerHTML;
+      const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+      };
+      return text.replace(/[&<>"']/g, m => map[m]);
     }
 
     function replyTo(commentId, nickname) {
       document.querySelector('input[name="parent_id"]').value = commentId;
       document.querySelector('textarea[name="comment"]').focus();
-      document.querySelector('textarea[name="comment"]').placeholder = `回复 ${nickname}...`;
+      document.querySelector('textarea[name="comment"]').placeholder = `回复 @${nickname}...`;
+      document.querySelector('textarea[name="comment"]').value = `@${nickname} `;
     }
 
     document.getElementById('comment-form').addEventListener('submit', async (e) => {
       e.preventDefault();
       const form = e.target;
       const parentId = form.querySelector('input[name="parent_id"]').value || null;
+      const button = form.querySelector('button');
+      button.disabled = true;
+      button.textContent = '提交中...';
        
       try {
         const res = await fetch(`${WORKER_URL}api/comment`, {
@@ -251,17 +405,22 @@
         });
         const data = await res.json();
         if (data.errno === 0) {
-          alert('评论已提交');
           form.reset();
           document.querySelector('input[name="parent_id"]').value = '';
-          document.querySelector('textarea[name="comment"]').placeholder = '评论内容...';
+          document.querySelector('textarea[name="comment"]').placeholder = '说说你的想法...';
           loadComments();
+          button.textContent = '提交评论';
+          button.disabled = false;
         } else {
           alert('提交失败：' + (data.errmsg || 'Unknown error'));
+          button.textContent = '提交评论';
+          button.disabled = false;
         }
       } catch (err) {
         console.error('[Comments] Submit error:', err);
         alert('提交失败');
+        button.textContent = '提交评论';
+        button.disabled = false;
       }
     });
 
