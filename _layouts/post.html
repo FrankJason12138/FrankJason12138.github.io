@@ -161,10 +161,13 @@
   <script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.19.0/js/md5.min.js"></script>
 
   <style>
-    /* Valine 经典主题皮肤 */
+    /* Valine 经典主题皮肤 - 居中版 */
     .comment-section {
-      max-width: 100%;
-      margin: 2.5rem 0 1.5rem;
+      max-width: 720px; /* 限制最大宽度，保持与推文文章主体宽度一致 */
+      width: 100%;
+      margin: 2.5rem auto 1.5rem; /* auto 上下留白并自动左右居中 */
+      padding: 0 1rem; /* 兼容移动端防止贴边 */
+      box-sizing: border-box;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       color: #555;
     }
