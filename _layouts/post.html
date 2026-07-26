@@ -130,18 +130,26 @@
    
   <script>
     function initWaline() {
+      console.log('[Waline] Attempting to initialize. Waline defined:', typeof Waline !== 'undefined');
       if (typeof Waline !== 'undefined') {
-        Waline.init({
-          el: '#waline',
-          serverURL: '{{ site.comments.waline_serverUrl }}',
-          placeholder: '{{ site.comments.waline_placeholder }}',
-          lang: '{{ site.comments.waline_lang }}',
-          dark: '{{ site.comments.waline_dark }}',
-          imageUpload: {{ site.comments.waline_imageUpload }},
-          requiredMeta: {{ site.comments.waline_requiredMeta | jsonify }},
-          commentSorting: 'latest'
-        });
+        console.log('[Waline] Library loaded. Initializing...');
+        try {
+          Waline.init({
+            el: '#waline',
+            serverURL: '{{ site.comments.waline_serverUrl }}',
+            placeholder: '{{ site.comments.waline_placeholder }}',
+            lang: '{{ site.comments.waline_lang }}',
+            dark: '{{ site.comments.waline_dark }}',
+            imageUpload: {{ site.comments.waline_imageUpload }},
+            requiredMeta: {{ site.comments.waline_requiredMeta | jsonify }},
+            commentSorting: 'latest'
+          });
+          console.log('[Waline] Initialization successful');
+        } catch (err) {
+          console.error('[Waline] Initialization error:', err);
+        }
       } else {
+        console.log('[Waline] Library not ready, retrying...');
         setTimeout(initWaline, 100);
       }
     }
