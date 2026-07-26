@@ -126,185 +126,227 @@
 
   {% if site.comments.waline %}
   <section class="comment-section">
-    <h3 style="margin-bottom: 1.5rem; font-size: 1.25rem; font-weight: 600;">评论</h3>
-     
-    <div id="comments-list" style="margin-bottom: 2rem;"></div>
+    <div class="vheader-title">
+      <span class="vcount" id="comment-count">0</span> 条评论
+    </div>
 
-    <div id="comment-box">
-      <h4 style="margin-bottom: 1rem; font-size: 1rem; font-weight: 500;">发表评论</h4>
+    <!-- 评论列表区域 -->
+    <div id="comments-list" class="vlist"></div>
+
+    <!-- 评论输入框区域 (仿 Valine 样式) -->
+    <div id="comment-box" class="vcard">
       <form id="comment-form">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
-          <input type="text" name="nick" placeholder="昵称" {% unless site.comments.waline_requiredMeta contains 'nick' %}{% endunless %} />
-          <input type="email" name="mail" placeholder="邮箱" {% unless site.comments.waline_requiredMeta contains 'mail' %}{% endunless %} />
+        <div class="vinput-header">
+          <input type="text" name="nick" placeholder="昵称 *" required />
+          <input type="email" name="mail" placeholder="邮箱 *" required />
+          <input type="url" name="site" placeholder="网址 (http://)" />
         </div>
-        <input type="url" name="site" placeholder="网址 (可选)" style="width: 100%; margin-bottom: 0.75rem;" />
-        <textarea name="comment" placeholder="说说你的想法..." required style="width: 100%; margin-bottom: 0.75rem;"></textarea>
+        <div class="vinput-body">
+          <textarea name="comment" placeholder="欢迎留下你的见解..." required></textarea>
+        </div>
+        <div class="vinput-footer">
+          <div id="reply-notice" class="reply-notice" style="display: none;">
+            <span>正在回复 <strong id="reply-target"></strong></span>
+            <a href="javascript:void(0)" onclick="cancelReply()">取消回复</a>
+          </div>
+          <button type="submit" class="vbtn">提交评论</button>
+        </div>
         <input type="hidden" name="url" value="{{ page.url }}" />
         <input type="hidden" name="parent_id" value="" />
-        <button type="submit" style="align-self: flex-start;">提交评论</button>
       </form>
     </div>
   </section>
 
+  <!-- MD5 库用于生成 Gravatar 头像 -->
+  <script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.19.0/js/md5.min.js"></script>
+
   <style>
+    /* Valine 经典主题皮肤 */
     .comment-section {
-      width: 100%;
       max-width: 100%;
-      margin: 3rem 0;
+      margin: 2.5rem 0 1.5rem;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #555;
+    }
+    
+    .vheader-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #f0f0f0;
+      margin-bottom: 1.5rem;
       color: #333;
     }
-     
-    #comment-box {
-      background: #fafbfc;
-      border: 1px solid #e1e4e8;
-      border-radius: 6px;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-    }
+    .vcount { color: #0066cc; font-weight: bold; }
 
-    #comment-form {
-      display: flex;
-      flex-direction: column;
-    }
-
-    #comment-form input[type="text"],
-    #comment-form input[type="email"],
-    #comment-form input[type="url"],
-    #comment-form textarea {
-      padding: 0.75rem;
-      border: 1px solid #d1d5da;
-      border-radius: 6px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-      font-size: 0.95rem;
-      transition: border-color 0.2s;
-    }
-
-    #comment-form input[type="text"]:focus,
-    #comment-form input[type="email"]:focus,
-    #comment-form input[type="url"]:focus,
-    #comment-form textarea:focus {
-      outline: none;
-      border-color: #0366d6;
-      box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.1);
-    }
-
-    #comment-form textarea {
-      min-height: 120px;
-      resize: vertical;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, monospace;
-    }
-
-    #comment-form button {
-      padding: 0.5rem 1rem;
-      background: #28a745;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.95rem;
-      font-weight: 500;
-      transition: background-color 0.2s;
-      margin-top: 0.5rem;
-    }
-
-    #comment-form button:hover {
-      background: #218838;
-    }
-
-    #comment-form button:active {
-      background: #1e7e34;
-    }
-
-    .comment-item {
-      margin: 1.25rem 0;
+    /* 表单样式 */
+    .vcard {
+      border: 1px solid #f0f0f0;
+      border-radius: 8px;
       padding: 1rem;
-      background: white;
-      border: 1px solid #e1e4e8;
-      border-radius: 6px;
-      transition: box-shadow 0.2s;
+      background: #fafafa;
+      margin-top: 2rem;
+      transition: all 0.3s ease;
     }
-
-    .comment-item:hover {
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    .vcard:focus-within {
+      background: #fff;
+      border-color: #b3d7ff;
+      box-shadow: 0 4px 12px rgba(0,102,204,0.08);
     }
-
-    .comment-item.nested {
-      margin-left: 0;
-      margin-top: 0.75rem;
-      background: #f6f8fa;
-      border-left: 3px solid #0366d6;
-      padding-left: calc(1rem - 2px);
-    }
-
-    .comment-meta {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.9rem;
-      color: #586069;
+    
+    .vinput-header {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.75rem;
       margin-bottom: 0.75rem;
     }
-
-    .comment-meta strong {
-      color: #24292e;
-      font-weight: 600;
+    .vinput-header input {
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      background: #fff;
+      outline: none;
+      transition: border-color 0.2s;
     }
+    .vinput-header input:focus { border-color: #0066cc; }
 
-    .comment-text {
-      line-height: 1.6;
-      color: #24292e;
-      word-break: break-word;
-      white-space: pre-wrap;
+    .vinput-body textarea {
+      width: 100%;
+      min-height: 110px;
+      padding: 0.75rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      resize: vertical;
+      outline: none;
+      box-sizing: border-box;
+      background: #fff;
     }
+    .vinput-body textarea:focus { border-color: #0066cc; }
 
-    .comment-reply {
+    .vinput-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-top: 0.75rem;
+    }
+    .reply-notice {
       font-size: 0.85rem;
+      color: #666;
     }
-
-    .comment-reply a {
-      color: #0366d6;
-      cursor: pointer;
+    .reply-notice a {
+      color: #e53e3e;
+      margin-left: 0.5rem;
       text-decoration: none;
-      transition: color 0.2s;
+    }
+    .reply-notice a:hover { text-decoration: underline; }
+
+    .vbtn {
+      padding: 0.5rem 1.25rem;
+      background: #0066cc;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      margin-left: auto;
+      transition: background 0.2s;
+    }
+    .vbtn:hover { background: #0052a3; }
+
+    /* 评论列表布局 */
+    .vlist { margin-bottom: 1.5rem; }
+    
+    .vitem {
+      display: flex;
+      gap: 1rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px dashed #e2e8f0;
+    }
+    .vitem.nested-item {
+      padding: 1rem 0 0 0;
+      border-bottom: none;
+      border-top: 1px dashed #edf2f7;
     }
 
-    .comment-reply a:hover {
-      color: #0256c7;
-      text-decoration: underline;
+    .vavatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      object-fit: cover;
+      background: #edf2f7;
+    }
+    .nested-item .vavatar {
+      width: 34px;
+      height: 34px;
     }
 
-    @media (max-width: 768px) {
-      #comment-form > div {
-        grid-template-columns: 1fr !important;
-      }
-       
-      #comment-box {
-        padding: 1rem;
-      }
+    .vcontent-box { flex: 1; min-width: 0; }
 
-      .comment-item.nested {
-        margin-left: 0;
-      }
+    .vhead {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+      font-size: 0.875rem;
+    }
+    .vauthor {
+      font-weight: 600;
+      color: #2d3748;
+      text-decoration: none;
+    }
+    .vauthor:hover { color: #0066cc; }
+    
+    .vtime {
+      font-size: 0.75rem;
+      color: #a0aec0;
+    }
+
+    .vtext {
+      font-size: 0.925rem;
+      line-height: 1.6;
+      color: #4a5568;
+      word-break: break-word;
+      margin: 0.4rem 0;
+    }
+
+    .vaction {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 0.4rem;
+    }
+    .vat {
+      font-size: 0.775rem;
+      color: #0066cc;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .vat:hover { text-decoration: underline; }
+
+    /* 嵌套子回复容器 */
+    .vchildren {
+      margin-left: 0.5rem;
+      padding-left: 1rem;
+      border-left: 2px solid #edf2f7;
+      margin-top: 0.5rem;
     }
   </style>
 
   <script>
     const WORKER_URL = '{{ site.comments.waline_serverUrl }}';
     const PAGE_URL = '{{ page.url }}';
-    const REQUIRED_META = {{ site.comments.waline_requiredMeta | jsonify }};
-     
-    // 设置必填字段
-    const nickInput = document.querySelector('input[name="nick"]');
-    const mailInput = document.querySelector('input[name="mail"]');
-    if (REQUIRED_META.includes('nick')) nickInput.required = true;
-    if (REQUIRED_META.includes('mail')) mailInput.required = true;
      
     async function loadComments() {
       try {
         const res = await fetch(`${WORKER_URL}api/comment?type=list&url=${encodeURIComponent(PAGE_URL)}&pageSize=100`);
         const data = await res.json();
         if (data.errno === 0 && data.data.comments) {
+          document.getElementById('comment-count').textContent = data.data.comments.length;
           renderComments(data.data.comments);
         }
       } catch (err) {
@@ -315,9 +357,6 @@
     function renderComments(comments) {
       const container = document.getElementById('comments-list');
       container.innerHTML = '';
-       
-      // 按时间倒序（最新优先）
-      comments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
        
       const grouped = {};
       comments.forEach(c => {
@@ -330,64 +369,86 @@
         }
       });
 
-      Object.values(grouped).sort((a, b) => new Date(b.comment.created_at) - new Date(a.comment.created_at)).forEach(({ comment, replies }) => {
+      Object.values(grouped).forEach(({ comment, replies }) => {
         if (comment) {
-          const div = createCommentHTML(comment, false);
-          container.appendChild(div);
-          replies.sort((a, b) => new Date(a.created_at) - new Date(b.created_at)).forEach(reply => {
-            const replyDiv = createCommentHTML(reply, true);
-            container.appendChild(replyDiv);
-          });
+          const commentEl = createCommentItem(comment, false);
+          
+          if (replies.length > 0) {
+            const childrenContainer = document.createElement('div');
+            childrenContainer.className = 'vchildren';
+            replies.forEach(reply => {
+              childrenContainer.appendChild(createCommentItem(reply, true));
+            });
+            commentEl.querySelector('.vcontent-box').appendChild(childrenContainer);
+          }
+          
+          container.appendChild(commentEl);
         }
       });
     }
 
-    function createCommentHTML(comment, isNested) {
-      const div = document.createElement('div');
-      div.className = isNested ? 'comment-item nested' : 'comment-item';
-      const date = new Date(comment.created_at);
-      const timeStr = date.toLocaleDateString('zh-CN') + ' ' + date.toLocaleTimeString('zh-CN', {hour: '2-digit', minute:'2-digit'});
-       
-      div.innerHTML = `
-        <div class="comment-meta">
-          <strong>${escapeHtml(comment.nickname)}</strong>
-          <span>·</span>
-          <span>${timeStr}</span>
-        </div>
-        <div class="comment-text">${escapeHtml(comment.content)}</div>
-        <div class="comment-reply">
-          <a onclick="replyTo('${comment.id}', '${escapeHtml(comment.nickname)}')">回复</a>
+    function getGravatar(mail) {
+      if (!mail) return 'https://sdn.geekzu.org/avatar/?d=mp';
+      const hash = md5(mail.trim().toLowerCase());
+      return `https://sdn.geekzu.org/avatar/${hash}?d=identicon`;
+    }
+
+    function createCommentItem(comment, isNested) {
+      const item = document.createElement('div');
+      item.className = isNested ? 'vitem nested-item' : 'vitem';
+      
+      const avatarUrl = getGravatar(comment.mail);
+      const authorHtml = comment.site 
+        ? `<a href="${escapeHtml(comment.site)}" target="_blank" rel="nofollow" class="vauthor">${escapeHtml(comment.nickname)}</a>`
+        : `<span class="vauthor">${escapeHtml(comment.nickname)}</span>`;
+
+      item.innerHTML = `
+        <img class="vavatar" src="${avatarUrl}" alt="${escapeHtml(comment.nickname)}">
+        <div class="vcontent-box">
+          <div class="vhead">
+            ${authorHtml}
+            <span class="vtime">${new Date(comment.created_at).toLocaleDateString()} ${new Date(comment.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
+          </div>
+          <div class="vtext">${escapeHtml(comment.content).replace(/\n/g, '<br>')}</div>
+          <div class="vaction">
+            <span class="vat" onclick="replyTo('${comment.id}', '${escapeHtml(comment.nickname)}')">回复</span>
+          </div>
         </div>
       `;
-      return div;
+      return item;
     }
 
     function escapeHtml(text) {
-      const map = {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#039;'
-      };
-      return text.replace(/[&<>"']/g, m => map[m]);
+      if (!text) return '';
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
     }
 
     function replyTo(commentId, nickname) {
       document.querySelector('input[name="parent_id"]').value = commentId;
-      document.querySelector('textarea[name="comment"]').focus();
-      document.querySelector('textarea[name="comment"]').placeholder = `回复 @${nickname}...`;
-      document.querySelector('textarea[name="comment"]').value = `@${nickname} `;
+      document.getElementById('reply-target').textContent = `@${nickname}`;
+      document.getElementById('reply-notice').style.display = 'block';
+      
+      const textarea = document.querySelector('textarea[name="comment"]');
+      textarea.focus();
+      textarea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function cancelReply() {
+      document.querySelector('input[name="parent_id"]').value = '';
+      document.getElementById('reply-notice').style.display = 'none';
     }
 
     document.getElementById('comment-form').addEventListener('submit', async (e) => {
       e.preventDefault();
       const form = e.target;
       const parentId = form.querySelector('input[name="parent_id"]').value || null;
-      const button = form.querySelector('button');
-      button.disabled = true;
-      button.textContent = '提交中...';
-       
+      const submitBtn = form.querySelector('button[type="submit"]');
+      
+      submitBtn.disabled = true;
+      submitBtn.textContent = '提交中...';
+
       try {
         const res = await fetch(`${WORKER_URL}api/comment`, {
           method: 'POST',
@@ -405,22 +466,18 @@
         });
         const data = await res.json();
         if (data.errno === 0) {
-          form.reset();
-          document.querySelector('input[name="parent_id"]').value = '';
-          document.querySelector('textarea[name="comment"]').placeholder = '说说你的想法...';
+          form.querySelector('textarea[name="comment"]').value = '';
+          cancelReply();
           loadComments();
-          button.textContent = '提交评论';
-          button.disabled = false;
         } else {
           alert('提交失败：' + (data.errmsg || 'Unknown error'));
-          button.textContent = '提交评论';
-          button.disabled = false;
         }
       } catch (err) {
         console.error('[Comments] Submit error:', err);
         alert('提交失败');
-        button.textContent = '提交评论';
-        button.disabled = false;
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '提交评论';
       }
     });
 
