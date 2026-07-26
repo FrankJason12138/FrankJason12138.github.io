@@ -128,12 +128,12 @@
   <div id="waline"></div>
 
   <link rel="stylesheet" href="https://unpkg.com/@waline/client/dist/waline.css" />
-  <script src="https://unpkg.com/@waline/client/dist/index.global.js" onload="initWalineComment()"></script>
+  <script defer src="https://unpkg.com/@waline/client/dist/index.global.js"></script>
    
   <script>
-    function initWalineComment() {
-      console.log('[Waline] Script loaded, Waline defined:', typeof Waline !== 'undefined');
+    function tryInitWaline() {
       if (typeof Waline !== 'undefined' && Waline.init) {
+        console.log('[Waline] Library ready, initializing...');
         try {
           Waline.init({
             el: '#waline',
@@ -145,13 +145,19 @@
             requiredMeta: {{ site.comments.waline_requiredMeta | jsonify }},
             commentSorting: 'latest'
           });
-          console.log('[Waline] Initialization successful');
+          console.log('[Waline] Success');
         } catch (err) {
-          console.error('[Waline] Initialization error:', err);
+          console.error('[Waline] Init error:', err);
         }
       } else {
-        console.error('[Waline] Waline library not available');
+        console.log('[Waline] Not ready, retrying...');
+        setTimeout(tryInitWaline, 200);
       }
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', tryInitWaline);
+    } else {
+      tryInitWaline();
     }
   </script>
   {% endif %}
