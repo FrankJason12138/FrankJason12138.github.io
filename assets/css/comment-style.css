@@ -1,0 +1,210 @@
+/* 卡通风格评论区域 - 与文章同宽 */
+.comment-section {
+  max-width: 720px;
+  margin: 2.5rem auto;
+  padding: 0 1rem;
+}
+
+/* 标题 */
+.comments-title {
+  font-family: var(--font-display, 'Noto Sans SC', sans-serif);
+  font-size: 1.4rem;
+  color: #5a4a3a;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.comments-title::before {
+  content: '💬';
+  font-size: 1.2rem;
+}
+
+/* 评论表单卡片 */
+.comment-card {
+  background: linear-gradient(135deg, #fff9f0 0%, #fff5e6 100%);
+  border: 2px solid #f0e6d8;
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(90, 74, 58, 0.08);
+  margin-bottom: 2rem;
+}
+
+.comment-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.comment-form textarea {
+  grid-column: 1 / -1;
+}
+
+.comment-form input,
+.comment-form textarea {
+  padding: 0.875rem 1rem;
+  border: 2px solid #e8dfd0;
+  border-radius: 12px;
+  background: #fff;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.comment-form input:focus,
+.comment-form textarea:focus {
+  outline: none;
+  border-color: #ff9f7f;
+  box-shadow: 0 0 0 3px rgba(255, 159, 127, 0.15);
+}
+
+.comment-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.comment-form input::placeholder,
+.comment-form textarea::placeholder {
+  color: #b8a999;
+}
+
+/* 提交按钮 */
+.submit-btn {
+  grid-column: 1 / -1;
+  padding: 0.875rem 1.5rem;
+  background: linear-gradient(135deg, #ff9f7f 0%, #ff7a5c 100%);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(255, 122, 92, 0.3);
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 122, 92, 0.4);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+/* 小提示 */
+.form-hint {
+  grid-column: 1 / -1;
+  font-size: 0.8rem;
+  color: #a89080;
+  margin-top: -0.5rem;
+}
+
+/* 评论列表 */
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* 单条评论 */
+.comment-item {
+  background: #fff;
+  border: 2px solid #f5efe8;
+  border-radius: 16px;
+  padding: 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.comment-item:hover {
+  border-color: #ffdfc4;
+  box-shadow: 0 4px 15px rgba(255, 200, 150, 0.15);
+}
+
+.comment-item.nested {
+  margin-left: 2rem;
+  background: #fffbf5;
+  border-left: 3px solid #ffcfaf;
+}
+
+/* 评论头部 */
+.comment-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.comment-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffcfaf 0%, #ffb386 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.comment-author {
+  font-weight: 600;
+  color: #5a4a3a;
+}
+
+.comment-time {
+  font-size: 0.8rem;
+  color: #a89080;
+}
+
+/* 评论内容 */
+.comment-body {
+  color: #6b5b4f;
+  line-height: 1.7;
+  word-break: break-word;
+}
+
+/* 回复按钮 */
+.comment-action {
+  margin-top: 0.75rem;
+}
+
+.comment-action a {
+  font-size: 0.85rem;
+  color: #ff9f7f;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.comment-action a:hover {
+  color: #ff7a5c;
+  text-decoration: underline;
+}
+
+/* 空状态 */
+.comments-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #a89080;
+}
+
+.comments-empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+/* 响应式 */
+@media (max-width: 600px) {
+  .comment-form {
+    grid-template-columns: 1fr;
+  }
+
+  .comment-item.nested {
+    margin-left: 1rem;
+  }
+
+  .comment-section {
+    padding: 0 0.75rem;
+  }
+}

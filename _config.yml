@@ -31,7 +31,7 @@ comments:
   waline_lang: 'zh-CN'
   waline_dark: 'auto'
   waline_imageUpload: false
-  waline_requiredMeta: ['nick', 'mail']
+  waline_requiredMeta: []  # 改为空数组，昵称和邮箱就变成选填了
 
 
 # 分享
