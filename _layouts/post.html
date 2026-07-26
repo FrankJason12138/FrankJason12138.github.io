@@ -1,82 +1,311 @@
-{% if site.comments.waline %}
+<!DOCTYPE html>
+<html>
+{% include post-head.html %}
+
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+  <input id="nm-switch" type="hidden" value="{{ site.nightMode }}"> {% include header.html %}
+
+  <header
+    class="g-banner post-header {{ site.postPatterns | prepend: 'post-pattern-' }} {{ site.theme-color | prepend: 'bgcolor-' }} {% unless page.cover %}post-no-cover{% endunless %}"
+    data-theme="{{ site.theme-color }}"
+  >
+    <div class="post-wrapper">
+      <div class="post-tags">
+        {% if page.tags.size > 0 %}
+          {% for tag in page.tags  %}
+            <a href="{{ "/tags.html#" | append: tag | relative_url }}" class="post-tag">{{ tag }}</a>
+          {% endfor %}
+        {% endif %}
+      </div>
+      <h1>{{ page.title }}</h1>
+      <div class="post-meta">
+        <span class="post-meta-item"><i class="iconfont icon-author"></i>{% if page.author %}{{ page.author }}{% else %}{{ site.author }}{% endif %}</span>
+        <time class="post-meta-item" datetime="{{ page.date | date:"%y-%m-%d" }}"><i class="iconfont icon-date"></i>{{ page.date | date_to_string }}</time>
+      </div>
+    </div>
+    {% if page.cover %}
+    <div class="filter"></div>
+      <div class="post-cover" style="background: url('{{ page.cover | relative_url }}') center no-repeat; background-size: cover;"></div>
+    {% endif %}
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5096773500981125"
+     crossorigin="anonymous"></script>
+  </header>
+
+  <div class="post-content visible">
+    {% if page.subtitle %}
+    <h2 class="post-subtitle">{{ page.subtitle }}</h2>
+    {% endif %}
+
+    <article class="markdown-body">
+      {{ page.content }}
+    </article>
+
+    {% if site.social-share %}
+    <div class="social-share-wrapper">
+      <div class="social-share"></div>
+    </div>
+    {% endif %}
+  </div>
+
+  <section class="author-detail">
+    <section class="post-footer-item author-card">
+      <div class="avatar">
+        <img src="{{ site.avatar | relative_url }}" alt="" loading="lazy" decoding="async">
+      </div>
+      <div class="author-name" rel="author">{{ site.author }}</div>
+      <div class="bio">
+        <p>{{ site.bio }}</p>
+      </div>
+      {% if site.sns.size > 0 %}
+      <ul class="sns-links">
+        {% for s in site.sns %}
+        <li>
+          <a href="{{ s[1] }}" target="_blank">
+                    <i class="iconfont icon-{{ s[0] }}"></i>
+                </a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </section>
+    <section class="post-footer-item read-next">
+      {% if page.next.url %}
+      <div class="read-next-item">
+        <a href="{{ page.next.url | relative_url }}" class="read-next-link"></a>
+        <section>
+          <span>{{ page.next.title }}</span>
+          <p>{{ page.next.excerpt | strip_html | strip_newlines | truncate: 60}}</p>
+        </section>
+        {% if page.next.cover %}
+        <div class="filter"></div>
+        <img src="{{ page.next.cover | relative_url }}" alt="" loading="lazy" decoding="async">
+        {% endif %}
+     </div>
+      {% endif %}
+
+      {% if page.previous.url %}
+      <div class="read-next-item">
+        <a href="{{ page.previous.url | relative_url }}" class="read-next-link"></a>
+          <section>
+            <span>{{ page.previous.title }}</span>
+            <p>{{ page.previous.excerpt | strip_html | strip_newlines | truncate: 60}}</p>
+          </section>
+          {% if page.previous.cover %}
+          <div class="filter"></div>
+          <img src="{{ page.previous.cover | relative_url }}" alt="" loading="lazy" decoding="async">
+          {% endif %}
+      </div>
+      {% endif %}
+    </section>
+    {% if site.comments.waline %}
+    <section class="post-footer-item comment">
+    <div id="waline"></div>
+     </section>
+    {% endif %}
+  </section>
+
+  {% include footer.html %}
+
+  <script src="{{ "/assets/js/social-share.min.js" | relative_url }}"></script>
+  <script>
+    socialShare('.social-share', {
+      sites: [
+        {% for i in site.social-share-items %}
+          '{{ i }}'
+          {% if forloop.last == false %},
+          {% endif %}
+        {% endfor %}
+      ],
+      wechatQrcodeTitle: "分享到微信朋友圈",
+      wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
+    });
+  </script>
+
+  {% if site.comments.waline %}
   <section class="comment-section">
-    <h3 class="comments-title">发表评论</h3>
-    
-    <!-- 评论表单 -->
-    <div class="comment-card">
-      <form id="comment-form" class="comment-form">
-        <input type="text" name="nick" placeholder="昵称（选填）" />
-        <input type="email" name="mail" placeholder="邮箱（选填）" />
-        <input type="url" name="site" placeholder="网站（选填）" />
-        <textarea name="comment" placeholder="写下你的评论..." required></textarea>
+    <h3 style="margin-bottom: 1.5rem; font-size: 1.25rem; font-weight: 600;">评论</h3>
+     
+    <div id="comments-list" style="margin-bottom: 2rem;"></div>
+
+    <div id="comment-box">
+      <h4 style="margin-bottom: 1rem; font-size: 1rem; font-weight: 500;">发表评论</h4>
+      <form id="comment-form">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
+          <input type="text" name="nick" placeholder="昵称" {% unless site.comments.waline_requiredMeta contains 'nick' %}{% endunless %} />
+          <input type="email" name="mail" placeholder="邮箱" {% unless site.comments.waline_requiredMeta contains 'mail' %}{% endunless %} />
+        </div>
+        <input type="url" name="site" placeholder="网址 (可选)" style="width: 100%; margin-bottom: 0.75rem;" />
+        <textarea name="comment" placeholder="说说你的想法..." required style="width: 100%; margin-bottom: 0.75rem;"></textarea>
         <input type="hidden" name="url" value="{{ page.url }}" />
         <input type="hidden" name="parent_id" value="" />
-        <button type="submit" class="submit-btn">🚀 提交评论</button>
-        <p class="form-hint">昵称和邮箱为选填项，不填写也能发表评论</p>
+        <button type="submit" style="align-self: flex-start;">提交评论</button>
       </form>
-    </div>
-
-    <!-- 评论列表 -->
-    <div id="comments-list" class="comments-list"></div>
-    
-    <!-- 空状态 -->
-    <div id="comments-empty" class="comments-empty" style="display: none;">
-      <div class="comments-empty-icon">💭</div>
-      <p>还没有评论，快来抢沙发吧！</p>
     </div>
   </section>
 
-  <link rel="stylesheet" href="{{ "/assets/css/comment-style.css" | relative_url }}">
+  <style>
+    .comment-section {
+      width: 100%;
+      max-width: 100%;
+      margin: 3rem 0;
+      color: #333;
+    }
+     
+    #comment-box {
+      background: #fafbfc;
+      border: 1px solid #e1e4e8;
+      border-radius: 6px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    #comment-form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #comment-form input[type="text"],
+    #comment-form input[type="email"],
+    #comment-form input[type="url"],
+    #comment-form textarea {
+      padding: 0.75rem;
+      border: 1px solid #d1d5da;
+      border-radius: 6px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+    }
+
+    #comment-form input[type="text"]:focus,
+    #comment-form input[type="email"]:focus,
+    #comment-form input[type="url"]:focus,
+    #comment-form textarea:focus {
+      outline: none;
+      border-color: #0366d6;
+      box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.1);
+    }
+
+    #comment-form textarea {
+      min-height: 120px;
+      resize: vertical;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, monospace;
+    }
+
+    #comment-form button {
+      padding: 0.5rem 1rem;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: background-color 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    #comment-form button:hover {
+      background: #218838;
+    }
+
+    #comment-form button:active {
+      background: #1e7e34;
+    }
+
+    .comment-item {
+      margin: 1.25rem 0;
+      padding: 1rem;
+      background: white;
+      border: 1px solid #e1e4e8;
+      border-radius: 6px;
+      transition: box-shadow 0.2s;
+    }
+
+    .comment-item:hover {
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .comment-item.nested {
+      margin-left: 0;
+      margin-top: 0.75rem;
+      background: #f6f8fa;
+      border-left: 3px solid #0366d6;
+      padding-left: calc(1rem - 2px);
+    }
+
+    .comment-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: #586069;
+      margin-bottom: 0.75rem;
+    }
+
+    .comment-meta strong {
+      color: #24292e;
+      font-weight: 600;
+    }
+
+    .comment-text {
+      line-height: 1.6;
+      color: #24292e;
+      word-break: break-word;
+      white-space: pre-wrap;
+    }
+
+    .comment-reply {
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+    }
+
+    .comment-reply a {
+      color: #0366d6;
+      cursor: pointer;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .comment-reply a:hover {
+      color: #0256c7;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      #comment-form > div {
+        grid-template-columns: 1fr !important;
+      }
+       
+      #comment-box {
+        padding: 1rem;
+      }
+
+      .comment-item.nested {
+        margin-left: 0;
+      }
+    }
+  </style>
 
   <script>
     const WORKER_URL = '{{ site.comments.waline_serverUrl }}';
     const PAGE_URL = '{{ page.url }}';
-    
-    // 获取随机卡通头像 emoji
-    const avatarEmojis = ['🐱', '🐶', '🐰', '🐼', '🦊', '🦁', '🐸', '🐵', '🐻', '🐨', '🦄', '🐯', '🦋', '🌸', '🌈', '⭐'];
-    function getRandomEmoji() {
-      return avatarEmojis[Math.floor(Math.random() * avatarEmojis.length)];
-    }
-
-    // 获取存储的昵称
-    function getStoredNick() {
-      return localStorage.getItem('waline_nick') || '';
-    }
-    function getStoredMail() {
-      return localStorage.getItem('waline_mail') || '';
-    }
-    function getStoredSite() {
-      return localStorage.getItem('waline_site') || '';
-    }
-    
-    // 保存用户信息
-    function saveUserInfo(nick, mail, site) {
-      if (nick) localStorage.setItem('waline_nick', nick);
-      if (mail) localStorage.setItem('waline_mail', mail);
-      if (site) localStorage.setItem('waline_site', site);
-    }
-
-    // 预填充表单
-    document.addEventListener('DOMContentLoaded', function() {
-      const nickInput = document.querySelector('input[name="nick"]');
-      const mailInput = document.querySelector('input[name="mail"]');
-      const siteInput = document.querySelector('input[name="site"]');
-      
-      if (nickInput) nickInput.value = getStoredNick();
-      if (mailInput) mailInput.value = getStoredMail();
-      if (siteInput) siteInput.value = getStoredSite();
-    });
+    const REQUIRED_META = {{ site.comments.waline_requiredMeta | jsonify }};
+     
+    // 设置必填字段
+    const nickInput = document.querySelector('input[name="nick"]');
+    const mailInput = document.querySelector('input[name="mail"]');
+    if (REQUIRED_META.includes('nick')) nickInput.required = true;
+    if (REQUIRED_META.includes('mail')) mailInput.required = true;
      
     async function loadComments() {
       try {
         const res = await fetch(`${WORKER_URL}api/comment?type=list&url=${encodeURIComponent(PAGE_URL)}&pageSize=100`);
         const data = await res.json();
         if (data.errno === 0 && data.data.comments) {
-          if (data.data.comments.length === 0) {
-            document.getElementById('comments-empty').style.display = 'block';
-          } else {
-            renderComments(data.data.comments);
-          }
+          renderComments(data.data.comments);
         }
       } catch (err) {
         console.error('[Comments] Load error:', err);
@@ -86,6 +315,9 @@
     function renderComments(comments) {
       const container = document.getElementById('comments-list');
       container.innerHTML = '';
+       
+      // 按时间倒序（最新优先）
+      comments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
        
       const grouped = {};
       comments.forEach(c => {
@@ -98,11 +330,11 @@
         }
       });
 
-      Object.values(grouped).forEach(({ comment, replies }) => {
+      Object.values(grouped).sort((a, b) => new Date(b.comment.created_at) - new Date(a.comment.created_at)).forEach(({ comment, replies }) => {
         if (comment) {
           const div = createCommentHTML(comment, false);
           container.appendChild(div);
-          replies.forEach(reply => {
+          replies.sort((a, b) => new Date(a.created_at) - new Date(b.created_at)).forEach(reply => {
             const replyDiv = createCommentHTML(reply, true);
             container.appendChild(replyDiv);
           });
@@ -113,61 +345,49 @@
     function createCommentHTML(comment, isNested) {
       const div = document.createElement('div');
       div.className = isNested ? 'comment-item nested' : 'comment-item';
-      
-      const nickname = comment.nickname || '匿名小可爱';
-      const time = new Date(comment.created_at).toLocaleString('zh-CN', { 
-        month: 'numeric', 
-        day: 'numeric', 
-        hour: '2-digit', 
-        minute: '2-digit' 
-      });
-      
+      const date = new Date(comment.created_at);
+      const timeStr = date.toLocaleDateString('zh-CN') + ' ' + date.toLocaleTimeString('zh-CN', {hour: '2-digit', minute:'2-digit'});
+       
       div.innerHTML = `
-        <div class="comment-header">
-          <div class="comment-avatar">${getRandomEmoji()}</div>
-          <div>
-            <div class="comment-author">${escapeHtml(nickname)}</div>
-            <div class="comment-time">${time}</div>
-          </div>
+        <div class="comment-meta">
+          <strong>${escapeHtml(comment.nickname)}</strong>
+          <span>·</span>
+          <span>${timeStr}</span>
         </div>
-        <div class="comment-body">${escapeHtml(comment.content).replace(/\n/g, '<br>')}</div>
-        <div class="comment-action">
-          <a onclick="replyTo('${comment.id}', '${escapeHtml(nickname)}')">💬 回复</a>
+        <div class="comment-text">${escapeHtml(comment.content)}</div>
+        <div class="comment-reply">
+          <a onclick="replyTo('${comment.id}', '${escapeHtml(comment.nickname)}')">回复</a>
         </div>
       `;
       return div;
     }
 
     function escapeHtml(text) {
-      const div = document.createElement('div');
-      div.textContent = text;
-      return div.innerHTML;
+      const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+      };
+      return text.replace(/[&<>"']/g, m => map[m]);
     }
 
-    let currentReplyId = '';
     function replyTo(commentId, nickname) {
-      currentReplyId = commentId;
       document.querySelector('input[name="parent_id"]').value = commentId;
       document.querySelector('textarea[name="comment"]').focus();
-      document.querySelector('textarea[name="comment"]').placeholder = `回复 @${nickname}：`;
-      window.scrollTo({ top: document.querySelector('.comment-section').offsetTop - 100, behavior: 'smooth' });
+      document.querySelector('textarea[name="comment"]').placeholder = `回复 @${nickname}...`;
+      document.querySelector('textarea[name="comment"]').value = `@${nickname} `;
     }
 
     document.getElementById('comment-form').addEventListener('submit', async (e) => {
       e.preventDefault();
       const form = e.target;
-      const nick = form.nick.value.trim();
-      const mail = form.mail.value.trim();
-      const site = form.site.value.trim();
-      const comment = form.comment.value.trim();
-      
-      if (!comment) {
-        alert('请输入评论内容');
-        return;
-      }
-
       const parentId = form.querySelector('input[name="parent_id"]').value || null;
-      
+      const button = form.querySelector('button');
+      button.disabled = true;
+      button.textContent = '提交中...';
+       
       try {
         const res = await fetch(`${WORKER_URL}api/comment`, {
           method: 'POST',
@@ -175,35 +395,44 @@
           body: JSON.stringify({
             comment: {
               url: PAGE_URL,
-              nick: nick || '匿名小可爱',
-              mail: mail,
-              site: site,
-              comment: comment,
+              nick: form.nick.value,
+              mail: form.mail.value,
+              site: form.site.value,
+              comment: form.comment.value,
               parent_id: parentId
             }
           })
         });
         const data = await res.json();
         if (data.errno === 0) {
-          // 保存用户信息
-          saveUserInfo(nick, mail, site);
-          
-          alert('评论成功！🎉');
           form.reset();
           document.querySelector('input[name="parent_id"]').value = '';
-          document.querySelector('textarea[name="comment"]').placeholder = '写下你的评论...';
+          document.querySelector('textarea[name="comment"]').placeholder = '说说你的想法...';
           loadComments();
+          button.textContent = '提交评论';
+          button.disabled = false;
         } else {
-          alert('提交失败：' + (data.errmsg || '未知错误'));
+          alert('提交失败：' + (data.errmsg || 'Unknown error'));
+          button.textContent = '提交评论';
+          button.disabled = false;
         }
       } catch (err) {
         console.error('[Comments] Submit error:', err);
-        alert('提交失败，请稍后重试');
+        alert('提交失败');
+        button.textContent = '提交评论';
+        button.disabled = false;
       }
     });
 
-    // 页面加载后获取评论
     loadComments();
   </script>
-
   {% endif %}
+
+  <script src="{{ "/assets/js/prism.js" | relative_url }}"></script>
+  <script src="{{ "/assets/js/image-opt.js" | relative_url }}"></script>
+  <script src="{{ "/assets/js/index.min.js" | relative_url }}"></script>
+</body>
+
+</html>
+
+
