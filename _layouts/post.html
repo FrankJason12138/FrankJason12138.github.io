@@ -137,8 +137,8 @@
     <div id="comment-box" class="vcard">
       <form id="comment-form">
         <div class="vinput-header">
-          <input type="text" name="nick" placeholder="昵称 *" required />
-          <input type="email" name="mail" placeholder="邮箱 *" required />
+          <input type="text" name="nick" placeholder="昵称 (选填，默认 Anonymous)" />
+          <input type="email" name="mail" placeholder="邮箱 (选填)" />
           <input type="url" name="site" placeholder="网址 (http://)" />
         </div>
         <div class="vinput-body">
@@ -390,23 +390,32 @@
       });
     }
 
-    function getGravatar(mail) {
-      if (!mail) return 'https://sdn.geekzu.org/avatar/?d=mp';
-      const hash = md5(mail.trim().toLowerCase());
-      return `https://sdn.geekzu.org/avatar/${hash}?d=identicon`;
+    function getGravatar(mail, commentId) {
+      if (mail && mail.trim() !== '') {
+        const hash = md5(mail.trim().toLowerCase());
+        // d=identicon 表示若邮箱无自定义图像，也会展示对应的哈希极客风像素头像
+        return `https://sdn.geekzu.org/avatar/${hash}?d=identicon`;
+      }
+      // 没有邮箱时，根据评论 ID 或随机数生成独特的 Hash 头像，确保不同匿名评论头像不重复
+      const randomSeed = commentId || Math.random().toString();
+      const randomHash = md5(randomSeed);
+      return `https://sdn.geekzu.org/avatar/${randomHash}?d=identicon`;
     }
 
     function createCommentItem(comment, isNested) {
       const item = document.createElement('div');
       item.className = isNested ? 'vitem nested-item' : 'vitem';
       
-      const avatarUrl = getGravatar(comment.mail);
+      // 未填昵称时显示 Anonymous
+      const displayNick = (comment.nickname && comment.nickname.trim()) ? comment.nickname : 'Anonymous';
+      const avatarUrl = getGravatar(comment.mail, comment.id);
+
       const authorHtml = comment.site 
-        ? `<a href="${escapeHtml(comment.site)}" target="_blank" rel="nofollow" class="vauthor">${escapeHtml(comment.nickname)}</a>`
-        : `<span class="vauthor">${escapeHtml(comment.nickname)}</span>`;
+        ? `<a href="${escapeHtml(comment.site)}" target="_blank" rel="nofollow" class="vauthor">${escapeHtml(displayNick)}</a>`
+        : `<span class="vauthor">${escapeHtml(displayNick)}</span>`;
 
       item.innerHTML = `
-        <img class="vavatar" src="${avatarUrl}" alt="${escapeHtml(comment.nickname)}">
+        <img class="vavatar" src="${avatarUrl}" alt="${escapeHtml(displayNick)}">
         <div class="vcontent-box">
           <div class="vhead">
             ${authorHtml}
@@ -414,33 +423,11 @@
           </div>
           <div class="vtext">${escapeHtml(comment.content).replace(/\n/g, '<br>')}</div>
           <div class="vaction">
-            <span class="vat" onclick="replyTo('${comment.id}', '${escapeHtml(comment.nickname)}')">回复</span>
+            <span class="vat" onclick="replyTo('${comment.id}', '${escapeHtml(displayNick)}')">回复</span>
           </div>
         </div>
       `;
       return item;
-    }
-
-    function escapeHtml(text) {
-      if (!text) return '';
-      const div = document.createElement('div');
-      div.textContent = text;
-      return div.innerHTML;
-    }
-
-    function replyTo(commentId, nickname) {
-      document.querySelector('input[name="parent_id"]').value = commentId;
-      document.getElementById('reply-target').textContent = `@${nickname}`;
-      document.getElementById('reply-notice').style.display = 'block';
-      
-      const textarea = document.querySelector('textarea[name="comment"]');
-      textarea.focus();
-      textarea.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-
-    function cancelReply() {
-      document.querySelector('input[name="parent_id"]').value = '';
-      document.getElementById('reply-notice').style.display = 'none';
     }
 
     document.getElementById('comment-form').addEventListener('submit', async (e) => {
@@ -449,6 +436,10 @@
       const parentId = form.querySelector('input[name="parent_id"]').value || null;
       const submitBtn = form.querySelector('button[type="submit"]');
       
+      // 未填写昵称时，自动设为 Anonymous
+      const nickValue = form.nick.value.trim() || 'Anonymous';
+      const mailValue = form.mail.value.trim();
+
       submitBtn.disabled = true;
       submitBtn.textContent = '提交中...';
 
@@ -459,8 +450,8 @@
           body: JSON.stringify({
             comment: {
               url: PAGE_URL,
-              nick: form.nick.value,
-              mail: form.mail.value,
+              nick: nickValue,
+              mail: mailValue,
               site: form.site.value,
               comment: form.comment.value,
               parent_id: parentId
