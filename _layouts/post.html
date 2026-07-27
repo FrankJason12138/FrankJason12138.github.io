@@ -341,34 +341,53 @@
   </style>
 
   <script>
-    const WORKER_URL = '{{ site.comments.waline_serverUrl }}';
+    const WORKER_URL = '{{ site.comments.waline_serverUrl }}'.replace(/\/+$/, ''); // 自动去除末尾斜杠
     const PAGE_URL = '{{ page.url }}';
      
+    // 1. 加载评论列表（优化数据解析逻辑）
     async function loadComments() {
       try {
-        const res = await fetch(`${WORKER_URL}api/comment?type=list&url=${encodeURIComponent(PAGE_URL)}&pageSize=100`);
+        const fetchUrl = `${WORKER_URL}/api/comment?type=list&url=${encodeURIComponent(PAGE_URL)}&pageSize=100`;
+        const res = await fetch(fetchUrl);
         const data = await res.json();
-        if (data.errno === 0 && data.data.comments) {
-          document.getElementById('comment-count').textContent = data.data.comments.length;
-          renderComments(data.data.comments);
+        
+        // 兼容 Waline / 自建 Worker 的不同返回结构 (data.data.comments 或 data.data 或 data)
+        let comments = [];
+        if (data.errno === 0 || data.code === 0) {
+          comments = data.data?.comments || data.data?.list || data.data || [];
+        } else if (Array.isArray(data)) {
+          comments = data;
         }
+
+        document.getElementById('comment-count').textContent = comments.length;
+        renderComments(comments);
       } catch (err) {
         console.error('[Comments] Load error:', err);
       }
     }
 
+    // 2. 渲染评论列表
     function renderComments(comments) {
       const container = document.getElementById('comments-list');
       container.innerHTML = '';
+
+      if (!comments || comments.length === 0) {
+        container.innerHTML = '<div style="text-align:center; color:#999; padding:1rem;">暂无评论，快来抢沙发吧~</div>';
+        return;
+      }
        
       const grouped = {};
       comments.forEach(c => {
-        if (!c.parent_id) {
-          if (!grouped[c.id]) grouped[c.id] = { comment: c, replies: [] };
-          else grouped[c.id].comment = c;
+        // 统一字段名称兼容 (c.id / c.objectId, c.parent_id / c.pid)
+        const id = c.id || c.objectId;
+        const pid = c.parent_id || c.pid;
+
+        if (!pid) {
+          if (!grouped[id]) grouped[id] = { comment: c, replies: [] };
+          else grouped[id].comment = c;
         } else {
-          if (!grouped[c.parent_id]) grouped[c.parent_id] = { comment: null, replies: [] };
-          grouped[c.parent_id].replies.push(c);
+          if (!grouped[pid]) grouped[pid] = { comment: null, replies: [] };
+          grouped[pid].replies.push(c);
         }
       });
 
@@ -390,85 +409,123 @@
       });
     }
 
+    // 3. 生成头像逻辑
     function getGravatar(mail, commentId) {
       if (mail && mail.trim() !== '') {
         const hash = md5(mail.trim().toLowerCase());
-        // d=identicon 表示若邮箱无自定义图像，也会展示对应的哈希极客风像素头像
         return `https://sdn.geekzu.org/avatar/${hash}?d=identicon`;
       }
-      // 没有邮箱时，根据评论 ID 或随机数生成独特的 Hash 头像，确保不同匿名评论头像不重复
       const randomSeed = commentId || Math.random().toString();
       const randomHash = md5(randomSeed);
       return `https://sdn.geekzu.org/avatar/${randomHash}?d=identicon`;
     }
 
+    // 4. 构建单条评论 DOM
     function createCommentItem(comment, isNested) {
       const item = document.createElement('div');
       item.className = isNested ? 'vitem nested-item' : 'vitem';
       
-      // 未填昵称时显示 Anonymous
-      const displayNick = (comment.nickname && comment.nickname.trim()) ? comment.nickname : 'Anonymous';
-      const avatarUrl = getGravatar(comment.mail, comment.id);
+      const nick = comment.nick || comment.nickname;
+      const mail = comment.mail || comment.email;
+      const displayNick = (nick && nick.trim()) ? nick : 'Anonymous';
+      const commentId = comment.id || comment.objectId;
+      const avatarUrl = getGravatar(mail, commentId);
 
-      const authorHtml = comment.site 
-        ? `<a href="${escapeHtml(comment.site)}" target="_blank" rel="nofollow" class="vauthor">${escapeHtml(displayNick)}</a>`
+      const authorHtml = comment.link || comment.site 
+        ? `<a href="${escapeHtml(comment.link || comment.site)}" target="_blank" rel="nofollow" class="vauthor">${escapeHtml(displayNick)}</a>`
         : `<span class="vauthor">${escapeHtml(displayNick)}</span>`;
+
+      // 时间格式化兼容
+      const createdAt = comment.created_at || comment.insertedAt || comment.createdAt;
+      const timeStr = createdAt ? new Date(createdAt).toLocaleString() : '';
+
+      // 评论文本（优先使用 html 字段或普通 content）
+      const commentText = comment.comment || comment.content || '';
 
       item.innerHTML = `
         <img class="vavatar" src="${avatarUrl}" alt="${escapeHtml(displayNick)}">
         <div class="vcontent-box">
           <div class="vhead">
             ${authorHtml}
-            <span class="vtime">${new Date(comment.created_at).toLocaleDateString()} ${new Date(comment.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
+            <span class="vtime">${timeStr}</span>
           </div>
-          <div class="vtext">${escapeHtml(comment.content).replace(/\n/g, '<br>')}</div>
+          <div class="vtext">${escapeHtml(commentText).replace(/\n/g, '<br>')}</div>
           <div class="vaction">
-            <span class="vat" onclick="replyTo('${comment.id}', '${escapeHtml(displayNick)}')">回复</span>
+            <span class="vat" onclick="replyTo('${commentId}', '${escapeHtml(displayNick)}')">回复</span>
           </div>
         </div>
       `;
       return item;
     }
 
+    function escapeHtml(text) {
+      if (!text) return '';
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function replyTo(commentId, nickname) {
+      document.querySelector('input[name="parent_id"]').value = commentId;
+      document.getElementById('reply-target').textContent = `@${nickname}`;
+      document.getElementById('reply-notice').style.display = 'block';
+      
+      const textarea = document.querySelector('textarea[name="comment"]');
+      textarea.focus();
+      textarea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function cancelReply() {
+      document.querySelector('input[name="parent_id"]').value = '';
+      document.getElementById('reply-notice').style.display = 'none';
+    }
+
+    // 5. 提交评论（修复 Payload 格式与平铺结构）
     document.getElementById('comment-form').addEventListener('submit', async (e) => {
       e.preventDefault();
       const form = e.target;
       const parentId = form.querySelector('input[name="parent_id"]').value || null;
       const submitBtn = form.querySelector('button[type="submit"]');
       
-      // 未填写昵称时，自动设为 Anonymous
       const nickValue = form.nick.value.trim() || 'Anonymous';
       const mailValue = form.mail.value.trim();
+      const commentText = form.comment.value.trim();
 
       submitBtn.disabled = true;
       submitBtn.textContent = '提交中...';
 
+      // 构建标准的 Waline 载荷参数
+      const payload = {
+        nick: nickValue,
+        mail: mailValue,
+        link: form.site.value.trim(),
+        comment: commentText,
+        url: PAGE_URL,
+        pid: parentId,
+        rid: parentId,
+        at: parentId ? document.getElementById('reply-target').textContent : ''
+      };
+
       try {
-        const res = await fetch(`${WORKER_URL}api/comment`, {
+        const res = await fetch(`${WORKER_URL}/api/comment`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            comment: {
-              url: PAGE_URL,
-              nick: nickValue,
-              mail: mailValue,
-              site: form.site.value,
-              comment: form.comment.value,
-              parent_id: parentId
-            }
-          })
+          headers: { 
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
         });
+        
         const data = await res.json();
-        if (data.errno === 0) {
+        if (data.errno === 0 || data.code === 0 || res.ok) {
           form.querySelector('textarea[name="comment"]').value = '';
           cancelReply();
           loadComments();
         } else {
-          alert('提交失败：' + (data.errmsg || 'Unknown error'));
+          alert('提交失败：' + (data.errmsg || data.message || '网络报错或权限限制'));
         }
       } catch (err) {
         console.error('[Comments] Submit error:', err);
-        alert('提交失败');
+        alert('提交失败，请检查 Worker 后端跨域限制 (CORS) 或配置。');
       } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = '提交评论';
