@@ -7,13 +7,16 @@
       <ul>
         {% for i in site.nav %}
           <li>
-            {% if i[0] == "RSS" %}
-              <!-- 如果是 RSS，就显示按钮样式 -->
+            {% if i[1] contains 'mailto:' or i[1] contains 'http://' or i[1] contains 'https://' %}
+              <!-- 外部链接 (mailto, http, https) -->
+              <a href="{{ i[1] }}">{{ i[0] }}</a>
+            {% elsif i[0] == "RSS" %}
+              <!-- RSS 图标 -->
               <a href="{{ i[1] | relative_url }}" style="display: inline-block; padding: 0 10px; text-decoration: none;">
                 <img src="/assets/icons/rss.png" alt="RSS" style="width: 24px; height: 24px; vertical-align: middle;" loading="lazy" decoding="async">
               </a>
             {% else %}
-              <!-- 否则正常渲染其他链接 -->
+              <!-- 普通链接 -->
               <a href="{{ i[1] | relative_url }}">{{ i[0] }}</a>
             {% endif %}
           </li>
