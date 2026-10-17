@@ -240,7 +240,7 @@ console.log("=== 16PF SCRIPT INITIALIZING ===");
         emailDiv.id = 'email-section';
         emailDiv.style.cssText = 'margin-top:30px;padding:20px;background:#f3f4f6;border-radius:10px;text-align:center;';
         emailDiv.innerHTML = `
-            <h4 style="margin-bottom:15px;color:#374151;">📧 发送详细报告至邮箱</h4>
+            <h4 style="margin-bottom:15px;color:#374151;">邮件发送</h4>
             <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
                 <input type="email" id="pf-email" placeholder="您的邮箱地址" style="padding:8px 15px;border:1px solid #ccc;border-radius:5px;width:250px;">
                 <button id="pf-email-btn" style="background:#2563eb;color:white;padding:8px 20px;border-radius:5px;border:none;cursor:pointer;font-weight:bold;">发送报告</button>
@@ -248,19 +248,76 @@ console.log("=== 16PF SCRIPT INITIALIZING ===");
             <p id="pf-status" style="margin-top:10px;font-size:14px;"></p>
         `;
         container.appendChild(emailDiv);
-        document.getElementById('pf-email-btn').onclick = () => {
+
+        const API_URL = 'https://gmailsend.404108.xyz/';
+        const TIMEOUT_MS = 15000;
+        const MAX_RETRIES = 2;
+
+        function sendWithTimeout(url, options, timeout) {
+            const controller = new AbortController();
+            const id = setTimeout(() => controller.abort(), timeout);
+            return fetch(url, { ...options, signal: controller.signal })
+                .finally(() => clearTimeout(id));
+        }
+
+        async function sendMailWithRetry(payload, retriesLeft) {
+            try {
+                const response = await sendWithTimeout(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                }, TIMEOUT_MS);
+                if (!response.ok) throw new Error('HTTP ' + response.status);
+                let data = null;
+                try { data = await response.json(); } catch (e) { /* ignore */ }
+                if (data && data.status === 'success') return { ok: true };
+                throw new Error((data && data.message) ? data.message : '邮件服务返回未知错误');
+            } catch (err) {
+                if (retriesLeft > 0) {
+                    await new Promise(r => setTimeout(r, 2000));
+                    return sendMailWithRetry(payload, retriesLeft - 1);
+                }
+                return { ok: false, error: err.message || '网络请求失败' };
+            }
+        }
+
+        const pfBtn = document.getElementById('pf-email-btn');
+        pfBtn.onclick = async () => {
             const email = document.getElementById('pf-email').value;
             const status = document.getElementById('pf-status');
             if (!email.includes('@')) { alert('请输入有效邮箱'); return; }
-            status.innerText = '正在发送...'; status.style.color = '#2563eb';
+
+            if (pfBtn.disabled) return;
+            pfBtn.disabled = true;
+            const originalText = pfBtn.innerText;
+            pfBtn.innerText = '发送中...';
+            status.innerText = '正在发送，请稍候...';
+            status.style.color = '#2563eb';
+
             const canvas = document.getElementById('myRadarChart');
             const imgData = canvas ? canvas.toDataURL('image/png') : '';
             const cardContent = document.getElementById('pf-result-container').innerHTML;
-            fetch('https://gmailsend.404108.xyz/', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: email, subject: '16PF 人格测评报告', body: `<div style="font-family:sans-serif;padding:20px;">${cardContent}${imgData ? `<br><img src="${imgData}" style="max-width:100%;">` : ''}</div>` })
-            }).then(() => { status.innerText = '✅ 发送成功！请检查收件箱。'; status.style.color = '#059669'; }).catch(() => { status.innerText = '✅ 发送成功！请稍后检查邮箱。'; status.style.color = '#059669'; });
+
+            const result = await sendMailWithRetry({
+                email: email,
+                subject: '16PF 人格测评报告',
+                body: `<div style="font-family:sans-serif;padding:20px;">${cardContent}${imgData ? `<br><img src="${imgData}" style="max-width:100%;">` : ''}</div>`
+            }, MAX_RETRIES);
+
+            pfBtn.disabled = false;
+            pfBtn.innerText = originalText;
+
+            if (result.ok) {
+                status.innerText = '✅ 发送成功！请检查收件箱。';
+                status.style.color = '#059669';
+            } else {
+                const errText = (result.error || '');
+                const friendly = errText.includes('上限') || errText.toLowerCase().includes('size') || errText.includes('too large')
+                    ? '报告内容过大，超出邮件服务限制'
+                    : (errText || '未知错误');
+                status.innerHTML = '<span style="color:#dc2626;">邮件发送失败：' + friendly + '。</span>请点击上方"导出测评结果"保存本地文件，或联系客服。';
+                console.error('16PF email send error:', result.error);
+            }
         };
     }
 
