@@ -96,3 +96,5 @@ function json(obj, opts = {}) {
   const headers = Object.assign({'Content-Type':'application/json;charset=UTF-8'}, opts.headers || {});
   return new Response(JSON.stringify(obj), Object.assign({ status: opts.status || 200, headers }, {}));
 }
+
+
