@@ -1513,6 +1513,7 @@ tags: 心理咨询 心理量表 心理测试 卡特尔 人格测试 MBTI 16PF �
         <canvas id="myRadarChart" width="600" height="600"></canvas>
     </div>
     <p id="resultDisplay" class="text-center mt-4"></p>
+    <script src="{{ '/assets/js/report-sender.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
     <script>
     (function () {
