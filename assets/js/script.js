@@ -183,17 +183,28 @@ console.log("=== 16PF SCRIPT INITIALIZING ===");
         emailDiv.style.borderRadius = '10px';
         emailDiv.innerHTML = `<h4>📧 发送结果到邮箱</h4><input type="email" id="pf-email" placeholder="邮箱" style="padding:5px; border-radius:5px;"><button id="pf-email-btn" style="margin-left:10px; background:#2563eb; color:white; padding:5px 15px; border-radius:5px; border:none;">发送</button><p id="pf-status"></p>`;
         container.appendChild(emailDiv);
-        document.getElementById('pf-email-btn').onclick = () => {
+        document.getElementById('pf-email-btn').onclick = async () => {
             const email = document.getElementById('pf-email').value;
             const status = document.getElementById('pf-status');
             if (!email.includes('@')) { alert('无效邮箱'); return; }
             status.innerText = '正在发送...';
+
+            if (typeof window.ReportSender === 'undefined') {
+                status.innerText = '❌ 邮件模块未加载，请刷新页面后重试。';
+                return;
+            }
+
             const canvas = document.getElementById('myRadarChart');
             const imgData = canvas ? canvas.toDataURL('image/png') : '';
-            fetch('https://script.google.com/macros/s/AKfycbwWe9Pld6ZXPIZhSxgtLYpBJ7Qlc-1ljD7pwOMe7dL-Cw4NwV_W6q0XZP7paupeCWoK3g/exec', {
-                method: 'POST',
-                body: JSON.stringify({ email: email, subject: '16PF 人格测评报告', body: `<div>${container.innerHTML}${imgData ? `<br><img src="${imgData}">` : ''}</div>` })
-            }).then(() => { status.innerText = '✅ 已提交任务，请检查邮箱。'; });
+            const fullHtml = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>16PF测评报告</title><style>body{font-family:'Microsoft YaHei',Arial,sans-serif;max-width:800px;margin:20px auto;padding:20px;line-height:1.8;color:#333}</style></head><body><h2 style="color:#006400;text-align:center;">16PF 人格测评报告</h2>${container.innerHTML}${imgData ? `<div style="text-align:center;margin-top:20px;"><img src="${imgData}" style="max-width:100%;"></div>` : ''}<p style="font-size:12px;color:#666;text-align:center;margin-top:30px;">*测评结果仅供参考，不作为临床诊断依据。</p></body></html>`;
+
+            const result = await window.ReportSender.sendFullReport(email, '16PF 人格测评报告', fullHtml);
+            if (result.ok) {
+                status.innerText = '✅ 报告已发送，请检查邮箱（含垃圾邮件箱）。';
+            } else {
+                status.innerText = '❌ 发送失败：' + (result.error || '未知错误');
+                console.error('[16PF邮件发送]', result.error);
+            }
         };
     }
 
