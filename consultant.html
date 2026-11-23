@@ -323,6 +323,65 @@
     }
     .stat-label { font-size: 0.82rem; color: var(--text-dim); line-height: 1.6; }
 
+    /* ── Certificate ── */
+    .certificate {
+      margin-top: 5rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: 3.5rem;
+      align-items: center;
+    }
+    .certificate-media {
+      position: relative;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      background: #fff;
+      line-height: 0;
+    }
+    .certificate-media img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .certificate-media figcaption {
+      line-height: 1.6;
+      padding: 0.9rem 1.2rem;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      background: var(--card);
+      border-top: 1px solid var(--border);
+    }
+    .certificate-note h4 {
+      font-family: 'ZCOOL XiaoWei', serif;
+      font-size: 1.35rem;
+      color: var(--warm);
+      margin-bottom: 1rem;
+    }
+    .certificate-note p {
+      color: var(--text-dim);
+      font-size: 0.86rem;
+      line-height: 2;
+      margin-bottom: 1rem;
+    }
+    .certificate-note .certificate-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      margin-top: 1.4rem;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+    .certificate-note .certificate-meta span::before {
+      content: '◆';
+      color: var(--accent);
+      font-size: 0.5rem;
+      margin-right: 0.6rem;
+      vertical-align: middle;
+    }
+
     /* ── Tools / Scales ── */
     .tools {
       padding: 8rem 4rem;
@@ -529,6 +588,7 @@
       .photo-frame { width: 260px; height: 320px; }
       .about { padding: 5rem 2rem; }
       .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .certificate { grid-template-columns: 1fr; gap: 2rem; margin-top: 3.5rem; padding-top: 2.5rem; }
       .scales-grid { grid-template-columns: 1fr 1fr; }
       .testi-grid { grid-template-columns: 1fr; }
       .process, .tools, .testimonials { padding: 5rem 2rem; }
@@ -623,6 +683,22 @@
         <div class="stat-card">
           <div class="stat-num">∞</div>
           <div class="stat-label">对每一位来访者<br>保持真诚与敬畏</div>
+        </div>
+      </div>
+    </div>
+    <div class="certificate">
+      <figure class="certificate-media">
+        <img src="assets/img/certificate.webp" alt="心理咨询师水平等级证书图片（敏感信息已遮挡）">
+        <figcaption>用户提供的心理咨询师水平等级证书图片，姓名、证件号码、证书编号与二维码已做不可逆遮挡处理。</figcaption>
+      </figure>
+      <div class="certificate-note">
+        <h4>资质材料</h4>
+        <p>这里展示的是本人提供的心理咨询师水平等级证书图片，用于说明我的专业背景。该图片仅作材料展示，不作为资质真伪或当前有效性的证明。</p>
+        <p>相关资质的真实性与有效性，请以颁发机构的官方核验结果为准；我也愿意在正式咨询关系开始前提供原始材料供核验。</p>
+        <div class="certificate-meta">
+          <span>图片中的个人信息已遮挡，不公开具体身份信息</span>
+          <span>二维码已处理，无法扫描查询</span>
+          <span>如需核验，请在咨询前提出</span>
         </div>
       </div>
     </div>
