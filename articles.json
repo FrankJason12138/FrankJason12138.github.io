@@ -1,0 +1,6 @@
+---
+layout: null
+permalink: /articles.json
+sitemap: false
+---
+{"generatedAt":"{{ site.time | date_to_xmlschema }}","count":{{ site.posts.size }},"items":[{% for post in site.posts %}{% assign sum = post.subtitle | default: post.description | default: post.excerpt | strip_html | normalize_whitespace %}{% assign isList = post.tags.first %}{% if isList %}{% assign tagArr = post.tags %}{% else %}{% assign tagArr = post.tags | split: ' ' %}{% endif %}{"id":"{{ post.slug | default: post.title }}","title":{{ post.title | jsonify }},"summary":{{ sum | truncate: 100 | jsonify }},"date":"{{ post.date | date: '%Y.%m.%d' }}","dateRaw":"{{ post.date | date: '%d %b %Y' }}","tags":{{ tagArr | jsonify }},"tagText":{{ tagArr | join: ' · ' | jsonify }},"url":"{{ post.url | relative_url }}"}{% unless forloop.last %},{% endunless %}{% endfor %}]}
